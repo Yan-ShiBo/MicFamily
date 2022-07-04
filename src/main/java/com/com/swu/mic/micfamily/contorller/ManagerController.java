@@ -141,7 +141,7 @@ public class ManagerController {
         System.out.println(currented + "   " + size);
 
         Page<Manager> ManagerPage = new Page<>();
-        List<Manager> managerList = managerDao.selectPages(currented, size);
+        List<Manager> managerList = managerDao.selectPages(currented * size, size);
         int max = managerDao.selectCount();
         System.out.println(max / size);
         ManagerPage.setTotal(max / size);
