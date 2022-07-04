@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src="../vue/vue.js"></script>
+	<script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
+
+</head>
+<body>
+<div id="app">
+	<!--
+                <ul>
+                    <li v-for="info in listdata">
+                    {{info.userId}}
+                    {{info.userName}}
+                    {{info.userPassword}}
+                    </li>
+                </ul>
+                 -->
+	<input type="text" v-model="name"/>
+	<input type="password" v-model="password"/>
+	<input @click="login()" type="button" value="login"/>
+  商品管理
+</div>
+
+<script>
+	new Vue({
+		el: "#app",
+		data: {
+			name: "sds",
+			password: "ddd"
+		},
+		methods: {
+			login() {
+				axios.get("http://localhost:8088/login?username=" + this.name + "&password=" + this.password);
+			}
+		},
+
+	});
+</script>
+
+
+</body>
+</html>

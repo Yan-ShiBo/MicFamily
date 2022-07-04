@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>Bootstrap 101 Template</title>
+
+    <script src="vue/vue.js"></script>
+    <script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
+    <script src="jquery-3.5.1/jquery-3.5.1/jquery-3.5.1.min.js"></script>
+
+    <link href="css/login.css" rel="stylesheet">
+
+
+    <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <script src="js/bootstrap.min.js" type="text/javascript"></script>
+    <link href="css/sighin.css" rel="stylesheet">
+    <!--font-awesome    -->
+    <link href="font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="container" id="app">
+    <div class="form row">
+        <form class="form-horizontal col-sm-offset col-md-offset-3">
+            <h3 class="form-title">注册</h3>
+            <div class="col-sm-9 col-md-9">
+                <div class="form-group">
+                    <!--        用户名图标和用户名输入框            -->
+                    <i aria-hidden="true" class="fa fa-user"></i>
+                    <input class="form-control required" id="userName" name="userName" placeholder="请输入用户名" required
+                           type="text"
+                           v-model="userName">
+                </div>
+
+                <!--        密码图标和密码输入框                -->
+                <div class="form-group">
+                    <i aria-hidden="true" class="fa fa-key"></i>
+                    <input class="form-control required" id="password" name="password" placeholder="请输入密码" required
+                           type="password"
+                           v-model="password">
+                </div>
+                <!--          确认密码              -->
+                <div class="form-group">
+                    <i aria-hidden="true" class="fa fa-check-circle-o"></i>
+                    <input class="form-control required" id="resetpw" name="resetpw" placeholder="请确认密码" required
+                           type="password">
+                </div>
+
+                <!--      权限            -->
+                <div class="form-group">
+                    <i aria-hidden="true" class="fa fa-address-card"></i>
+                    <input class="form-control required" id="permission" name="permission" placeholder=" 请输入1/2/3级权限 "
+                           required
+                           type="permission"
+                           v-model="permission">
+                </div>
+
+                <!--           内部注册码                -->
+                <div class="form-group">
+                    <i aria-hidden="true" class="fa fa-id-badge"></i>
+                    <input class="form-control required" id="InnerCode" name="InnerCode" placeholder="请输入内部注册码" required
+                           type="InnerCode">
+                </div>
+
+                <div class="form-group">
+                </div>
+
+                <!--注册按钮-->
+                <div class="form-group">
+                    <input class="btn btn-success pull-right signinbtn" id="signinbtn" type="button" value="注册">
+                    <input class="btn btn-info pull-left" id="back_btn" onclick=new_page_signin() type="button"
+                           value="返回"/>
+                </div>
+
+
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script>
+
+    function new_page_signin() {
+        window.open("./login.html");
+    }
+</script>
+
+
+<script>
+
+
+</script>
+
+<script>
+
+    var signin = new Vue(
+        {
+            el: "#app",
+            data: {
+                userName: "",
+                password: "",
+                permission: ""
+
+            },
+            methods: {
+                signin() {
+                    axios.get("http://localhost:8088/login/signin", {
+                        params: {
+                            userName: this.userName,
+                            password: this.password,
+                            permission: this.permission
+                        }
+                    }).then(rel => {
+                        if (rel.data == 100) {
+                            alert("用户名、 密码长度不能小于3个字符");
+                        } else if (rel.data == 101) {
+                            alert("权限不存在");
+                        } else if (rel.data == 0) {
+                            alert("请重新输入");
+                        } else if (rel.data == 1) {
+                            document.location = "login.html";
+                        }
+                    });
+                }
+            }
+        }
+    );
+
+    var userName = document.getElementById("userName");
+    var password = document.getElementById("password");
+    var resetpw = document.getElementById("resetpw");
+
+    $(function () {
+        $(".signinbtn").on('click', function () {
+
+            window.console.log(resetpw)
+            window.console.log(password)
+
+            if (IsAlpha(userName.value.charAt(0))) {
+                alert('用户名要以字母开头');
+                window.location.reload();
+            } else if ($.trim(resetpw) != $.trim(password)) {
+                alert('两次密码要一致！');
+                window.location.reload();
+            } else {
+                signin.signin();
+            }
+        })
+    })
+
+
+    function IsAlpha(firstword) {
+        if (!((firstword <= 'z' && firstword >= 'a') || (firstword <= 'Z' && firstword >= 'A')))
+            return true;
+    }
+
+    window.onload = function () {
+        bt.onclick = function () {
+            if (password.value == "") {
+                alert('密码不能为空');
+                window.location.reload();
+            }
+
+        }
+    }
+
+
+</script>
+
+
+<div class="footer">
+    <div class="container">
+        Copyright &copy;2022 by MicFamily Team
+    </div>
+</div>
+</body>
+</html>

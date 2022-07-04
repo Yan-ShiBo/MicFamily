@@ -1,0 +1,24 @@
+server:
+  port: 8088
+spring:
+  thymeleaf:
+    cache: false
+  # 配置国际化
+  messages:
+    basename: i18n.login
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/micfamily?useUnicode=true&characterEncoding=utf8
+      username: root
+      password: 1#2@3!Yan
+
+mybatis-plus:
+  type-aliases-package:
+  mapper-locations:
+  global-config:
+    db-config:
+      id-type: auto
+
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
