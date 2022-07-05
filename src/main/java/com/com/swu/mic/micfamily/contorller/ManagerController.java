@@ -44,16 +44,17 @@ public class ManagerController {
             //System.out.println(i.getUserName() + "---" + i.getPassword());System.out.println(manager.getUserName() + "+++" + manager.getPassword() );
             if (i.getPassword().equals(manager.getPassword()) && i.getUserName().equals(manager.getUserName())) {
                 System.out.println("登录成功");
-                if (i.getPermission() == 1)
-                    return 1;
-                else if (i.getPermission() == 2)
-                    return 2;
-                else if (i.getPermission() == 3)
-                    return 3;
-                else if (i.getPermission() == 4)//管理员
-                    return 4;
-                else
-                    return 0;
+                return i.getPermission();
+//                if (i.getPermission() == 1)
+//                    return 1;
+//                else if (i.getPermission() == 2)
+//                    return 2;
+//                else if (i.getPermission() == 3)
+//                    return 3;
+//                else if (i.getPermission() == 4)//管理员
+//                    return 4;
+//                else
+//                    return 0;
             }
         }
         System.out.println(userName + "  登入失败  " + password);

@@ -2,6 +2,7 @@ package com.com.swu.mic.micfamily.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.com.swu.mic.micfamily.domain.Goods;
+import org.apache.ibatis.annotations.Mapper;
 
 
 /**
@@ -11,5 +12,7 @@ import com.com.swu.mic.micfamily.domain.Goods;
  * @ Project name： MicFamily
  * @ Description：
  */
+@Mapper
 public interface GoodsDao extends BaseMapper<Goods> {
+
 }

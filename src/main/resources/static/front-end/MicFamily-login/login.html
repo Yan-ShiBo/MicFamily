@@ -129,7 +129,9 @@
                                 identity = rel.data;
                                 // document.location = "manage.html?identity=" + rel.data;
                                 sessionStorage.setItem("identity", rel.data);
-                                document.location = "ktvmanagement.html";
+                                document.location = "manage.html";
+                            } else if (rel.data <= 8) {
+                                document.location = "user.html";
                             } else {
                                 alert("登录失败");
                                 window.location.reload();
