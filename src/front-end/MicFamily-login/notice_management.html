@@ -90,7 +90,7 @@
                         <th>公告权限</th>
                         <th>公告种类</th>
                         <th>公告日期</th>
-                        <th>编辑/删除</th>
+                        <th>详情/编辑/删除</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -102,6 +102,7 @@
                         <td>{{notices.datastr}}</td>
 
                         <td>
+                            <button class="btn btn-sm btn-danger" v-on:click="">详情</button>
                             <button class="btn btn-sm btn-primary" v-on:click="updatev(notice.id)">修改</button>
                             <button class="btn btn-sm btn-danger" v-on:click="ManagerDel(notice.id)">删除</button>
                         </td>
