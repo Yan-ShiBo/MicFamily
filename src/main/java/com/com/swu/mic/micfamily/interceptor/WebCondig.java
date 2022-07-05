@@ -19,4 +19,5 @@ public class WebCondig implements WebMvcConfigurer {
         registry.addInterceptor(new UserInterceptor()).addPathPatterns("/")
                 .excludePathPatterns("/manage/login", "/front-end/**", "/**/*.html,/**/*.css", "/**/*.css");
     }
+
 }
