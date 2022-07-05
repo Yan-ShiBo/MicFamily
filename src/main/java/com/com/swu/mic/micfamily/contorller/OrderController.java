@@ -1,6 +1,8 @@
 package com.com.swu.mic.micfamily.contorller;
 
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.com.swu.mic.micfamily.dao.OrderDao;
 import com.com.swu.mic.micfamily.domain.Order;
 import com.com.swu.mic.micfamily.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,8 @@ import java.util.List;
 public class OrderController {
     @Autowired
     private OrderService orderService;
+    @Autowired
+    OrderDao orderDao;
 
 
     @PostMapping("/management")
@@ -50,4 +54,34 @@ public class OrderController {
     public boolean updatauser(@RequestBody Order order) {
         return orderService.updateById(order);
     }
+
+    @PutMapping("/find")
+    public List<Order> findroom(@RequestParam String coRoom) {
+
+        List<Order> orderList = orderDao.getByName("%" + coRoom + "%");
+        return orderList;
+    }
+
+
+    @GetMapping("/page")
+    public Page<Order> getpage(@RequestParam Integer currented, @RequestParam Integer size) {
+        System.out.println(currented + "   " + size);
+
+        Page<Order> OrderPage = new Page<>();
+        List<Order> orderList = orderDao.selectPages(currented * size, size);
+        int max = orderDao.selectCount();
+        System.out.println(max / size);
+        OrderPage.setTotal(max / size);
+        OrderPage.setRecords(orderList);
+        return OrderPage;
+    }
+
+    @GetMapping("/orderbyid")
+    public Order GetOrderById(@RequestParam String roomId) {
+//        System.out.println(roomId);
+        Order orderbyid = orderDao.getOrderById(roomId);
+//          System.out.println(orderbyid);
+        return orderbyid;
+    }
+
 }

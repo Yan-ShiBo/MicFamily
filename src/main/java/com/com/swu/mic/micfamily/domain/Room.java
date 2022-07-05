@@ -47,4 +47,12 @@ public class Room {
     public void setType(String roomType) {
         this.roomType = roomType;
     }
+
+    public Object getRoomType() {
+        return roomType;
+    }
+
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
+    }
 }

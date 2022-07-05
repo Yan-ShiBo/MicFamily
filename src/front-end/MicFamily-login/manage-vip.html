@@ -29,7 +29,7 @@
             <tr>
                 <td>
                     <input class="btn btn-sm btn-success" type="button" v-on:click="savev()" value="新增"/>
-                    <input class="btn btn-sm btn-info" type="button" value="查询"/>
+                    <input class="btn btn-sm btn-info" type="button" v-on:click="tofind()" value="查询"/>
                 </td>
             </tr>
         </table>
@@ -56,6 +56,33 @@
             </tr>
             </tbody>
         </table>
+
+
+        <table class="table table-striped table-sm" style="width: 100%" v-if="findfig">
+            <thead>
+            <tr>
+                <th>输入你要查询的会员</th>
+                <th>确定</th>
+                <th>取消</th>
+                <th>返回</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><input type="text" v-model="name"></td>
+                <td>
+                    <input class="btn btn-sm btn-primary" type="button" v-on:click="yesfind()" value="确定"/>
+                </td>
+                <td>
+                    <input class="btn btn-sm btn-danger" type="button" v-on:click="nofind()" value="取消"/>
+                </td>
+                <td>
+                    <input class="btn btn-sm btn-primary" type="button" v-on:click="findBack()" value="返回"/>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
 
         <table class="table table-striped table-sm" style="width: 100%" v-if="update">
             <thead>
@@ -103,10 +130,23 @@
                     <button class="btn btn-sm btn-danger" v-on:click="VIPDel(vip.id)">删除</button>
                 </td>
             </tr>
+
+            <tr>
+                <td></td>
+                <td>
+                    <button @click="upt()" class="btn btn-sm btn-primary">上一页</button>
+                </td>
+                <td>
+                    <button @click="next()" class="btn btn-sm btn-primary">下一页</button>
+                </td>
+                <td></td>
+                <td></td>
+
+
+            </tr>
+
             </tbody>
         </table>
-
-
 
 
     </div>
@@ -119,24 +159,34 @@
     new Vue({
         el: "#app",
         data: {
+            findfig: false,
             addfig: false,
             update: false,
             datalist: [],
             vip: {},
-            id: 0
+            id: 0,
+            currented: 0,
+            total: 1,
+            size: 5,
+            name: ""
         },
         created() {
             this.getAll();
         },
         methods: {
             getAll() {
-                axios.get("http://localhost:8088/VIP/all").then(rel => {
-                    this.datalist = rel.data;
+                axios.get("http://localhost:8088/VIP/page?currented=" + this.currented + "&size=" + this.size).then(res => {
+                    // console.log(res);
+                    this.datalist = res.data.records;
+                    this.total = res.data.total;
+                    // console.log(this.total);
                 });
             },
 
             savev() {
                 this.addfig = true;
+                this.findfig = false;
+                this.update = false
             },
 
             saved() {
@@ -148,7 +198,8 @@
                     this.vip = rel.data;
                 });
                 this.update = true;
-
+                this.addfig = false;
+                this.findfig = false
             },
 
             updated() {
@@ -185,6 +236,34 @@
                         }
 
                     })
+            }, tofind() {
+                this.findfig = true;
+                this.addfig = false,
+                    this.update = false
+            },
+            nofind() {
+                this.findfig = false;
+            },
+            yesfind() {
+                console.log(this.name)
+                axios.put("http://localhost:8088/VIP/find?userName=" + this.name).then(rel => {
+                    this.datalist = rel.data;
+                })
+            },
+
+            next() {
+                if (this.currented < this.total)
+                    this.currented++;
+                this.getAll();
+            },
+            upt() {
+                if (this.currented > 0)
+                    this.currented--;
+                this.getAll();
+            },
+            findBack() {
+                this.findfig = false;
+                this.getAll();
             }
         }
 

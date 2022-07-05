@@ -127,7 +127,7 @@
                         }).then(rel => {
                             if (rel.data == 1 || rel.data == 2 || rel.data == 3 || rel.data == 4) {
                                 identity = rel.data;
-                                // document.location = "ktvmanagement.html?identity=" + rel.data;
+                                // document.location = "manage.html?identity=" + rel.data;
                                 sessionStorage.setItem("identity", rel.data);
                                 document.location = "ktvmanagement.html";
                             } else {

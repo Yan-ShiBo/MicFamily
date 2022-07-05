@@ -1,5 +1,7 @@
 package com.com.swu.mic.micfamily.contorller;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.com.swu.mic.micfamily.dao.RoomDao;
 import com.com.swu.mic.micfamily.domain.Room;
 import com.com.swu.mic.micfamily.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,8 @@ public class RoomController {
 
     @Autowired
     private RoomService roomService;
+    @Autowired
+    RoomDao roomDao;
 
 
     @PostMapping("/management")
@@ -71,5 +75,27 @@ public class RoomController {
     public boolean updatauser(@RequestBody Room room) {
         return roomService.updateById(room);
     }
+
+    @PutMapping("/find")
+    public List<Room> findroom(@RequestParam String roomName) {
+
+        List<Room> roomList = roomDao.getByName("%" + roomName + "%");
+        return roomList;
+    }
+
+
+    @GetMapping("/page")
+    public Page<Room> getpage(@RequestParam Integer currented, @RequestParam Integer size) {
+        System.out.println(currented + "   " + size);
+
+        Page<Room> RoomPage = new Page<>();
+        List<Room> roomList = roomDao.selectPages(currented * size, size);
+        int max = roomDao.selectCount();
+        System.out.println(max / size);
+        RoomPage.setTotal(max / size);
+        RoomPage.setRecords(roomList);
+        return RoomPage;
+    }
+
 
 }

@@ -1,6 +1,8 @@
 package com.com.swu.mic.micfamily.contorller;
 
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.com.swu.mic.micfamily.dao.VIPDao;
 import com.com.swu.mic.micfamily.domain.VIP;
 import com.com.swu.mic.micfamily.service.VIPService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,8 @@ import java.util.List;
 public class VIPController {
     @Autowired
     private VIPService vipService;
+    @Autowired
+    VIPDao vipDao;
 
 
     @PostMapping("/management")
@@ -52,4 +56,28 @@ public class VIPController {
     public boolean updatauser(@RequestBody VIP vip) {
         return vipService.updateById(vip);
     }
+
+
+    @PutMapping("/find")
+    public List<VIP> finduser(@RequestParam String userName) {
+
+        List<VIP> vipList = vipDao.getByName("%" + userName + "%");
+        return vipList;
+    }
+
+
+    @GetMapping("/page")
+    public Page<VIP> getpage(@RequestParam Integer currented, @RequestParam Integer size) {
+        System.out.println(currented + "   " + size);
+
+        Page<VIP> VIPPage = new Page<>();
+        List<VIP> vipList = vipDao.selectPages(currented * size, size);
+        int max = vipDao.selectCount();
+        System.out.println(max / size);
+        VIPPage.setTotal(max / size);
+        VIPPage.setRecords(vipList);
+        return VIPPage;
+    }
+
+
 }

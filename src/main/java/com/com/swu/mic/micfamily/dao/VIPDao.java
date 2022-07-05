@@ -4,6 +4,10 @@ package com.com.swu.mic.micfamily.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.com.swu.mic.micfamily.domain.VIP;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 /**
  * @ 作者： 闫士博
@@ -15,7 +19,14 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface VIPDao extends BaseMapper<VIP> {
+    @Select("select * from vip where user_name like #{userName}")
+    List<VIP> getByName(@Param("userName") String userName);
 
+    @Select("select * from vip limit #{pageNum},#{pageSize}")
+    List<VIP> selectPages(@Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize);
+
+    @Select("select count(*) from vip")
+    int selectCount();
 
 }
 
