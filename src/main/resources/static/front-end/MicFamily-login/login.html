@@ -6,7 +6,7 @@
 
     <title>MicFamily-login</title>
     <script src="vue/vue.js"></script>
-    <script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
+    <script src="./js/axios.min.js"></script>
     <style>
         .input-val {
             width: 200px;
@@ -197,13 +197,13 @@
     function draw(show_num) {
         var canvas_width = $('#canvas').width();
         var canvas_height = $('#canvas').height();
-        var canvas = document.getElementById("canvas");//获取到canvas的对象，演员
-        var context = canvas.getContext("2d");//获取到canvas画图的环境，演员表演的舞台
+        var canvas = document.getElementById("canvas");
+        var context = canvas.getContext("2d");
         canvas.width = canvas_width;
         canvas.height = canvas_height;
         var sCode = "a,b,c,d,e,f,g,h,i,j,k,m,n,p,q,r,s,t,u,v,w,x,y,z,A,B,C,E,F,G,H,J,K,L,M,N,P,Q,R,S,T,W,X,Y,Z,1,2,3,4,5,6,7,8,9,0";
         var aCode = sCode.split(",");
-        var aLength = aCode.length;//获取到数组的长度
+        var aLength = aCode.length;
 
         for (var i = 0; i < 4; i++) {  //这里的for循环可以控制验证码位数（如果想显示6位数，4改成6即可）
             var j = Math.floor(Math.random() * aLength);
@@ -258,9 +258,8 @@
     </div>
 </div>
 
-<!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
-<script src="https://code.jquery.com/jquery.js"></script>
-<!-- 包括所有已编译的插件 -->
+
+<script src="./jquery-3.5.1/jquery-3.5.1/jquery-3.5.1.js"></script>
 <script src="js/bootstrap.min.js"></script>
 
 
