@@ -183,10 +183,10 @@
         methods: {
             getAll() {
                 axios.get("http://localhost:8088/goods/page?currented=" + this.currented + "&size=" + this.size).then(res => {
-                    // console.log(res.data.records);
+
                     this.datalist = res.data.records;
                     this.total = res.data.total;
-                    // console.log(this.total);
+
                 });
             },
 
