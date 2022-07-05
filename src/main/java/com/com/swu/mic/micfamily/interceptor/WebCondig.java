@@ -1,5 +1,6 @@
 package com.com.swu.mic.micfamily.interceptor;
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -10,11 +11,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @ Project name： MicFamily
  * @ Description：
  */
+@Configuration
 public class WebCondig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new UserInterceptor()).excludePathPatterns("/manager/**")
-                .excludePathPatterns("/manage/login", "static/**", "/**/*.html");
+        registry.addInterceptor(new UserInterceptor()).addPathPatterns("/")
+                .excludePathPatterns("/manage/login", "/front-end/**", "/**/*.html,/**/*.css", "/**/*.css");
     }
 }

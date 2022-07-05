@@ -8,6 +8,7 @@ import com.com.swu.mic.micfamily.service.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 
@@ -21,7 +22,7 @@ public class ManagerController {
     private ManagerDao managerDao;
 
     @GetMapping
-    public Integer check(@RequestParam String userName, @RequestParam String password) {
+    public Integer check(@RequestParam String userName, @RequestParam String password, HttpServletRequest request) {
 
         List<Manager> listdata = managerService.list();
 
@@ -36,14 +37,13 @@ public class ManagerController {
         }
 
 
-        Manager manager = new Manager();
-        manager.setPassword(password);
-        manager.setUserName(userName);
 
         for (Manager i : listdata) {
-            //System.out.println(i.getUserName() + "---" + i.getPassword());System.out.println(manager.getUserName() + "+++" + manager.getPassword() );
-            if (i.getPassword().equals(manager.getPassword()) && i.getUserName().equals(manager.getUserName())) {
+            System.out.println(i.getUserName() + "---" + i.getPassword());
+            System.out.println(userName + "+++" + password);
+            if (i.getPassword().equals(userName) && i.getUserName().equals(password)) {
                 System.out.println("登录成功");
+                request.getSession().setAttribute("manager", i);
                 return i.getPermission();
 //                if (i.getPermission() == 1)
 //                    return 1;

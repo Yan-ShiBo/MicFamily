@@ -1,9 +1,9 @@
 package com.com.swu.mic.micfamily.domain;
 
+
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
-
 /**
  * @ 作者： 闫士博
  * @ 日期： 2022/7/5 星期二 11:47
@@ -16,10 +16,6 @@ import lombok.Data;
 public class Goods {
     @TableId("id")
     private Integer id;
-    private String goodsName;
-    private double price;
-    private Integer creditExchange;
-    private Integer quantity;
 
     public Integer getId() {
         return id;
@@ -37,21 +33,10 @@ public class Goods {
         this.goodsName = goodsName;
     }
 
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public Integer getCreditExchange() {
-        return creditExchange;
-    }
-
-    public void setCreditExchange(Integer creditExchange) {
-        this.creditExchange = creditExchange;
-    }
+    private String goodsName;
+    private Double price;
+    private Double creditExchange;
+    private Integer quantity;
 
     public Integer getQuantity() {
         return quantity;
@@ -61,5 +46,20 @@ public class Goods {
         this.quantity = quantity;
     }
 
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public Double getCreditExchange() {
+        return creditExchange;
+    }
+
+    public void setCreditExchange(Double creditExchange) {
+        this.creditExchange = creditExchange;
+    }
 
 }

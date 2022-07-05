@@ -66,9 +66,12 @@ public class RoomController {
     }
 
     @GetMapping("/{id}")
-    public Room Updateroom(@PathVariable int id) {
-        //return managerService.update(manager);
-        return roomService.getById(id);
+    public Boolean Updateroom(@PathVariable int id) {
+        Room room = new Room();
+        room = roomService.getById(id);
+        room.setStatus("4");
+        roomService.updateById(room);
+        return true;
     }
 
     @PutMapping("/update")
@@ -83,6 +86,53 @@ public class RoomController {
         return roomList;
     }
 
+    @GetMapping("/big")
+    public List<Room> findBigroom() {
+        List<Room> roomList = roomDao.getBigroom();
+        List<Room> roomList1 = new ArrayList<>();
+        for (Room i : roomList) {
+            if (i.getRoomType().equals("1")) {
+                i.setRoomType("大包");
+            }
+            if (i.getStatus().equals("2")) {
+                i.setStatus("未使用");
+            }
+            roomList1.add(i);
+        }
+        return roomList1;
+    }
+
+    @GetMapping("/medium")
+    public List<Room> findMediumroom() {
+        List<Room> roomList = roomDao.getMediumroom();
+        List<Room> roomList1 = new ArrayList<>();
+        for (Room i : roomList) {
+            if (i.getRoomType().equals("2")) {
+                i.setRoomType("中包");
+            }
+            if (i.getStatus().equals("2")) {
+                i.setStatus("未使用");
+            }
+            roomList1.add(i);
+        }
+        return roomList1;
+    }
+
+    @GetMapping("/small")
+    public List<Room> findSmallroom() {
+        List<Room> roomList = roomDao.getSmallroom();
+        List<Room> roomList1 = new ArrayList<>();
+        for (Room i : roomList) {
+            if (i.getRoomType().equals("3")) {
+                i.setRoomType("小包");
+            }
+            if (i.getStatus().equals("2")) {
+                i.setStatus("未使用");
+            }
+            roomList1.add(i);
+        }
+        return roomList1;
+    }
 
     @GetMapping("/page")
     public Page<Room> getpage(@RequestParam Integer currented, @RequestParam Integer size) {

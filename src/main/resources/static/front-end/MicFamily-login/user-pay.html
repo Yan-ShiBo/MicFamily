@@ -23,65 +23,29 @@
 
 <div id="app">
     <form class="form-inline" style="float: left;">
-        <h2>包间管理</h2>
+        <h3>请点击你要预订的包间类型:</h3>
         <p style="margin: 5px 5px 5px 50px;"></p>
         <table>
             <tr>
                 <td>
-                    <input class="btn btn-sm btn-success" type="button" v-on:click="savev()" value="新增"/>
-                    <input class="btn btn-sm btn-info" type="button" value="查询"/>
+                    <input class="btn btn-sm btn-success" style="margin-left: 25px;width: 80px" type="button"
+                           v-on:click="bigroom()" value="大包"/>
+                </td>
+                <td>
+                    <input class="btn btn-sm btn-success" style="margin-left: 60px;width: 80px" type="button"
+                           v-on:click="mediumroom()" value="中包"/>
+
+                </td>
+                <td>
+                    <input class="btn btn-sm btn-success" style="margin-left: 60px;width: 80px" type="button"
+                           v-on:click="smallroom()" value="小包"/>
+
                 </td>
             </tr>
         </table>
     </form>
 
     <div class="table-responsive">
-        <table class="table table-striped table-sm" v-if="addfig">
-            <thead>
-            <tr>
-                <th>包间名</th>
-                <th>状态</th>
-                <th>类型</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td><input type="text" v-model="room.roomName"></td>
-                <td><input type="status" v-model="room.status"></td>
-                <td><input type="type" v-model="room.type"></td>
-                <td>
-                    <input class="btn btn-sm btn-primary" type="button" v-on:click="save()" value="添加"/>
-                    <input class="btn btn-sm btn-danger" type="button" v-on:click="saved()" value="取消"/>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-
-        <table class="table table-striped table-sm" style="width: 100%" v-if="update">
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th>包间名</th>
-                <th>状态</th>
-                <th>类型</th>
-                <th>确定/取消</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>{{room.id}}</td>
-                <td><input type="text" v-model="room.roomName"></td>
-                <td><input type="text" v-model="room.status"></td>
-                <td><input type="text" v-model="room.type"></td>
-                <td>
-                    <input class="btn btn-sm btn-primary" type="button" v-on:click="RoomUpdate()" value="确定"/>
-                    <input class="btn btn-sm btn-danger" type="button" v-on:click="updated()" value="取消"/>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-
-
         <table class="table table-striped table-sm">
             <thead>
             <tr>
@@ -89,7 +53,7 @@
                 <th>包间名</th>
                 <th>状态</th>
                 <th>类型</th>
-                <th>编辑/删除</th>
+                <th>预订</th>
             </tr>
             </thead>
             <tbody>
@@ -99,8 +63,7 @@
                 <td>{{room.status}}</td>
                 <td>{{room.type}}</td>
                 <td>
-                    <button class="btn btn-sm btn-primary" v-on:click="updatev(room.id)">修改</button>
-                    <button class="btn btn-sm btn-danger" v-on:click="RoomDel(room.id)">删除</button>
+                    <button class="btn btn-sm btn-primary" v-on:click="yesreserve(room.id)">确定</button>
                 </td>
             </tr>
             </tbody>
@@ -116,8 +79,6 @@
     new Vue({
         el: "#app",
         data: {
-            addfig: false,
-            update: false,
             datalist: [],
             room: {},
             id: 0
@@ -131,54 +92,33 @@
                     this.datalist = rel.data;
                 });
             },
-            savev() {
-                this.addfig = true;
+
+            bigroom() {
+                axios.get("http://localhost:8088/room/big").then(rel => {
+                    this.datalist = rel.data;
+                });
             },
 
-            saved() {
-                this.addfig = false;
+            mediumroom() {
+                axios.get("http://localhost:8088/room/medium").then(rel => {
+                    this.datalist = rel.data;
+                });
             },
 
-            updatev(id) {
+            smallroom() {
+                axios.get("http://localhost:8088/room/small").then(rel => {
+                    this.datalist = rel.data;
+                });
+            },
+
+            yesreserve(id) {
                 axios.get("http://localhost:8088/room/" + id, this.room).then(rel => {
-                    this.room = rel.data;
-                });
-                this.update = true;
-            },
+                })
 
-            updated() {
-                this.update = false;
-            },
-
-            RoomDel(id) {
-                axios.delete("http://localhost:8088/room/" + id).then(rel => {
-                    if (rel.data) {
-                        this.getAll();
-                    }
-                });
-            },
-            RoomUpdate() {
-                axios.put("http://localhost:8088/room/update/", this.room).then(rel => {
-                    if (rel.data) {
-                        this.getAll();
-                        this.update = false;
-                    }
-
-                });
-            },
-            save() {
-                axios.post("http://localhost:8088/room/management", this.room)
-                    .then(rel => {
-                        if (rel.data) {
-                            alert("add successfully!");
-                            this.saved();
-                            this.getAll();
-                        } else {
-                            alert("add failed");
-                        }
-
-                    })
+                alert("reserve successfully!");
+                this.getAll();
             }
+
         }
 
     });
