@@ -24,6 +24,7 @@ public class UserInterceptor implements HandlerInterceptor {
         if (manager != null) {
             return true;
         }
+
         response.sendRedirect("/front-end/MicFamily-login/login.html");
         return false;
     }
