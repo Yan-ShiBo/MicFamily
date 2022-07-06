@@ -26,7 +26,7 @@ package com.com.swu.mic.micfamily.solution;
 
 //常数空间遍历法
 public class candy {
-    public int candy(int[] ratings) {
+    public int candy(Integer[] ratings) {
         int n = ratings.length;
         int ret = 1;
         int inc = 1, dec = 0, pre = 1;

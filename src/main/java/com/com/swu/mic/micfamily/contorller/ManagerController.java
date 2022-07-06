@@ -5,10 +5,12 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.com.swu.mic.micfamily.dao.ManagerDao;
 import com.com.swu.mic.micfamily.domain.Manager;
 import com.com.swu.mic.micfamily.service.ManagerService;
+import com.com.swu.mic.micfamily.solution.candy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -150,5 +152,19 @@ public class ManagerController {
         return ManagerPage;
     }
 
+    @GetMapping("/play")
+    public Integer play1(@RequestParam String score) {
+        System.out.println(score);
+        String[] arr = score.split("\\s+");
+        List<Integer> arr2 = new ArrayList<>();
+        for (String i : arr) {
+            int x = Integer.parseInt(i);
+            arr2.add(x);
+        }
+        Integer[] array2 = arr2.toArray(new Integer[arr2.size()]);
+        candy c = new candy();
+
+        return c.candy(array2);
+    }
 
 }
