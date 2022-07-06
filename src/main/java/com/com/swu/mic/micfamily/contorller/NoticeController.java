@@ -30,7 +30,7 @@ public class NoticeController {
     private InfoDao infodao;
 
     @Autowired
-    private NoticeDao noticedao;
+    private NoticeDao noticeDao;
 
     @PostMapping("/management")
     public boolean Postmanagement(@RequestBody Notice notice) {
@@ -71,6 +71,22 @@ public class NoticeController {
         return noticeStrList;
     }
 
+
+    @GetMapping("/user/all")
+    public List<NoticeStr> Getmanagement2() {
+        List<NoticeStr> noticeStrList = new ArrayList<>();
+
+
+        for (Notice notice : noticeDao.getAll()) {
+            NoticeStr noticeStr = new NoticeStr();
+            String dataStr = notice.getDate().toString();
+            noticeStr.setDatastr(dataStr);
+            noticeStr.setNotice(notice);
+            noticeStrList.add(noticeStr);
+        }
+        return noticeStrList;
+    }
+
     @GetMapping("/{id}")
     public Notice Updatemanager(@PathVariable int id) {
         //return managerService.update(manager);
@@ -88,7 +104,7 @@ public class NoticeController {
     @GetMapping("/find")
     public List<NoticeStr> Noticefind(@RequestParam String topic) {
         System.out.println(topic);
-        List<Notice> noticeList = noticedao.noticefind("%" + topic + "%");
+        List<Notice> noticeList = noticeDao.noticefind("%" + topic + "%");
 
         List<NoticeStr> noticeStrList = new ArrayList<>();
         for (Notice notice : noticeList) {

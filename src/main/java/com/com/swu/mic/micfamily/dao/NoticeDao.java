@@ -23,4 +23,7 @@ public interface NoticeDao extends BaseMapper<Notice> {
 
     @Select("select * from notice where topic like #{topic}")
     List<Notice> noticefind(@Param("topic") String topic);
+
+    @Select("select * from power = 5")
+    List<Notice> getAll();
 }

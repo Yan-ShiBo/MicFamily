@@ -5,38 +5,54 @@
     <title>Title</title>
 </head>
 <body>
+<div id="app">
+    <table>
+        <tr>
+            如果你们有n个人来唱歌，排成一排坐在KTV的沙发上
+        </tr>
+        <tr>
+            本系统可以自动生成KTV唱歌奖励的最小数
+        </tr>
+        <tr>
+            要求：相邻来唱歌的朋友获得到更多奖励，每个人至少有一个奖励
+        </tr>
+        <tr>
 
-<table>
-    <tr>
-        如果你们有n个人来唱歌，排成一排坐在KTV的沙发上
-    </tr>
-    <tr>
-        本系统可以自动生成KTV唱歌奖励的最小数
-    </tr>
-    <tr>
-        要求：相邻来唱歌的朋友获得到更多奖励，每个人至少有一个奖励
-    </tr>
-    <tr>
+        </tr>
+        <tr>
+            <td>
+                请输入每个人的唱歌得分：（自动获取）
+            </td>
+            <td>
+                <input text="人数n 得分n1、n2、n3、n4 ......" v-model="score">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                您好，所需要的最少的奖励数为：
+            </td>
+            <td>
 
-    </tr>
-    <tr>
-        <td>
-            请输入每个人的唱歌得分：（自动获取）
-        </td>
-        <td>
-            <input text="人数n 得分n1、n2、n3、n4 ">
-        </td>
-    </tr>
-    <tr>
-        <td>
-            您好，所需要的最少的奖励数为：
-        </td>
-        <td>
-
-        </td>
-    </tr>
-</table>
-
+            </td>
+        </tr>
+    </table>
+</div>
 
 </body>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            score: ""
+        },
+        create() {
+
+        },
+        method: {}
+    });
+
+
+</script>
+
+
 </html>

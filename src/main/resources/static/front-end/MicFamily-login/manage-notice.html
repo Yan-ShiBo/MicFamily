@@ -99,7 +99,7 @@
                         <td>{{notices.notice.topic}}</td>
                         <td>{{notices.notice.power}}</td>
                         <td>{{notices.notice.category}}</td>
-                        <td>{{notices.dataStr}}</td>
+                        <td>{{notices.datastr}}</td>
 
                         <td>
                             <button class="btn btn-sm btn-danger" v-on:click="info(notices.notice.id)">详情</button>
@@ -184,6 +184,7 @@
                 axios.get("http://localhost:8088/notice/all").then(rel => {
 
                     this.datalist = rel.data;
+                    // console.log(this.datalist)
                 });
             },
             add() {
