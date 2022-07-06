@@ -11,7 +11,7 @@
  Target Server Version : 80026
  File Encoding         : 65001
 
- Date: 05/07/2022 17:50:39
+ Date: 06/07/2022 09:46:07
 */
 
 SET NAMES utf8mb4;
@@ -59,6 +59,30 @@ INSERT INTO `goods`
 VALUES (1, '炸鸡', 10.00, 25.00, 10);
 INSERT INTO `goods`
 VALUES (2, '薯条', 13.00, 30.00, 20);
+INSERT INTO `goods`
+VALUES (3, '电池', 5.00, 10.00, 100);
+
+-- ----------------------------
+-- Table structure for info
+-- ----------------------------
+DROP TABLE IF EXISTS `info`;
+CREATE TABLE `info`
+(
+    `id`   int NOT NULL AUTO_INCREMENT,
+    `info` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_mysql500_ci NULL DEFAULT NULL,
+    `n_id` int NULL DEFAULT NULL,
+    PRIMARY KEY (`id`) USING BTREE,
+    INDEX  `n_id`(`n_id`) USING BTREE,
+    CONSTRAINT `n_id` FOREIGN KEY (`n_id`) REFERENCES `notice` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_mysql500_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of info
+-- ----------------------------
+INSERT INTO `info`
+VALUES (1, '麦家项目启动已经启动，在2022年6月23日。', 1);
+INSERT INTO `info`
+VALUES (2, '安抚巾埃里克大房间WIFOJKLSDAFASDSFDJASLDKFJASKLDFJASDFJ来看聚类卡迪夫那水电费', 2);
 
 -- ----------------------------
 -- Table structure for manager
