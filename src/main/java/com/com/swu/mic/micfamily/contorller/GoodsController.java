@@ -76,12 +76,12 @@ public class GoodsController {
 
     @GetMapping("/page")
     public Page<Goods> getpage(@RequestParam Integer currented, @RequestParam Integer size) {
-        System.out.println(currented + "   " + size);
+//        System.out.println(currented + "   " + size);
 
         Page<Goods> GoodsPage = new Page<>();
         List<Goods> goodsList = goodsDao.selectPages(currented * size, size);
         int max = goodsDao.selectCount();
-        System.out.println(max / size);
+//        System.out.println(max / size);
         GoodsPage.setTotal(max / size);
         GoodsPage.setRecords(goodsList);
 //        System.out.println(GoodsPage+"---------------");

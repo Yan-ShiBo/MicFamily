@@ -41,9 +41,11 @@ public class ManagerController {
 
 
         for (Manager i : listdata) {
-            System.out.println(i.getUserName() + "---" + i.getPassword());
-            System.out.println(userName + "+++" + password);
-            if (i.getPassword().equals(userName) && i.getUserName().equals(password)) {
+//            System.out.println(i.getUserName() + "---" + i.getPassword());
+//            System.out.println(userName + "+++" + password);
+//            System.out.println(i.getPassword().equals(userName));
+//            System.out.println(i.getUserName().equals(password));
+            if (i.getPassword().equals(password) && i.getUserName().equals(userName)) {
                 System.out.println("登录成功");
                 request.getSession().setAttribute("manager", i);
                 return i.getPermission();
