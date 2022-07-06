@@ -1,13 +1,11 @@
 package com.com.swu.mic.micfamily.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.com.swu.mic.micfamily.domain.Notice;
+import com.com.swu.mic.micfamily.domain.Info;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-
-import java.util.List;
 
 /**
  * @ 作者： 闫士博
@@ -17,10 +15,10 @@ import java.util.List;
  * @ Description：
  */
 @Mapper
-public interface NoticeDao extends BaseMapper<Notice> {
-    @Insert("insert into notice (power,category,date) values( #{power},#{category},#{date})")
-    Boolean add(Notice notice);
+public interface InfoDao extends BaseMapper<Info> {
+    @Select("select * from info where n_id = #{id}")
+    Info getInfoById(@Param("id") Integer id);
 
-    @Select("select * from notice where topic like #{topic}")
-    List<Notice> noticefind(@Param("topic") String topic);
+    @Insert("update info set info = #{info} where id = #{id}")
+    Boolean upinfo(@Param("id") Integer id, @Param("info") String inf);
 }

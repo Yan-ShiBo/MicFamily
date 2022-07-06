@@ -22,8 +22,9 @@
                     <tr>
                         <td>
                         <th>您的权限为：</th>
-                        <input class="btn btn-sm btn-success" type="button" v-on:click="savev()" value="新增"/>
-                        <input class="btn btn-sm btn-info" type="button" value="查询公告"/>
+                        <input class="btn btn-sm btn-success" type="button" v-on:click="add()" value="新增"/>
+                        <input type="text" v-model="top">
+                        <input class="btn btn-sm btn-info" type="button" v-on:click="find()" value="查询公告"/>
                         </td>
                     </tr>
                 </table>
@@ -45,7 +46,7 @@
                         <td><input type="text" v-model="notice.topic"></td>
                         <td><input type="text" v-model="notice.power"></td>
                         <td><input type="text" v-model="notice.category"></td>
-                        <td><input type="text" v-model="notice.time"></td>
+                        <td><input type="text" v-model="notice.date"></td>
                         <td>
                             <input class="btn btn-sm btn-primary" type="button" v-on:click="save()" value="添加"/>
                             <input class="btn btn-sm btn-danger" type="button" v-on:click="saved()" value="取消"/>
@@ -72,17 +73,16 @@
                         <td><input type="text" v-model="notice.topic"></td>
                         <td><input type="text" v-model="notice.power"></td>
                         <td><input type="text" v-model="notice.category"></td>
-                        <td><input type="text" v-model="notice.time"></td>
+                        <td><input type="text" v-model="notice.date"></td>
                         <td>
-                            <input class="btn btn-sm btn-primary" type="button" v-on:click="NoticeUpdate()"
-                                   value="确定"/>
+                            <input class="btn btn-sm btn-primary" type="button" v-on:click="NoticeUpdate()" value="确定"/>
                             <input class="btn btn-sm btn-danger" type="button" v-on:click="updated()" value="取消"/>
                         </td>
                     </tr>
                     </tbody>
                 </table>
 
-                <table class="table table-striped table-sm">
+                <table class="table table-striped table-sm" v-if="showed">
                     <thead>
                     <tr>
                         <th>ID</th>
@@ -99,12 +99,53 @@
                         <td>{{notices.notice.topic}}</td>
                         <td>{{notices.notice.power}}</td>
                         <td>{{notices.notice.category}}</td>
-                        <td>{{notices.datastr}}</td>
+                        <td>{{notices.dataStr}}</td>
 
                         <td>
-                            <button class="btn btn-sm btn-danger" v-on:click="">详情</button>
-                            <button class="btn btn-sm btn-primary" v-on:click="notices.updatev(notice.id)">修改</button>
-                            <button class="btn btn-sm btn-danger" v-on:click="ManagerDel(notice.id)">删除</button>
+                            <button class="btn btn-sm btn-danger" v-on:click="info(notices.notice.id)">详情</button>
+                            <button class="btn btn-sm btn-primary" v-on:click="updatev(notices.id)">修改</button>
+                            <button class="btn btn-sm btn-danger" v-on:click="NoticeDel(notices.id)">删除</button>
+
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <table class="table table-striped table-sm" v-if="findshowed">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>公告题目</th>
+                        <th>公告权限</th>
+                        <th>公告种类</th>
+                        <th>公告日期</th>
+                        <th>详情/编辑/删除</th>
+                    </tr>
+                    </thead>
+                </table>
+
+                <table class="table table-striped table-sm" v-if="infocheck">
+                    <thead>
+                    <tr>
+                        <th>公告栏</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{information.info}}</td>
+                        <td>
+                            <input type="text" v-model="information.info">
+                            <!--                                <input class="btn btn-sm btn-primary" type="button" v-on:click="save()" value="添加"/>-->
+
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>
+                            <input class="btn btn-sm btn-primary" type="button"
+                                   v-on:click="upinfo(information.id,information.info)" value="修改"/>
+                            <input class="btn btn-sm btn-danger" type="button" v-on:click="infoed" value="返回"/>
                         </td>
                     </tr>
                     </tbody>
@@ -125,22 +166,27 @@
         data: {
             addfig: false,
             update: false,
-            datalist: [],
+            infocheck: false,
+            showed: true,
+            datalist: {},
             notice: {},
+            information: {},
+            top: ""
 
         },
         created() {
             this.getAll();
         },
         methods: {
+
             getAll() {
 
                 axios.get("http://localhost:8088/notice/all").then(rel => {
-                    console.log(rel);
+
                     this.datalist = rel.data;
                 });
             },
-            savev() {
+            add() {
 
                 this.addfig = true;
             },
@@ -190,6 +236,43 @@
                         }
 
                     })
+            },
+            info(id) {
+                axios.get("http://localhost:8088/notice/info?id=" + id).then(rel => {
+                    /* console.log(rel.data);*/
+                    // console.log(rel);
+                    this.information = rel.data;
+
+
+                });
+                this.infocheck = true;
+                this.showed = false;
+            },
+            infoed() {
+                this.infocheck = false;
+                this.showed = true;
+            },
+            upinfo(id, inf) {
+                axios.get("http://localhost:8088/notice/upinfo?id=" + id + "&inf=" + inf).then(rel => {
+                    /* console.log(rel.data);*/
+                    // console.log(rel);
+                    if (rel.data) {
+                        alert("audit successfully!");
+                        this.infocheck = false;
+                        this.showed = true;
+                        /* this.saved();
+                         this.getAll();*/
+                    } else {
+                        alert("audit failed");
+                    }
+
+
+                });
+            },
+            find() {
+                axios.get("http://localhost:8088/notice/find?topic=" + this.top).then(res => {
+                    this.datalist = res.data;
+                });
             }
         }
 

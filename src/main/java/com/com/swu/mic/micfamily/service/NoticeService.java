@@ -11,4 +11,5 @@ import com.com.swu.mic.micfamily.domain.Notice;
  * @ Description：
  */
 public interface NoticeService extends IService<Notice> {
+
 }
