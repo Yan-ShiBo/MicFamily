@@ -115,7 +115,8 @@
                 data: {
                     userName: "",
                     password: "",
-                    identity: 0
+                    identity: 0,
+                    manager: {}
                 },
                 methods: {
                     login() {
@@ -125,12 +126,16 @@
                                 password: this.password
                             }
                         }).then(rel => {
-                            if (rel.data == 1 || rel.data == 2 || rel.data == 3 || rel.data == 4) {
-                                identity = rel.data;
+                            this.manager = rel.data;
+                            this.identity = this.manager.permission;
+                            // alert(this.identity)
+                            if (this.identity == 1 || this.identity == 2 || this.identity == 3 || this.identity == 4) {
+
                                 // document.location = "manage.html?identity=" + rel.data;
-                                sessionStorage.setItem("identity", rel.data);
+                                sessionStorage.setItem("identity", this.identity);
                                 document.location = "manage.html";
-                            } else if (rel.data == 5) {
+                            } else if (identity == 5) {
+                                sessionStorage.setItem("id", this.manager.id);
                                 document.location = "user.html";
                             } else {
                                 alert("登录失败");

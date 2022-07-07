@@ -24,18 +24,18 @@ public class ManagerController {
     private ManagerDao managerDao;
 
     @GetMapping
-    public Integer check(@RequestParam String userName, @RequestParam String password, HttpServletRequest request) {
+    public Manager check(@RequestParam String userName, @RequestParam String password, HttpServletRequest request) {
 
         List<Manager> listdata = managerService.list();
 
 
         if (userName == null || userName.equals("")) {
             System.out.println("用户名为空");
-            return 0;
+            return null;
         }
         if (password == null || password.equals("")) {
             System.out.println("密码为空");
-            return 0;
+            return null;
         }
 
 
@@ -48,7 +48,8 @@ public class ManagerController {
             if (i.getPassword().equals(password) && i.getUserName().equals(userName)) {
                 System.out.println("登录成功");
                 request.getSession().setAttribute("manager", i);
-                return i.getPermission();
+//                return i.getPermission();
+                return i;
 //                if (i.getPermission() == 1)
 //                    return 1;
 //                else if (i.getPermission() == 2)
@@ -62,7 +63,7 @@ public class ManagerController {
             }
         }
         System.out.println(userName + "  登入失败  " + password);
-        return 0;
+        return null;
 
 
     }
