@@ -44,12 +44,11 @@ h1 > a {
     text-indent: 100%;
     white-space: nowrap;
     overflow: hidden;
-    width: 182px;
-    height: 92px;
-    background: url(../images/logo.png) center 0 no-repeat;
-    margin: 37px 0 0 39px;
+    width: 250px;
+    height: 150px;
+    background: url(../images/MicFamily-1.png) center 0 no-repeat;
+    margin: 50px 0 0 0px;
 }
-
 h2 {
     font: 29px/1.2em 'Open Sans', sans-serif;
     color: #fff;
@@ -291,7 +290,7 @@ footer p a:hover {
     position: relative;
     display: block;
     height: 57px;
-    background: url(../images/submenu_1_bg2.png) left center no-repeat;
+    /*background: url(../images/submenu_1_bg2.png) left center no-repeat;*/
     background: url(../images/menu_bg1.jpg) bottom repeat-x;
 }
 

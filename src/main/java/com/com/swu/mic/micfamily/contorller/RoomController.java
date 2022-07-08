@@ -201,4 +201,19 @@ public class RoomController {
         return r;
     }
 
+    @GetMapping("/addid")
+    public Boolean addID(@RequestParam int id, @RequestParam int managerId) {
+        System.out.println(id + "-----" + managerId);
+
+        Room room = roomDao.getcoRoomName(managerId);
+        if (room.equals(null)) {
+            room.setManagerId(managerId);
+            room.setStatus("4");
+            roomService.updateById(room);
+            return true;
+        } else
+            return false;
+    }
+
+
 }

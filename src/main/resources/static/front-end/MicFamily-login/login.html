@@ -92,7 +92,6 @@
                         </p>
                     </div>
 
-
                 </form>
             </div>
         </div>
@@ -117,6 +116,7 @@
                     password: "",
                     identity: 0,
                     manager: {}
+
                 },
                 methods: {
                     login() {
@@ -127,6 +127,7 @@
                             }
                         }).then(rel => {
                             this.manager = rel.data;
+                            console.log(this.manager)
                             this.identity = this.manager.permission;
                             // alert(this.identity)
                             if (this.identity == 1 || this.identity == 2 || this.identity == 3 || this.identity == 4) {
@@ -134,8 +135,11 @@
                                 // document.location = "manage.html?identity=" + rel.data;
                                 sessionStorage.setItem("identity", this.identity);
                                 document.location = "manage.html";
-                            } else if (identity == 5) {
-                                sessionStorage.setItem("id", this.manager.id);
+                            } else if (this.identity == 5) {
+                                sessionStorage.setItem("userId", this.manager.id);
+                                document.location = "User_New.html";
+                            } else if (this.identity == 6) {
+                                sessionStorage.setItem("userId", this.manager.id);
                                 document.location = "user.html";
                             } else {
                                 alert("登录失败");

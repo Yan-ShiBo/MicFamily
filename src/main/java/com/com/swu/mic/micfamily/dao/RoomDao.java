@@ -42,4 +42,5 @@ public interface RoomDao extends BaseMapper<Room> {
     @Select("select * from room where manager_id =#{id}")
     Room getcoRoomName(@Param("id") int id);
 
+
 }
