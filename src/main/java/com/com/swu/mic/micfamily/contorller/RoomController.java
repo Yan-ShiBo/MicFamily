@@ -174,7 +174,6 @@ public class RoomController {
 
     @PutMapping("/findcoRoomName")//根据用户ID找到对应的房间名
     public order_inquiry findroomName(@RequestParam int manager_id) {
-        System.out.println("---------------------------------");
         order_inquiry r = new order_inquiry();
         Room room;
         Order order;
@@ -197,10 +196,8 @@ public class RoomController {
 
         } catch (Exception e) {
             r.setFlag(false);
-            System.out.println("+++++++++++++++++++++++++++++++++++++++++");
             r.setMsg("search failed!");
         }
-        System.out.println("---------------------------------");
         return r;
     }
 
