@@ -6,6 +6,7 @@ import com.com.swu.mic.micfamily.domain.VIP;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ import java.util.List;
  * @ Project name： MicFamily
  * @ Description：
  */
-
+@Component
 @Mapper
 public interface VIPDao extends BaseMapper<VIP> {
     @Select("select * from vip where user_name like #{userName}")
@@ -27,6 +28,12 @@ public interface VIPDao extends BaseMapper<VIP> {
 
     @Select("select count(*) from vip")
     int selectCount();
+
+    @Select("select *from vip where user_name like #{userName} limit #{pageNum},#{pageSize}")
+    List<VIP> search(@Param("userName") String userName, @Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize);
+
+    @Select("select count(*) from vip where user_name like #{userName}")
+    int findCount(@Param("userName") String userName);
 
 }
 

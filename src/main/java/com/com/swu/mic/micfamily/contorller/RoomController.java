@@ -79,12 +79,26 @@ public class RoomController {
         return roomService.updateById(room);
     }
 
-    @PutMapping("/find")
-    public List<Room> findroom(@RequestParam String roomName) {
 
-        List<Room> roomList = roomDao.getByName("%" + roomName + "%");
-        return roomList;
+    @PutMapping("/find")
+    public Page<Room> search(@RequestParam String roomName, @RequestParam Integer currented, @RequestParam Integer size) {
+
+        System.out.println(roomName + "   " + currented + "   " + size);
+
+        Page<Room> RoomPage = new Page<>();
+        List<Room> roomList = roomDao.search("%" + roomName + "%", currented * size, size);
+        int max = roomDao.findCount("%" + roomName + "%");
+        System.out.println(max / size);
+        if (max % size == 0) {
+            RoomPage.setTotal(max / size - 1);
+        } else
+            RoomPage.setTotal(max / size);
+        RoomPage.setRecords(roomList);
+        return RoomPage;
+
+
     }
+
 
     @GetMapping("/big")
     public List<Room> findBigroom() {
@@ -142,7 +156,10 @@ public class RoomController {
         List<Room> roomList = roomDao.selectPages(currented * size, size);
         int max = roomDao.selectCount();
         System.out.println(max / size);
-        RoomPage.setTotal(max / size);
+        if (max % size == 0) {
+            RoomPage.setTotal(max / size - 1);
+        } else
+            RoomPage.setTotal(max / size);
         RoomPage.setRecords(roomList);
         return RoomPage;
     }

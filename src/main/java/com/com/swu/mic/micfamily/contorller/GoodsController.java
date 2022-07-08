@@ -38,6 +38,8 @@ public class GoodsController {
 //        if (scores < 1)
 //            return false;
 
+//        System.out.println(goods);
+
         return goodsService.save(goods);
     }
 
@@ -67,10 +69,27 @@ public class GoodsController {
 
 
     @PutMapping("/find")
-    public List<Goods> finduser(@RequestParam String goodsName) {
+//    public List<Goods> finduser(@RequestParam String goodsName) {
+//
+//        List<Goods> goodsList = goodsDao.getByName("%" + goodsName + "%");
+//        return goodsList;
+//    }
+    public Page<Goods> search(@RequestParam String goodsName, @RequestParam Integer currented, @RequestParam Integer size) {
 
-        List<Goods> goodsList = goodsDao.getByName("%" + goodsName + "%");
-        return goodsList;
+        System.out.println(goodsName + "   " + currented + "   " + size);
+
+        Page<Goods> GoodsPage = new Page<>();
+        List<Goods> goodsList = goodsDao.search("%" + goodsName + "%", currented * size, size);
+        int max = goodsDao.findCount("%" + goodsName + "%");
+        System.out.println(max / size);
+        if (max % size == 0) {
+            GoodsPage.setTotal(max / size - 1);
+        } else
+            GoodsPage.setTotal(max / size);
+        GoodsPage.setRecords(goodsList);
+        return GoodsPage;
+
+
     }
 
 
@@ -82,7 +101,10 @@ public class GoodsController {
         List<Goods> goodsList = goodsDao.selectPages(currented * size, size);
         int max = goodsDao.selectCount();
 //        System.out.println(max / size);
-        GoodsPage.setTotal(max / size);
+        if (max % size == 0) {
+            GoodsPage.setTotal(max / size - 1);
+        } else
+            GoodsPage.setTotal(max / size);
         GoodsPage.setRecords(goodsList);
 //        System.out.println(GoodsPage+"---------------");
         return GoodsPage;

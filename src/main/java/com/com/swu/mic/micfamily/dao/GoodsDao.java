@@ -5,6 +5,7 @@ import com.com.swu.mic.micfamily.domain.Goods;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -16,6 +17,7 @@ import java.util.List;
  * @ Project name： MicFamily
  * @ Description：
  */
+@Component
 @Mapper
 public interface GoodsDao extends BaseMapper<Goods> {
     @Select("select * from goods where goods_name like #{goodsName}")
@@ -26,5 +28,12 @@ public interface GoodsDao extends BaseMapper<Goods> {
 
     @Select("select count(*) from goods")
     int selectCount();
+
+    @Select("select * from goods where goods_name like #{goodsName} limit #{pageNum},#{pageSize}")
+    List<Goods> search(@Param("goodsName") String goodsName, @Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize);
+
+    @Select("select count(*) from goods where goods_name like #{goodsName}")
+    int findCount(@Param("goodsName") String goodsName);
+
 
 }

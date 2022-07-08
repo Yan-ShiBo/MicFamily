@@ -5,9 +5,12 @@ import com.com.swu.mic.micfamily.domain.Room;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+
+@Component
 @Mapper
 public interface RoomDao extends BaseMapper<Room> {
     @Select("select * from Room where Room_name like #{RoomName}")
@@ -28,5 +31,12 @@ public interface RoomDao extends BaseMapper<Room> {
 
     @Select("select count(*) from Room")
     int selectCount();
+
+
+    @Select("select * from room where room_name like #{roomName} limit #{pageNum},#{pageSize}")
+    List<Room> search(@Param("roomName") String roomName, @Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize);
+
+    @Select("select count(*) from room where room_name like #{roomName}")
+    int findCount(@Param("roomName") String roomName);
 
 }

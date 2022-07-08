@@ -56,10 +56,27 @@ public class OrderController {
     }
 
     @PutMapping("/find")
-    public List<Order> findroom(@RequestParam String coRoom) {
+//    public List<Order> findroom(@RequestParam String coRoom) {
+//
+//        List<Order> orderList = orderDao.getByName("%" + coRoom + "%");
+//        return orderList;
+//    }
+    public Page<Order> search(@RequestParam String coRoom, @RequestParam Integer currented, @RequestParam Integer size) {
 
-        List<Order> orderList = orderDao.getByName("%" + coRoom + "%");
-        return orderList;
+        System.out.println(coRoom + "   " + currented + "   " + size);
+
+        Page<Order> OrderPage = new Page<>();
+        List<Order> orderList = orderDao.search("%" + coRoom + "%", currented * size, size);
+        int max = orderDao.findCount("%" + coRoom + "%");
+        System.out.println(max / size);
+        if (max % size == 0) {
+            OrderPage.setTotal(max / size - 1);
+        } else
+            OrderPage.setTotal(max / size);
+        OrderPage.setRecords(orderList);
+        return OrderPage;
+
+
     }
 
 
@@ -71,7 +88,10 @@ public class OrderController {
         List<Order> orderList = orderDao.selectPages(currented * size, size);
         int max = orderDao.selectCount();
         System.out.println(max / size);
-        OrderPage.setTotal(max / size);
+        if (max % size == 0) {
+            OrderPage.setTotal(max / size - 1);
+        } else
+            OrderPage.setTotal(max / size);
         OrderPage.setRecords(orderList);
         return OrderPage;
     }

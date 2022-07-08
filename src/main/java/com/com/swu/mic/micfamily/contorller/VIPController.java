@@ -59,10 +59,22 @@ public class VIPController {
 
 
     @PutMapping("/find")
-    public List<VIP> finduser(@RequestParam String userName) {
+    public Page<VIP> search(@RequestParam String userName, @RequestParam Integer currented, @RequestParam Integer size) {
 
-        List<VIP> vipList = vipDao.getByName("%" + userName + "%");
-        return vipList;
+        System.out.println(userName + "   " + currented + "   " + size);
+
+        Page<VIP> VIPPage = new Page<>();
+        List<VIP> vipList = vipDao.search("%" + userName + "%", currented * size, size);
+        int max = vipDao.findCount("%" + userName + "%");
+        System.out.println(max / size);
+        if (max % size == 0) {
+            VIPPage.setTotal(max / size - 1);
+        } else
+            VIPPage.setTotal(max / size);
+        VIPPage.setRecords(vipList);
+        return VIPPage;
+
+
     }
 
 
@@ -74,7 +86,10 @@ public class VIPController {
         List<VIP> vipList = vipDao.selectPages(currented * size, size);
         int max = vipDao.selectCount();
         System.out.println(max / size);
-        VIPPage.setTotal(max / size);
+        if (max % size == 0) {
+            VIPPage.setTotal(max / size - 1);
+        } else
+            VIPPage.setTotal(max / size);
         VIPPage.setRecords(vipList);
         return VIPPage;
     }

@@ -113,7 +113,7 @@
         </table>
 
 
-        <table class="table table-striped table-sm">
+        <table class="table table-striped table-sm" v-if="uptable">
             <thead>
             <tr>
                 <th>ID</th>
@@ -155,6 +155,47 @@
             </tbody>
         </table>
 
+        <table class="table table-striped table-sm" v-if="findtable">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>商品名</th>
+                <th>价格</th>
+                <th>积分兑换</th>
+                <th>库存</th>
+                <th>编辑/删除</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="goods in datalist">
+                <td>{{goods.id}}</td>
+                <td>{{goods.goodsName}}</td>
+                <td>{{goods.price}}</td>
+                <td>{{goods.creditExchange}}</td>
+                <td>{{goods.quantity}}</td>
+                <td>
+                    <button class="btn btn-sm btn-primary" v-on:click="updatev(goods.id)">修改</button>
+                    <button class="btn btn-sm btn-danger" v-on:click="GoodsDel(goods.id)">删除</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                    <button @click="upt1()" class="btn btn-sm btn-primary">上一页</button>
+                </td>
+                <td>
+                    <button @click="next1()" class="btn btn-sm btn-primary">下一页</button>
+                </td>
+                <td></td>
+                <td></td>
+
+
+            </tr>
+
+            </tbody>
+        </table>
 
     </div>
 </div>
@@ -166,6 +207,8 @@
     new Vue({
         el: "#app",
         data: {
+            findtable: false,
+            uptable: true,
             findfig: false,
             addfig: false,
             update: false,
@@ -193,7 +236,9 @@
             savev() {
                 this.addfig = true;
                 this.findfig = false;
-                this.update = false
+                this.update = false;
+                this.findtable = false;
+                this.uptable = true
             },
 
             saved() {
@@ -232,29 +277,38 @@
             },
 
             save() {
-                axios.post("http://localhost:8088/goods/management", this.goods)
-                    .then(rel => {
-                        if (rel.data) {
-                            alert("add successfully!");
-                            this.saved();
-                            this.getAll();
-                        } else {
-                            alert("add failed");
-                        }
+                axios.post("http://localhost:8088/goods/management", this.goods).then(rel => {
+                    if (rel.data) {
+                        alert("add successfully!");
+                        this.saved();
+                        this.getAll();
+                    } else {
+                        alert("add failed");
+                    }
 
-                    })
+                })
             }, tofind() {
                 this.findfig = true;
                 this.addfig = false;
-                this.update = false
+                this.update = false;
+                this.uptable = false
             },
             nofind() {
                 this.findfig = false;
+                this.findtable = false;
+                this.uptable = true
             },
             yesfind() {
+                this.findtable = true;
                 console.log(this.name)
-                axios.put("http://localhost:8088/goods/find?userName=" + this.name).then(rel => {
-                    this.datalist = rel.data;
+                axios.put("http://localhost:8088/goods/find?goodsName=" + this.name + "&currented=" + this.currented + "&size=" + this.size).then(rel => {
+                    // this.datalist = rel.data;
+                    // console.log(res);
+                    this.datalist = rel.data.records;
+                    this.total = rel.data.total;
+
+                    // console.log("----"+this.total)
+                    // console.log(this.total);
                 })
             },
 
@@ -268,8 +322,22 @@
                     this.currented--;
                 this.getAll();
             },
+
+            next1() {
+                if (this.currented < this.total)
+                    this.currented++;
+                this.yesfind();
+            },
+            upt1() {
+                if (this.currented > 0)
+                    this.currented--;
+                this.yesfind();
+            },
+
             findBack() {
                 this.findfig = false;
+                this.findtable = false;
+                this.uptable = true;
                 this.getAll();
             }
         }

@@ -108,7 +108,7 @@
         </table>
 
 
-        <table class="table table-striped table-sm">
+        <table class="table table-striped table-sm" v-if="uptable">
             <thead>
             <tr>
                 <th>ID</th>
@@ -129,6 +129,7 @@
                     <button class="btn btn-sm btn-danger" v-on:click="RoomDel(room.id)">删除</button>
                 </td>
             </tr>
+
             <tr>
                 <td></td>
                 <td>
@@ -144,6 +145,44 @@
             </tbody>
         </table>
 
+        <table class="table table-striped table-sm" v-if="findtable">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>包间名</th>
+                <th>状态</th>
+                <th>类型</th>
+                <th>编辑/删除</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="room in datalist">
+                <td>{{room.id}}</td>
+                <td>{{room.roomName}}</td>
+                <td>{{room.status}}</td>
+                <td>{{room.type}}</td>
+                <td>
+                    <button class="btn btn-sm btn-primary" v-on:click="updatev(room.id)">修改</button>
+                    <button class="btn btn-sm btn-danger" v-on:click="RoomDel(room.id)">删除</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td>
+                    <button @click="upt1()" class="btn btn-sm btn-primary">上一页</button>
+                </td>
+                <td>
+                    <button @click="next1()" class="btn btn-sm btn-primary">下一页</button>
+                </td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            </tbody>
+        </table>
+
+
     </div>
 </div>
 
@@ -154,6 +193,8 @@
     new Vue({
         el: "#app",
         data: {
+            findtable: false,
+            uptable: true,
             findfig: false,
             addfig: false,
             update: false,
@@ -184,7 +225,9 @@
             savev() {
                 this.addfig = true;
                 this.findfig = false;
-                this.update = false
+                this.update = false;
+                this.findtable = false;
+                this.uptable = true
             },
 
             saved() {
@@ -234,16 +277,26 @@
                     })
             }, tofind() {
                 this.findfig = true;
-                this.addfig = false,
-                    this.update = false
+                this.addfig = false;
+                this.update = false;
+                this.uptable = false
             },
             nofind() {
                 this.findfig = false;
+                this.findtable = false;
+                this.uptable = true
             },
             yesfind() {
+                this.findtable = true;
                 console.log(this.name)
-                axios.put("http://localhost:8088/room/find?roomName=" + this.name).then(rel => {
-                    this.datalist = rel.data;
+                axios.put("http://localhost:8088/room/find?roomName=" + this.name + "&currented=" + this.currented + "&size=" + this.size).then(rel => {
+                    // this.datalist = rel.data;
+                    // console.log(res);
+                    this.datalist = rel.data.records;
+                    this.total = rel.data.total;
+
+                    // console.log("----"+this.total)
+                    // console.log(this.total);
                 })
             },
 
@@ -257,8 +310,20 @@
                     this.currented--;
                 this.getAll();
             },
+            next1() {
+                if (this.currented < this.total)
+                    this.currented++;
+                this.yesfind();
+            },
+            upt1() {
+                if (this.currented > 0)
+                    this.currented--;
+                this.yesfind();
+            },
             findBack() {
                 this.findfig = false;
+                this.findtable = false;
+                this.uptable = true;
                 this.getAll();
             }
         }
