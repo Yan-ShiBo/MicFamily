@@ -13,23 +13,23 @@ import java.util.List;
 @Component
 @Mapper
 public interface RoomDao extends BaseMapper<Room> {
-    @Select("select * from Room where Room_name like #{RoomName}")
+    @Select("select * from room where Room_name like #{RoomName}")
     List<Room> getByName(@Param("RoomName") String RoomName);
 
-    @Select("select * from Room limit #{pageNum},#{pageSize}")
+    @Select("select * from room limit #{pageNum},#{pageSize}")
     List<Room> selectPages(@Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize);
 
-    @Select("select * from Room where room_Type=1 and status = 2")
+    @Select("select * from room where room_Type=1 and status = 2")
     List<Room> getBigroom();
 
-    @Select("select * from Room where room_Type=2 and status = 2")
+    @Select("select * from room where room_Type=2 and status = 2")
     List<Room> getMediumroom();
 
-    @Select("select * from Room where room_Type=3 and status = 2")
+    @Select("select * from room where room_Type=3 and status = 2")
     List<Room> getSmallroom();
 
 
-    @Select("select count(*) from Room")
+    @Select("select count(*) from room")
     int selectCount();
 
 

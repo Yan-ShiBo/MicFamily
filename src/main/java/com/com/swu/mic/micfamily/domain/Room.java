@@ -15,6 +15,7 @@ public class Room {
 
     private String status;
     private String roomType;
+    private Integer managerId;
 
     public Integer getId() {
         return id;
