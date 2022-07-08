@@ -1,8 +1,13 @@
 package com.com.swu.mic.micfamily.contorller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.com.swu.mic.micfamily.dao.GoodsDao;
+import com.com.swu.mic.micfamily.dao.OrderDao;
 import com.com.swu.mic.micfamily.dao.RoomDao;
+import com.com.swu.mic.micfamily.domain.Goods;
+import com.com.swu.mic.micfamily.domain.Order;
 import com.com.swu.mic.micfamily.domain.Room;
+import com.com.swu.mic.micfamily.domain.order_inquiry;
 import com.com.swu.mic.micfamily.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +24,10 @@ public class RoomController {
     private RoomService roomService;
     @Autowired
     RoomDao roomDao;
-
+    @Autowired
+    OrderDao orderDao;
+    @Autowired
+    GoodsDao goodsDao;
 
     @PostMapping("/management")
     public boolean Postmanagement(@RequestBody Room room) {
@@ -164,5 +172,36 @@ public class RoomController {
         return RoomPage;
     }
 
+    @PutMapping("/findcoRoomName")//根据用户ID找到对应的房间名
+    public order_inquiry findroomName(@RequestParam int manager_id) {
+        System.out.println("---------------------------------");
+        order_inquiry r = new order_inquiry();
+        Room room;
+        Order order;
+        List<Goods> goodsList;
+        try {
+            room = roomDao.getcoRoomName(manager_id);
+            String roomName = room.getRoomName();
+            r.setRoom(room);
+
+            order = orderDao.getcoOrder(roomName);
+            r.setOrder(order);
+
+            Integer orderId = order.getId();
+
+            System.out.println(orderId);
+            goodsList = goodsDao.getByOrderId(orderId);
+            System.out.println(goodsDao.getByOrderId(orderId));
+            r.setGoodsList(goodsList);
+            r.setFlag(true);
+
+        } catch (Exception e) {
+            r.setFlag(false);
+            System.out.println("+++++++++++++++++++++++++++++++++++++++++");
+            r.setMsg("search failed!");
+        }
+        System.out.println("---------------------------------");
+        return r;
+    }
 
 }

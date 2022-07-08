@@ -39,4 +39,7 @@ public interface RoomDao extends BaseMapper<Room> {
     @Select("select count(*) from room where room_name like #{roomName}")
     int findCount(@Param("roomName") String roomName);
 
+    @Select("select * from room where manager_id =#{id}")
+    Room getcoRoomName(@Param("id") int id);
+
 }

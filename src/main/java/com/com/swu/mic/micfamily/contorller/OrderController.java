@@ -104,4 +104,21 @@ public class OrderController {
         return orderbyid;
     }
 
+
+//    @PutMapping("/findcoOrderInfo")//根据房间名字找到对应的订单信息
+//    public order_inquiry findOrder(@RequestParam String room_name){
+//        order_inquiry r = new order_inquiry();
+//        Order orderList;
+//        try{
+//            orderList = orderDao.getcoOrder(room_name);
+//            String order_info = orderList.getOrderInfo();
+//            r.getRlist().add(order_info);
+//            r.setFlag(true);
+//            r.setData(orderList);
+//        }catch (Exception e){
+//            r.setFlag(false);
+//            r.setMsg("search failed!");
+//        }
+//        return r;
+//    }
 }

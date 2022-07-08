@@ -35,5 +35,6 @@ public interface GoodsDao extends BaseMapper<Goods> {
     @Select("select count(*) from goods where goods_name like #{goodsName}")
     int findCount(@Param("goodsName") String goodsName);
 
-
+    @Select("select * from goods where order_id = #{OrderId}")
+    List<Goods> getByOrderId(@Param("OrderId") Integer OrderId);
 }

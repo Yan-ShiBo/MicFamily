@@ -33,4 +33,7 @@ public interface OrderDao extends BaseMapper<Order> {
     int findCount(@Param("coRoom") String coRoom);
 
 
+    @Select("select * from t_order where co_room = #{room_name}")
+    Order getcoOrder(@Param("room_name") String room_name);
+
 }

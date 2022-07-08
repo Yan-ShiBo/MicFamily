@@ -51,6 +51,7 @@ public class Order {
         return consumAmout;
     }
 
+
     public void setConsumAmout(Integer consumAmout) {
         this.consumAmout = consumAmout;
     }
