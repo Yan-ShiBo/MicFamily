@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title></title>
@@ -8,21 +8,15 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="images/favicon.ico" rel="icon" type="image/x-icon">
     <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+    <link href="./css/bootstrap-theme.min.css" rel="stylesheet">
     <script src="js/jquery-1.7.2.min.js"></script>
     <script src="js/scripts.js"></script>
     <script src="./vue/vue.min.js"></script>
     <script src="./js/axios.min.js"></script>
-    <!--[if lt IE 9]>
+
     <script src="js/html5.js"></script>
     <![endif]-->
-    <!--[if lt IE 8]>
-    <div style=' clear: both; text-align:center; position: relative;'>
-        <a href="//windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img
-                src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0"
-                height="42" width="820"
-                alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."/></a>
-    </div>
-    <![endif]-->
+
 </head>
 <body>
 <div id="app">
@@ -45,28 +39,19 @@
             <header>
                 <h1><a href="#!/page_home"></a></h1>
             </header>
-            <!-- END HEADER -->
-            <!-- MENU -->
             <nav class="menu">
                 <ul id="menu">
-                    <!--  <li class="with_ul"><a href="#!/page_home">项目介绍</a>
-                        <ul class="submenu_1">
-                            <li><a href="#!/page_more">项目成员</a></li>
-                            <li><a href="#!/page_more">项目简介</a></li>
-							<li><a href="#!/page_more">所用技术</a></li>
-                            <li class="last"><a href="#!/page_more">舒航</a></li>
-            			</ul>
-                    </li>
--->
+
+
                     <li><a href="">项目介绍</a></li>
-                    <li><a href="#!/order_query">订单查询</a></li>
+                    <li><a href="#!/order_query" onclick="IsAlpha()">订单查询</a></li>
                     <li><a href="#!/page_parties">包厢查询</a></li>
-                    <li><a href="#!/page_events">超市</a></li>
-                    <li><a href="#!/page_gallery">结账</a></li>
-                    <li><a href="#!/page_menu">公告管理</a></li>
-                    <li><a href="#!/page_menu">呼叫服务</a></li>
-                    <li class="no_bg"><a href="#!/page_mail">积分兑换推荐系统</a></li>
-                    <li class="no_bg"><a href="#!/page_mail">KTV比分-需要奖励估算</a></li>
+                    <!--                    <li><a href="#!/page_events">超市</a></li>-->
+                    <!--                    <li><a href="#!/page_gallery">结账</a></li>-->
+                    <!--                    <li><a href="#!/page_menu">公告管理</a></li>-->
+                    <!--                    <li><a href="#!/page_menu">呼叫服务</a></li>-->
+                    <!--                    <li class="no_bg"><a href="#!/page_mail">积分兑换推荐系统</a></li>-->
+                    <!--                    <li class="no_bg"><a href="#!/page_mail">KTV比分-需要奖励估算</a></li>-->
                 </ul>
             </nav>
             <!-- END MENU -->
@@ -88,36 +73,16 @@
                         <div class="wrapper">
                             <div class="marg_1">
                                 <h2>Welcome <span>to our website!</span></h2>
-                                <p class="pad_1">Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do
-                                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                    Duis aute irure dolor in reprehenderit.</p>
+
                             </div>
                             <img alt class="pad_2" src="images/page2_pic1.jpg">
                             <div class="marg_1">
                                 <div class="col_1">
                                     <h3>Lorem ipsum dolor sit ame</h3>
-                                    <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor
-                                        incidi- dunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                        nostrud exercita- tion ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                                        fugiat nulla pariatur. Lorem ipsum dolor sit amet conse ctetur adipisicing elit,
-                                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <a
-                                                class="button_1" href="#!/page_more"><img alt="" class="img_act"
-                                                                                          src="images/arrow_act.png"><img
-                                                alt="" class="img_noact" src="images/arrow.png"></a></p>
+
                                 </div>
                                 <div class="col_1 last_1">
-                                    <h3>ipsum dolor sit ame</h3>
-                                    <p>ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                                        fugiat nulla pariatur. Lorem ipsum dolor sit amet conse ctetur adipisicing elit,
-                                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <a
-                                                class="button_1" href="#!/page_more"><img alt="" class="img_act"
-                                                                                          src="images/arrow_act.png"><img
-                                                alt="" class="img_noact" src="images/arrow.png"></a></p>
+
                                 </div>
                             </div>
                         </div>
@@ -164,11 +129,25 @@
                                 <table>
                                     <thead>
                                     <tr>
+                                        <th>包厢价格</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>{{room.price}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                                <table>
+                                    <thead>
+                                    <tr>
                                         <th>总消费</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <td>{{this.sum}}</td>
+                                    <tr>
+                                        <td>{{this.sum}}</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -186,48 +165,25 @@
                                     <div class="block_1_1">
                                         <img alt class="img_1" src="images/page4_pic1.jpg">
                                         <div class="text_info">
-                                            <h3>sit ame syet potr sren aet hasleli lroe.</h3>
-                                            <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod
-                                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                                                veniam, quis nost. Lorem ipsum dolor sit amet conse ctetur adipisicing
-                                                elit, sed do eiusmod tempor incididunt ut labor. Lorem ipsum dolor.</p>
-                                            <a class="button_2" href="#!/page_more">Read More</a>
+
                                         </div>
                                     </div>
                                     <div class="block_1_1">
                                         <img alt class="img_1" src="images/page4_pic2.jpg">
                                         <div class="text_info">
-                                            <h3>sit ame syet potr sren aet hasleli lroe.</h3>
-                                            <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod
-                                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                                                veniam, quis nost. Lorem ipsum dolor sit amet conse ctetur adipisicing
-                                                elit, sed do eiusmod tempor incididunt ut labor. Lorem ipsum dolor.</p>
-                                            <a class="button_2" href="#!/page_more">Read More</a>
+
                                         </div>
                                     </div>
                                 </div>
                                 <div class="block_2">
                                     <h2>Our <span>Archive</span></h2>
-                                    <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                        Duis aute irure dolor in reprehenderit.</p>
+
                                     <div class="wrapper">
                                         <div class="col_2">
-                                            <ul class="list_02">
-                                                <li><a href="#">Lorem ipsum dolor sit amet conse</a></li>
-                                                <li><a href="#">Ctetur adipisicing elit sed</a></li>
-                                                <li><a href="#">Do eiusmod tempor incididunt ut labo</a></li>
-                                                <li><a href="#">Re et dolore magna aliqua</a></li>
-                                            </ul>
+
                                         </div>
                                         <div class="col_2 no_marg">
-                                            <ul class="list_02">
-                                                <li><a href="#">Lorem ipsum dolor sit amet conse</a></li>
-                                                <li><a href="#">Ctetur adipisicing elit sed</a></li>
-                                                <li><a href="#">Do eiusmod tempor incididunt ut labo</a></li>
-                                                <li><a href="#">Re et dolore magna aliqua</a></li>
-                                            </ul>
+
                                         </div>
                                     </div>
                                 </div>
@@ -419,6 +375,7 @@
                         </div>
                     </div>
                 </li>
+
                 <li id="page_parties">
                     <div class="container">
                         <div class="wrapper">
@@ -426,24 +383,52 @@
 
                                 <div class="block_4">
                                     <h2>您的订单信息<span>显示</span></h2>
-                                    <form id="form1">
-                                        <div class="success"><strong>以下是您房间的订单信息：</strong>
+                                    <!-- <div class="success"><strong>以下是您房间的订单信息：</strong>
+
+                                     </div>-->
+                                    <button class="btn" v-on:click="getSroomlist()">小包</button>
+                                    <button class="btn" v-on:click="getMroomlist()">中包</button>
+                                    <button class="btn" v-on:click="getBroomlist()">大包</button>
+                                    <!-- <input type="button" v-on:click="getSroomlist()" value="小包">
+                                     <input type="button" v-on:click="getMroomlist()" value="中包">
+                                     <input type="button" v-on:click="getBroomlist()" value="大包">-->
+                                    <div class="card" style="width: 18rem;" v-for="room in roomlist" v-if="smal">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Special title treatment</h5>
+                                            <p class="card-text"><span>包间名:</span>{{room.roomName}}</p>
+                                            <p class="card-text">包间规格:{{room.type}}</p>
+                                            <p class="card-text">包间状态:{{room.status}}</p>
+                                            <!--                                                <a href="#" class="btn"><span>预订</span></a>-->
+                                            <button class="btn" v-on:click="reserveS(room.id,room.type)">
+                                                <span>预订 </span></button>
 
                                         </div>
-                                        <fieldset>
-                                            <div class="block_4_1">
-                                                <label class="name">
-                                                    <span class="title">房间号</span>
-                                                    <input type="text" value="">
-                                                    <span class="error">*This is not a valid name.</span> <span
-                                                        class="empty">*This field is required.</span> </label>
-                                            </div>
+                                    </div>
+                                    <div class="card" style="width: 18rem;" v-for="room in roomlist" v-if="medium">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Special title treatment</h5>
+                                            <p class="card-text"><span>包间名:</span>{{room.roomName}}</p>
+                                            <p class="card-text">包间规格:{{room.type}}</p>
+                                            <p class="card-text">包间状态:{{room.status}}</p>
+                                            <!--                                                <a href="#" class="btn"><span>预订</span></a>-->
+                                            <button class="btn" v-on:click="reserveM(room.id,room.type)">
+                                                <span>预订 </span></button>
 
-                                            <br class="clear">
-                                            <div class="btns"><p><a class="btns_form " data-type="reset" href="#">清空</a><a
-                                                    class="btns_form " data-type="submit" href="#">查询</a></p></div>
-                                        </fieldset>
-                                    </form>
+                                        </div>
+                                    </div>
+                                    <div class="card" style="width: 18rem;" v-for="room in roomlist" v-if="bigg">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Special title treatment</h5>
+                                            <p class="card-text"><span>包间名:</span>{{room.roomName}}</p>
+                                            <p class="card-text">包间规格:{{room.type}}</p>
+                                            <p class="card-text">包间状态:{{room.status}}</p>
+                                            <!--                                                <a href="#" class="btn"><span>预订</span></a>-->
+                                            <button class="btn" v-on:click="reserveB(room.id,room.type)">
+                                                <span>预订 </span></button>
+                                        </div>
+                                    </div>
+
+
                                 </div>
                             </div>
                         </div>
@@ -454,40 +439,7 @@
                         <div class="marg_1">
                             <div class="wrapper">
                                 <h2>Privacy Policy</h2>
-                                <p class="color1">Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do
-                                    eiusmod tempor incididunt ut.</p>
-                                <p class="pad_3">Labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                    irure dolor in reprehenderit. Lorem ipsum dolor sit amet conse ctetur adipisicing
-                                    elit, sed do eiusmod tempor incididunt ut labor.</p>
-                                <p class="color1">Sum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod
-                                    tempor incididunt uterste.</p>
-                                <p class="pad_3">Labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                    irure dolor in reprehenderit. Lorem ipsum dolor sit amet conse ctetur adipisicing
-                                    elit, sed do eiusmod tempor incididunt ut labore et. labore et dolore magna aliqua.
-                                    Ut enim ad minim veniam, quis nostrud exercita.</p>
-                                <p class="color1">Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do
-                                    eiusmod tempor incididunt ut.</p>
-                                <p class="pad_3">Labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                    irure dolor in reprehenderit. Lorem ipsum dolor sit amet conse ctetur adipisicing
-                                    elit, sed do eiusmod tempor incididunt ut labor.</p>
-                                <p class="color1">Sum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod
-                                    tempor incididunt uterste.</p>
-                                <p class="pad_3">Labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                    irure dolor in reprehenderit. Lorem ipsum dolor sit amet conse ctetur adipisicing
-                                    elit, sed do eiusmod tempor incididunt ut labore et. labore et dolore magna aliqua.
-                                    Ut enim ad minim veniam, quis nostrud exercita.</p>
-                                <p class="color1">Sum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod
-                                    tempor incididunt uterste.</p>
-                                <p class="pad_3">Labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                    irure dolor in reprehenderit. Lorem ipsum dolor sit amet conse ctetur adipisicing
-                                    elit, sed do eiusmod tempor incididunt ut labore et. labore et dolore magna aliqua.
-                                    Ut enim ad minim veniam, quis nostrud exercita.</p>
-                                <p><a class="fontStyle1" href="#">privacy@demolink.org</a></p>
+
                             </div>
                         </div>
                     </div>
@@ -497,39 +449,7 @@
                         <div class="marg_1">
                             <div class="wrapper">
                                 <h2>Lorem Ipsum</h2>
-                                <p class="color1">Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do
-                                    eiusmod tempor incididunt ut.</p>
-                                <p class="pad_3">Labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                    irure dolor in reprehenderit. Lorem ipsum dolor sit amet conse ctetur adipisicing
-                                    elit, sed do eiusmod tempor incididunt ut labor.</p>
-                                <p class="color1">Sum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod
-                                    tempor incididunt uterste.</p>
-                                <p class="pad_3">Labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                    irure dolor in reprehenderit. Lorem ipsum dolor sit amet conse ctetur adipisicing
-                                    elit, sed do eiusmod tempor incididunt ut labore et. labore et dolore magna aliqua.
-                                    Ut enim ad minim veniam, quis nostrud exercita.</p>
-                                <p class="color1">Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do
-                                    eiusmod tempor incididunt ut.</p>
-                                <p class="pad_3">Labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                    irure dolor in reprehenderit. Lorem ipsum dolor sit amet conse ctetur adipisicing
-                                    elit, sed do eiusmod tempor incididunt ut labor.</p>
-                                <p class="color1">Sum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod
-                                    tempor incididunt uterste.</p>
-                                <p class="pad_3">Labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                    irure dolor in reprehenderit. Lorem ipsum dolor sit amet conse ctetur adipisicing
-                                    elit, sed do eiusmod tempor incididunt ut labore et. labore et dolore magna aliqua.
-                                    Ut enim ad minim veniam, quis nostrud exercita.</p>
-                                <p class="color1">Sum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod
-                                    tempor incididunt uterste.</p>
-                                <p class="pad_3">Labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                    irure dolor in reprehenderit. Lorem ipsum dolor sit amet conse ctetur adipisicing
-                                    elit, sed do eiusmod tempor incididunt ut labore et. labore et dolore magna aliqua.
-                                    Ut enim ad minim veniam, quis nostrud exercita.</p>
+
                             </div>
                         </div>
                     </div>
@@ -546,7 +466,50 @@
     </div>
     <!--coded by cleric-->
 
+    <script>
+        var f = new Vue(
+            {
+                data: {
+                    orderlist: {},
+                    goodlist: {},
+                    room: {},
+                    userId: 0
+                }, methods: {
+                    getOrderById() {
+                        this.userId = sessionStorage.getItem("userId");
+                        // alert(this.userId);
+                        axios.put("http://localhost:8088/room/findcoRoomName?manager_id=" + this.userId).then(rel => {
+                            console.log(rel.data);
+                            if (rel.data.flag == false) {
+                                alert("您好，ID为" + this.userId + "号的用户，您还没有订单!");
+                            } else {
+                                console.log(rel.data);
+                                this.info = rel.data;
+                                alert("您好，ID为" + this.userId + "号的用户" + this.info.msg);
+                                this.orderlist = this.info.order;
+                                this.goodlist = this.info.goodsList;
+                                this.room = this.info.room;
+                                if (this.orderlist == null) {
+                                    // alert(this.info.msg);
+                                }
+                                this.sum = this.cal();
+                            }
+                        });
+                    }
 
+
+                }
+
+            }
+        );
+
+        document.getElementById('getOrder').onclick = IsAlpha();
+
+        function IsAlpha() {
+            f.getOrderById();
+        }
+
+    </script>
     <script>
 
         new Vue({
@@ -555,44 +518,103 @@
                 datalist: [],
                 orderlist: {},
                 goodlist: {},
-                userId: 59,
+                roomlist: {},
+                room: {},
+                userId: 0,
                 info: {},
-                sum: 0
+                sum: 0,
+                bigg: false,
+                medium: false,
+                smal: false,
             },
             created() {
-                // this.order.id=1;
-                // alert(this.order.id);
-
-                // this.coRoom = sessionStorage.getItem("coRoom");
-                // this.userId = sessionStorage.getItem("userId");
+                this.userId = sessionStorage.getItem("userId");
+                // alert(this.userId);
                 this.getOrderById();
-
+                this.getAllRoom();
             },
             methods: {
-
                 getOrderById() {
-                    // "http://localhost:8088/order/orderbyid?roomId="+roomId
+                    this.userId = sessionStorage.getItem("userId");
                     // alert(this.userId);
                     axios.put("http://localhost:8088/room/findcoRoomName?manager_id=" + this.userId).then(rel => {
-                        // this.order = rel.data;
-
                         console.log(rel.data);
-                        this.info = rel.data;
-                        this.orderlist = this.info.order;
-                        this.goodlist = this.info.goodsList;
-                        if (this.orderlist == null) {
-                            alert(this.info.msg);
+                        if (rel.data.flag == false) {
+                            // alert("您好，ID为"+this.userId+"号的用户，您还没有订单!");
+                        } else {
+                            console.log(rel.data);
+                            this.info = rel.data;
+                            // alert("您好，ID为"+this.userId+"号的用户"+this.info.msg);
+                            this.orderlist = this.info.order;
+                            this.goodlist = this.info.goodsList;
+                            this.room = this.info.room;
+                            if (this.orderlist == null) {
+                                // alert(this.info.msg);
+                            }
+                            this.sum = this.cal();
                         }
-                        this.sum = this.cal();
                     });
-
                 },
                 cal() {
                     let total = 0;
                     this.goodlist.forEach(item => {
                         total += item.price * item.quantity;
                     });
+                    total = total + this.room.price;
                     return total;
+                },
+                getSroomlist() {
+                    axios.get("http://localhost:8088/room/small").then(rel => {
+                        this.roomlist = rel.data;
+                        this.smal = true;
+                        this.medium = false;
+                        this.bigg = false;
+                    });
+                },
+                getMroomlist() {
+                    axios.get("http://localhost:8088/room/medium").then(rel => {
+                        this.roomlist = rel.data;
+                        this.medium = true;
+                        this.smal = false;
+                        this.bigg = false;
+                    });
+                },
+                getBroomlist() {
+                    axios.get("http://localhost:8088/room/big").then(rel => {
+                        this.roomlist = rel.data;
+                        this.bigg = true;
+                        this.smal = false;
+                        this.medium = false;
+                    });
+                },
+                getAllRoom() {
+                    axios.get("http://localhost:8088/room/AllRoom").then(rel => {
+                        this.roomlist = rel.data;
+                        this.bigg = true;
+                        this.smal = false;
+                        this.medium = false;
+                    });
+                },
+                reserveS(id, type) {
+
+                    axios.get("http://localhost:8088/room/addid?id=" + id + "&managerId=" + this.userId).then(rel => {
+                        var msg = rel.data;
+                        alert(msg);
+                    });
+                },
+                reserveM(id, type) {
+                    axios.get("http://localhost:8088/room/addid?id=" + id + "&managerId=" + this.userId).then(rel => {
+                        var msg = rel.data;
+                        alert(msg);
+                    });
+
+                },
+                reserveB(id, type) {
+                    axios.get("http://localhost:8088/room/addid?id=" + id + "&managerId=" + this.userId).then(rel => {
+                        var msg = rel.data;
+                        alert(msg);
+                    });
+
                 }
 
 

@@ -11,7 +11,7 @@ import lombok.Data;
  * @ Project name： MicFamily
  * @ Description：
  */
-@TableName("VIP")
+@TableName("vip")
 @Data
 public class VIP {
     @TableId("id")

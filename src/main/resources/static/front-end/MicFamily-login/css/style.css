@@ -9,6 +9,20 @@ mark, rp, rt, ruby, summary, time {
     display: inline;
 }
 
+.card {
+    width: 100px;
+    margin: 20px;
+    padding: 20px 15px;
+    background: rgba(57, 58, 59, 0.82);
+    border-radius: 40px;
+    box-shadow: -6px -6px 20px rgb(173, 169, 169),
+    6px 6px 20px rgba(0, 0, 0, .1);
+}
+
+.card:hover {
+    box-shadow: inset -6px -6px 10px rgba(84, 82, 82, 0.5),
+    inset 6px 6px 20px rgba(0, 0, 0, 0.05);
+}
 /*global*/
 body {
     position: absolute;
@@ -25,6 +39,59 @@ body {
 
 body p a {
     text-decoration: none;
+}
+
+.card-text {
+    font-size: 16px;
+    color: #fefefe;
+    text-shadow: 0 0 0.5em #e927b9, 0 0 0.2em #5c5c5c;
+}
+
+.btn {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #6e6e6e;
+    border: none;
+    color: #fefefe;
+    text-shadow: 0 0 0.5em #e927b9, 0 0 0.2em #5c5c5c;
+    text-align: center;
+    font-size: 16px;
+
+    width: 100px;
+    transition: all 0.5s;
+    cursor: pointer;
+
+}
+
+.btn span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.btn span:after {
+    content: '»';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.btn:hover span {
+    padding-right: 25px;
+}
+
+.btn:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+p {
+    font: 16px/1.2em 'Open Sans', sans-serif;
+    color: #e927b9;
+    padding-bottom: 20px;
 }
 
 a {
@@ -49,6 +116,7 @@ h1 > a {
     background: url(../images/MicFamily-1.png) center 0 no-repeat;
     margin: 50px 0 0 0px;
 }
+
 h2 {
     font: 29px/1.2em 'Open Sans', sans-serif;
     color: #fff;
@@ -60,12 +128,14 @@ th {
     font: 16px/1.2em 'Open Sans', sans-serif;
     color: #e927b9;
     padding-bottom: 20px;
+    font-weight: bold;
 }
 
-th {
+td {
     font: 16px/1.2em 'Open Sans', sans-serif;
-    color: #e927b9;
+    color: #ece9eb;
     padding-bottom: 20px;
+    width: 200px;
 }
 
 h2 span {
@@ -290,7 +360,7 @@ footer p a:hover {
     position: relative;
     display: block;
     height: 57px;
-    /*background: url(../images/submenu_1_bg2.png) left center no-repeat;*/
+    background: url(../images/submenu_1_bg2.png) left center no-repeat;
     background: url(../images/menu_bg1.jpg) bottom repeat-x;
 }
 

@@ -25,6 +25,9 @@ public interface RoomDao extends BaseMapper<Room> {
     @Select("select * from room where room_Type=2 and status = 2")
     List<Room> getMediumroom();
 
+    @Select("select * from room where status = 2")
+    List<Room> getAllRoom();
+
     @Select("select * from room where room_Type=3 and status = 2")
     List<Room> getSmallroom();
 

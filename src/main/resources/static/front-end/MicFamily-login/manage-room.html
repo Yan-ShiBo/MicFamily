@@ -90,6 +90,8 @@
                 <th>包间名</th>
                 <th>状态</th>
                 <th>类型</th>
+                <th>使用顾客ID</th>
+                <th>包间价格</th>
                 <th>确定/取消</th>
             </tr>
             </thead>
@@ -99,6 +101,8 @@
                 <td><input type="text" v-model="room.roomName"></td>
                 <td><input type="text" v-model="room.status"></td>
                 <td><input type="text" v-model="room.type"></td>
+                <td><input type="text" v-model="room.managerId"></td>
+                <td><input type="text" v-model="room.price"></td>
                 <td>
                     <input class="btn btn-sm btn-primary" type="button" v-on:click="RoomUpdate()" value="确定"/>
                     <input class="btn btn-sm btn-danger" type="button" v-on:click="updated()" value="取消"/>
@@ -115,6 +119,8 @@
                 <th>包间名</th>
                 <th>状态</th>
                 <th>类型</th>
+                <th>使用顾客ID</th>
+                <th>包间价格</th>
                 <th>编辑/删除</th>
             </tr>
             </thead>
@@ -124,6 +130,9 @@
                 <td>{{room.roomName}}</td>
                 <td>{{room.status}}</td>
                 <td>{{room.type}}</td>
+                <td>{{room.managerId}}</td>
+                <td>{{room.price}}</td>
+
                 <td>
                     <button class="btn btn-sm btn-primary" v-on:click="updatev(room.id)">修改</button>
                     <button class="btn btn-sm btn-danger" v-on:click="RoomDel(room.id)">删除</button>
@@ -152,6 +161,8 @@
                 <th>包间名</th>
                 <th>状态</th>
                 <th>类型</th>
+                <th>使用顾客ID</th>
+                <th>包间价格</th>
                 <th>编辑/删除</th>
             </tr>
             </thead>
@@ -161,6 +172,8 @@
                 <td>{{room.roomName}}</td>
                 <td>{{room.status}}</td>
                 <td>{{room.type}}</td>
+                <td>{{room.managerId}}</td>
+                <td>{{room.price}}</td>
                 <td>
                     <button class="btn btn-sm btn-primary" v-on:click="updatev(room.id)">修改</button>
                     <button class="btn btn-sm btn-danger" v-on:click="RoomDel(room.id)">删除</button>
@@ -216,7 +229,8 @@
                 // 	this.datalist = rel.data;
                 // });
                 axios.get("http://localhost:8088/room/page?currented=" + this.currented + "&size=" + this.size).then(res => {
-                    // console.log(res);
+
+                    console.log(res.data);
                     this.datalist = res.data.records;
                     this.total = res.data.total;
                     // console.log(this.total);
@@ -240,7 +254,7 @@
                 });
                 this.update = true;
                 this.addfig = false;
-                this.findfig = false
+                this.findfig = false;
             },
 
             updated() {

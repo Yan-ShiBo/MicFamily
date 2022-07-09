@@ -60,7 +60,7 @@ public class NoticeController {
     public List<NoticeStr> Getmanagement() {
         List<NoticeStr> noticeStrList = new ArrayList<>();
 
-        ;
+        System.out.println("+++------------------------");
         for (Notice notice : noticeService.list()) {
             NoticeStr noticeStr = new NoticeStr();
             String dataStr = notice.getDate().toString();

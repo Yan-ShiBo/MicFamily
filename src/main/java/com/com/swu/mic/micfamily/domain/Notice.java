@@ -15,7 +15,7 @@ import java.sql.Date;
  * @ Project name： MicFamily
  * @ Description：
  */
-@TableName("Notice")
+@TableName("notice")
 @Data
 public class Notice {
 

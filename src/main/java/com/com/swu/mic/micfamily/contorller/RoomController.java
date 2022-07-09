@@ -73,14 +73,6 @@ public class RoomController {
         return listdata1;
     }
 
-    @GetMapping("/{id}")
-    public Boolean Updateroom(@PathVariable int id) {
-        Room room = new Room();
-        room = roomService.getById(id);
-        room.setStatus("4");
-        roomService.updateById(room);
-        return true;
-    }
 
     @PutMapping("/update")
     public boolean updatauser(@RequestBody Room room) {
@@ -156,6 +148,26 @@ public class RoomController {
         return roomList1;
     }
 
+    @GetMapping("/AllRoom")
+    public List<Room> findAllRoom() {
+        List<Room> roomList = roomDao.getAllRoom();
+        List<Room> roomList1 = new ArrayList<>();
+        for (Room i : roomList) {
+            if (i.getRoomType().equals("3")) {
+                i.setRoomType("小包");
+            } else if (i.getRoomType().equals("2")) {
+                i.setRoomType("中包");
+            } else if (i.getRoomType().equals("1")) {
+                i.setRoomType("大包");
+            }
+            if (i.getStatus().equals("2")) {
+                i.setStatus("未使用");
+            }
+            roomList1.add(i);
+        }
+        return roomList1;
+    }
+
     @GetMapping("/page")
     public Page<Room> getpage(@RequestParam Integer currented, @RequestParam Integer size) {
         System.out.println(currented + "   " + size);
@@ -178,41 +190,74 @@ public class RoomController {
         Room room;
         Order order;
         List<Goods> goodsList;
-        try {
-            room = roomDao.getcoRoomName(manager_id);
-            String roomName = room.getRoomName();
+        room = roomDao.getcoRoomName(manager_id);
+        if (room == null) {
+            room = new Room();
+            order = new Order();
+            goodsList = new ArrayList<Goods>();
             r.setRoom(room);
-
-            order = orderDao.getcoOrder(roomName);
             r.setOrder(order);
-
-            Integer orderId = order.getId();
-
-            System.out.println(orderId);
-            goodsList = goodsDao.getByOrderId(orderId);
-            System.out.println(goodsDao.getByOrderId(orderId));
             r.setGoodsList(goodsList);
-            r.setFlag(true);
-
-        } catch (Exception e) {
             r.setFlag(false);
-            r.setMsg("search failed!");
+            r.setMsg("您还没有订单!");
+        } else {
+            try {
+//            room = roomDao.getcoRoomName(manager_id);
+                String roomName = room.getRoomName();
+                r.setRoom(room);
+
+                order = orderDao.getcoOrder(roomName);
+                r.setOrder(order);
+
+                Integer orderId = order.getId();
+
+                System.out.println(orderId);
+                goodsList = goodsDao.getByOrderId(orderId);
+                System.out.println(goodsDao.getByOrderId(orderId));
+                r.setGoodsList(goodsList);
+                r.setFlag(true);
+                r.setMsg("订单详情已查询!");
+            } catch (Exception e) {
+                r.setFlag(false);
+                r.setMsg("search failed!");
+            }
         }
+
         return r;
     }
 
+//    @GetMapping("/{id}")
+//    public Boolean Updateroom(@PathVariable int id) {
+//        Room room = new Room();
+//        room = roomService.getById(id);
+//        room.setStatus("4");
+//        roomService.updateById(room);
+//        return true;
+//    }
+
+    @GetMapping("/{id}")
+    public Room Updateroom(@PathVariable int id) {
+        return roomService.getById(id);
+    }
+
     @GetMapping("/addid")
-    public Boolean addID(@RequestParam int id, @RequestParam int managerId) {
+    public String addID(@RequestParam int id, @RequestParam int managerId) {
         System.out.println(id + "-----" + managerId);
 
         Room room = roomDao.getcoRoomName(managerId);
-        if (room.equals(null)) {
+        System.out.println("2222222222222222111111111111111111" + room);
+        if (room == null) {
+            room = new Room();
+            System.out.println(managerId + "111111111111111111" + room);
+            room.setId(id);
             room.setManagerId(managerId);
             room.setStatus("4");
             roomService.updateById(room);
-            return true;
+            System.out.println(managerId + "您已成功预订包间" + room);
+            return "您已成功预订包间";
         } else
-            return false;
+            System.out.println(managerId + "您已预订过包间" + room);
+        return "对不起，您已预订过包间";
     }
 
 
