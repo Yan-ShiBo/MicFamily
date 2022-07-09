@@ -1,12 +1,13 @@
 package com.com.swu.mic.micfamily.interceptor;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 
-//@Configuration
+@Configuration
 public class WebCondig implements WebMvcConfigurer {
 
     @Value("${SavePath.ProfilePhoto}")
@@ -22,8 +23,11 @@ public class WebCondig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new UserInterceptor()).addPathPatterns("/")
-                .excludePathPatterns("static/front-end/MicFamily-login/*.html", "static/front-end/MicFamily-login/*.css", "static/front-end/MicFamily-login.js", "static/front-end/MicFamily-login/**,http://localhost:8088/login");
+        System.out.println(123);
+        registry.addInterceptor(new UserInterceptor()).addPathPatterns("/**")
+//                .excludePathPatterns("static/front-end/MicFamily-login/*.html", "static/front-end/MicFamily-login/*.css", "static/front-end/MicFamily-login.js", "static/front-end/MicFamily-login/**,http://localhost:8088/login");
+//
+                .excludePathPatterns("/front-end/**", "/**/*.html,/**/*.css", "/**/*.css");
     }
 
 }
