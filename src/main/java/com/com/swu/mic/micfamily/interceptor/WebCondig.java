@@ -23,7 +23,7 @@ public class WebCondig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        System.out.println(123);
+//        System.out.println(123);
         registry.addInterceptor(new UserInterceptor()).addPathPatterns("/**")
 //                .excludePathPatterns("static/front-end/MicFamily-login/*.html", "static/front-end/MicFamily-login/*.css", "static/front-end/MicFamily-login.js", "static/front-end/MicFamily-login/**,http://localhost:8088/login");
 //

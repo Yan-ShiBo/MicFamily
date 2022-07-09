@@ -25,7 +25,7 @@ public class ManagerController {
 
     @GetMapping
     public Manager check(@RequestParam String userName, @RequestParam String password, HttpServletRequest request) {
-
+        System.out.println(userName + "---" + password);
         List<Manager> listdata = managerService.list();
 
 

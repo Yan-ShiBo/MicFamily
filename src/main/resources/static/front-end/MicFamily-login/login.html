@@ -120,12 +120,14 @@
                 },
                 methods: {
                     login() {
+                        // alert(111);
                         axios.get("http://localhost:8088/login", {
                             params: {
                                 userName: this.userName,
                                 password: this.password
                             }
                         }).then(rel => {
+                            // alert(111);
                             this.manager = rel.data;
                             console.log(this.manager)
                             this.identity = this.manager.permission;
