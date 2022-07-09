@@ -1,8 +1,6 @@
 server:
   port: 8088
 spring:
-  thymeleaf:
-    cache: false
   # 配置国际化
   messages:
     basename: i18n.login
@@ -12,6 +10,20 @@ spring:
       url: jdbc:mysql://124.222.244.117:3306/zrgj2?useUnicode=true&characterEncoding=utf8
       username: zrgj2
       password: zrgj2
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
+      enabled: true
+  thymeleaf:
+    cache: false
+    mode: LEGACYHTML5
+    prefix: classpath:/static/front-end/MicFamily-login/
+    suffix: .html
+
+SavePath:
+  ProfilePhoto: 'D:\MyData\写的程序代码\中软实训-MicFamily\中软实训2\MicFamily\src\main\resources\static\front-end\MicFamily-login\images\pic' #图标存储路径
+  ProfilePhotoMapper: '/profilePhoto/' #图标的映射路径
 
 mybatis-plus:
   type-aliases-package:

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<html>
 <head>
     <meta charset="utf-8"/>
     <title>KTV员工管理系统</title>
@@ -8,6 +9,7 @@
     <link href="./bootstrap-5.1.3-dist/css/bootstrap.min.css" rel="stylesheet"/>
     <script src="./jquery-3.5.1/jquery-3.5.1/jquery-3.5.1.min.js"></script>
     <script src="./vue/vue.js"></script>
+    <script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
     <style>
         * {
             margin: 0px;
@@ -19,6 +21,14 @@
             height: 600px;
             float: left;
             border: 0px;
+        }
+
+        #thp {
+            width: 60px;
+            height: 60px;
+            background-color: antiquewhite;
+            border-radius: 60px;
+            overflow: hidden;
         }
     </style>
 </head>
@@ -53,12 +63,42 @@
 
 <div class="main-container select" id="main-container">
     <div class="navbar navbar-default" id="navbar">
-        <div style="font-size: 200%;transform:scale(1.2,1.2);">
+        <div style="font-size: 200%;transform:scale(1.0,1.0);float: left;">
             <i class="fa fa-cog fa-spin white" style="margin: 5px 5px 5px 100px;"> </i>
             <span class="red">KTV</span>
             <span class="white"> 管理系统  您好：</span>
             <span class="white" id="addidentity"></span>
         </div>
+
+        <div id="app">
+            <div id="myPhoto" v-show="personalPhoto">
+                <div class="viewPhoto" style=" float: left">
+                    <img alt="" id="portrait" src="./img/MicFamily-1.png"
+                         style="width: 60px;height: 60px;border-radius: 60px;"/>
+                </div>
+
+                <div class="listBox" style="float: left">
+                    <dl>
+                        <dt>请上传图片</dt>
+                        <dd>
+                            <input id="saveImage" name="myphoto" type="file">
+                        </dd>
+                    </dl>
+                </div>
+                <div class="save" style="float: left">
+                    <input @click="imageSubmit" type="button" value="上传头像">
+                </div>
+            </div>
+        </div>
+        <!--        <form action="http://localhost:8088/api/profilePhotoUpload" method="post" enctype="multipart/form-data">-->
+        <!--            <input type="file" value="选择头像" name="files"/>-->
+        <!--            <input type="submit" value="上传">-->
+        <!--        </form>-->
+
+        <!--        <div id="thp" style="">-->
+        <!--            <img th:src="${thps}" style="width: 60px;height: 60px;overflow: hidden"/>-->
+        <!--        </div>-->
+
     </div>
 
     <div class="main-container-inner">
@@ -149,5 +189,41 @@
         </div>
     </div>
 </div>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            personalPhoto: true,
+            imageSave: ""
+        },
+        methods: {
+            imageSubmit() {
+                let x = document.getElementById('saveImage').files[0];
+                let params = new FormData();
+                params.append('file', x, x.name);
+
+                let config = {
+                    headers: {'Content-Type': 'multipart/form-data'}
+                };
+
+                axios.post("http://localhost:8088/api/profilePhotoUpload", params, config)
+                    .then(function (res) {
+                        var img = "images/pic/" + res.data.slice(0);
+                        console.log(img);
+                        document.getElementById("portrait").src = img;
+
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+            }
+        }
+
+
+    })
+
+</script>
+
 </body>
 </html>
