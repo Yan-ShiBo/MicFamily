@@ -15,7 +15,7 @@
     <script src="./js/axios.min.js"></script>
 
     <script src="js/html5.js"></script>
-    <![endif]-->
+
 
 </head>
 <body>
@@ -27,11 +27,11 @@
         <div class="spinner"></div>
         <div class="pagin">
             <ul>
-                <li class="active"><a href="images/bg_pic1.jpg"></a></li>
-                <li><a href="images/bg_pic2.jpg"></a></li>
-                <li><a href="images/bg_pic3.jpg"></a></li>
-                <li><a href="images/bg_pic4.jpg"></a></li>
-                <li><a href="images/bg_pic5.jpg"></a></li>
+                <!--                <li class="active"><a href="images/bg_pic1.jpg"></a></li>-->
+                <!--                <li><a href="images/bg_pic2.jpg"></a></li>-->
+                <!--                <li><a href="images/bg_pic3.jpg"></a></li>-->
+                <!--                <li><a href="images/bg_pic4.jpg"></a></li>-->
+                <li class="active"><a href="images/bg_pic5.jpg"></a></li>
             </ul>
         </div>
         <div id="leftPanel">
@@ -46,7 +46,7 @@
                     <li><a href="">项目介绍</a></li>
                     <li><a href="#!/order_query" onclick="IsAlpha()">订单查询</a></li>
                     <li><a href="#!/page_parties">包厢查询</a></li>
-                    <!--                    <li><a href="#!/page_events">超市</a></li>-->
+                    <li><a href="#!/page_events">结算</a></li>
                     <!--                    <li><a href="#!/page_gallery">结账</a></li>-->
                     <!--                    <li><a href="#!/page_menu">公告管理</a></li>-->
                     <!--                    <li><a href="#!/page_menu">呼叫服务</a></li>-->
@@ -93,7 +93,7 @@
                         <div class="wrapper">
                             <div class="marg_1">
                                 <h1>订单 <span>信息显示</span></h1>
-                                <h2><span>您使用的包厢为：</span>{{orderlist.coRoom}}</h2>
+                                <h2><span>您使用的包厢为：</span>{{room.roomName}}</h2>
                                 <table>
                                     <thead>
                                     <tr>
@@ -601,20 +601,21 @@
                         var msg = rel.data;
                         alert(msg);
                     });
+                    // window.location.reload();
                 },
                 reserveM(id, type) {
                     axios.get("http://localhost:8088/room/addid?id=" + id + "&managerId=" + this.userId).then(rel => {
                         var msg = rel.data;
                         alert(msg);
                     });
-
+                    // window.location.reload();
                 },
                 reserveB(id, type) {
                     axios.get("http://localhost:8088/room/addid?id=" + id + "&managerId=" + this.userId).then(rel => {
                         var msg = rel.data;
                         alert(msg);
                     });
-
+                    // window.location.reload();
                 }
 
 

@@ -207,12 +207,17 @@ public class RoomController {
                 r.setRoom(room);
 
                 order = orderDao.getcoOrder(roomName);
+                if (order == null)
+                    order = new Order();
+
                 r.setOrder(order);
 
                 Integer orderId = order.getId();
 
                 System.out.println(orderId);
                 goodsList = goodsDao.getByOrderId(orderId);
+
+
                 System.out.println(goodsDao.getByOrderId(orderId));
                 r.setGoodsList(goodsList);
                 r.setFlag(true);
