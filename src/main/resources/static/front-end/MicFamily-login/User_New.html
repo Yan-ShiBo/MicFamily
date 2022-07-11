@@ -600,10 +600,11 @@
                         });
                     },
                     reserveS(id, type) {
-
                         axios.get("http://localhost:8088/room/addid?id=" + id + "&managerId=" + this.userId).then(rel => {
                             var msg = rel.data;
                             alert(msg);
+                            if (msg == "您已成功预订包间")
+                                this.listen();
                             this.msgfig = true;
                         });
                         // window.location.reload();
@@ -612,6 +613,8 @@
                         axios.get("http://localhost:8088/room/addid?id=" + id + "&managerId=" + this.userId).then(rel => {
                             var msg = rel.data;
                             alert(msg);
+                            if (msg == "您已成功预订包间")
+                                this.listen();
                             this.msgfig = true;
                         });
                         // window.location.reload();
@@ -620,6 +623,8 @@
                         axios.get("http://localhost:8088/room/addid?id=" + id + "&managerId=" + this.userId).then(rel => {
                             var msg = rel.data;
                             alert(msg);
+                            if (msg == "您已成功预订包间")
+                                this.listen();
                             this.msgfig = true;
                         });
                         // window.location.reload();
@@ -636,6 +641,12 @@
                         });
                         // window.location.reload();
                     },
+                    listen() {
+                        // alert(111111);
+                        axios.post("http://localhost:8088/users/save?userId=" + this.userId).then(rel => {
+                            // alert(rel.data);
+                        });
+                    }
 
 
                 }

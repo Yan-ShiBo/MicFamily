@@ -7,8 +7,7 @@
     <link href="./ace/css/ace.min.css" rel="stylesheet"/>
     <link href="./font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
     <link href="./bootstrap-5.1.3-dist/css/bootstrap.min.css" rel="stylesheet"/>
-
-
+    <script src="./js/axios.min.js"></script>
     <script src="./jquery-3.5.1/jquery-3.5.1/jquery-3.5.1.min.js"></script>
     <script src="./vue/vue.js"></script>
     <style>
@@ -52,6 +51,17 @@
             top: 0;
             opacity: 0;
             border-radius: 0px;
+        }
+
+        #msgs {
+            width: 200px;
+            height: 300px;
+            border: none;
+            position: absolute;
+            top: 300px;
+            left: 0px;
+
+            /*  1px solid palegoldenrod*/
         }
     </style>
 </head>
@@ -217,6 +227,16 @@
                 </li>
             </ul>
 
+
+        </div>
+
+        <div id="msgs" v-if="msgsfig">
+            <ul>
+                <li v-for="ms in msgs">
+                    消息队列<a href="#">{{ms.msgsId}}---{{ms.msgsCont}}</a>
+                    <a @click="msgtu(ms.msgsId)" href="#" id="yd">标为已读</a>
+                </li>
+            </ul>
         </div>
 
         <div class="main-content">
@@ -246,6 +266,13 @@
         el: "#app",
         data: {
             seen: false,
+            msgsfig: false,
+            msgs: [],
+            tiem: null
+        },
+        created() {
+
+            setInterval(this.getAll, 1000);
         },
         methods: {
             avatar() {
@@ -254,7 +281,34 @@
                 } else {
                     this.seen = false;
                 }
+            },
+
+
+            msgtu(msgsId) {
+
+                axios.put("http://localhost:8088/admin/putmsg?msgid=" + msgsId).then(rel => {
+                    console.log(rel.data);
+                    if (rel.data) {
+                        this.getAll();
+                    } else {
+                        alert("失败");
+                    }
+                })
+            },
+            getAll() {
+                axios.get("http://localhost:8088/admin/msg").then(resl => {
+                    if (resl.data.length > 0) {
+                        this.msgs = resl.data;
+                        this.msgsfig = true;
+                        this.test();
+                    } else {
+                        this.msgsfig = false;
+                        clearInterval(this.tiem);
+                    }
+                });
             }
+
+
         }
     });
 
