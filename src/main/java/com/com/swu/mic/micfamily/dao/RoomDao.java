@@ -5,6 +5,7 @@ import com.com.swu.mic.micfamily.domain.Room;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -42,8 +43,12 @@ public interface RoomDao extends BaseMapper<Room> {
     @Select("select count(*) from room where room_name like #{roomName}")
     int findCount(@Param("roomName") String roomName);
 
-    @Select("select * from room where manager_id =#{id}")
-    Room getcoRoomName(@Param("id") int id);
+    @Select("select * from room where manager_id =#{manager_id}")
+    Room getcoRoomName(@Param("manager_id") int manager_id);
+
+
+    @Update("update room set manager_id = null, status = '2' where manager_id =#{manager_id} ")
+    public int updateID(@Param("manager_id") int manager_id);
 
 
 }

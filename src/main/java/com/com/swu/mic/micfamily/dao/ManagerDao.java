@@ -6,6 +6,7 @@ import com.com.swu.mic.micfamily.domain.Manager;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ import java.util.List;
  * @ Description：
  */
 
+@Component
 @Mapper
 public interface ManagerDao extends BaseMapper<Manager> {
     @Select("select * from manager where user_name like #{userName}")

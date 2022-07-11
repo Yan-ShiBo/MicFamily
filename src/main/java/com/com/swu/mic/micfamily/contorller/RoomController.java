@@ -242,6 +242,7 @@ public class RoomController {
 
     @GetMapping("/{id}")
     public Room Updateroom(@PathVariable int id) {
+
         return roomService.getById(id);
     }
 
@@ -263,6 +264,26 @@ public class RoomController {
         } else
             System.out.println(managerId + "您已预订过包间" + room);
         return "对不起，您已预订过包间";
+    }
+
+
+    @DeleteMapping("/removeid")
+    public String removeId(@RequestParam("id") Integer id, @RequestParam("managerId") Integer managerId) {
+        System.out.println(id + "-----" + managerId);
+
+        Room room = roomDao.getcoRoomName(managerId);
+        System.out.println("2222222222222222111111111111111111" + room);
+        if (room == null) {
+
+            return "对不起，您还没有预订过包间";
+        } else
+
+            System.out.println(managerId + "111111111111111111" + room);
+        roomDao.updateID(managerId);
+
+
+        return "您已取消订购包间";
+
     }
 
 

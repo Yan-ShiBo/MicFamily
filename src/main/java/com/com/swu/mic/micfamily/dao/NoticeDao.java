@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -16,6 +17,8 @@ import java.util.List;
  * @ Project name： MicFamily
  * @ Description：
  */
+
+@Component
 @Mapper
 public interface NoticeDao extends BaseMapper<Notice> {
     @Insert("insert into notice (power,category,date) values( #{power},#{category},#{date})")

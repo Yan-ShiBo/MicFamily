@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Component;
 
 /**
  * @ 作者： 闫士博
@@ -14,6 +15,7 @@ import org.apache.ibatis.annotations.Select;
  * @ Project name： MicFamily
  * @ Description：
  */
+@Component
 @Mapper
 public interface InfoDao extends BaseMapper<Info> {
     @Select("select * from info where n_id = #{id}")
@@ -21,4 +23,6 @@ public interface InfoDao extends BaseMapper<Info> {
 
     @Insert("update info set info = #{info} where id = #{id}")
     Boolean upinfo(@Param("id") Integer id, @Param("info") String inf);
+
+
 }

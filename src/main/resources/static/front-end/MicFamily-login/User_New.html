@@ -20,6 +20,7 @@
 </head>
 <body>
 <div id="app">
+<div>
     <div id="bgStretch">
         <img alt src="images/bg_pic1.jpg">
     </div>
@@ -44,8 +45,8 @@
 
 
                     <li><a href="">项目介绍</a></li>
-                    <li><a href="#!/order_query" onclick="IsAlpha()">订单查询</a></li>
-                    <li><a href="#!/page_parties">包厢查询</a></li>
+                    <li><a @click="getOrderById()" href="#!/order_query">订单查询</a></li>
+                    <li><a href="#!/page_parties">包间预订</a></li>
                     <li><a href="#!/page_events">结算</a></li>
                     <!--                    <li><a href="#!/page_gallery">结账</a></li>-->
                     <!--                    <li><a href="#!/page_menu">公告管理</a></li>-->
@@ -91,7 +92,7 @@
                 <li id="order_query">
                     <div class="container">
                         <div class="wrapper">
-                            <div class="marg_1">
+                            <div class="marg_1" v-if="msgfig">
                                 <h1>订单 <span>信息显示</span></h1>
                                 <h2><span>您使用的包厢为：</span>{{room.roomName}}</h2>
                                 <table>
@@ -151,6 +152,17 @@
                                     </tr>
                                     </tbody>
                                 </table>
+
+                                <table>
+                                    <thead>
+                                    <span>如果您想要退订的话，请点击这里</span></br>
+                                    <button class="btn" v-on:click="remove(room.id,room.type)">
+                                        <span>退订</span></button>
+                                    </thead>
+
+
+                                </table>
+
                             </div>
 
                         </div>
@@ -464,24 +476,53 @@
         </footer>
         <!-- END FOOTER -->
     </div>
+
     <!--coded by cleric-->
 
     <script>
-        var f = new Vue(
+        new Vue(
             {
+                el: "#app",
                 data: {
                     orderlist: {},
                     goodlist: {},
                     room: {},
-                    userId: 0
-                }, methods: {
+                    msgfig: false,
+                    userId: 0,
+                    datalist: [],
+                    roomlist: {},
+
+                    info: {},
+                    sum: 0,
+
+                    bigg: false,
+                    medium: false,
+                    smal: false,
+                }, created() {
+                    this.userId = sessionStorage.getItem("userId");
+                    // alert(this.userId);
+                    this.getOrderById();
+                    this.getAllRoom();
+                },
+                methods: {
+                    IsAlpha() {
+                        axios.get("http://localhost:8088/room/small/+" + this.userId).then(rel => {
+                            if (rel.data != null) {
+                                this.msgfig = true;
+                            } else {
+                                this.msgfig = false;
+                            }
+                            this.roomlist = rel.data;
+                            console.log(rel);
+                        });
+                    },
                     getOrderById() {
                         this.userId = sessionStorage.getItem("userId");
                         // alert(this.userId);
                         axios.put("http://localhost:8088/room/findcoRoomName?manager_id=" + this.userId).then(rel => {
                             console.log(rel.data);
                             if (rel.data.flag == false) {
-                                alert("您好，ID为" + this.userId + "号的用户，您还没有订单!");
+                                // alert("您好，ID为" + this.userId + "号的用户，您还没有订单!");
                             } else {
                                 console.log(rel.data);
                                 this.info = rel.data;
@@ -495,7 +536,106 @@
                                 this.sum = this.cal();
                             }
                         });
-                    }
+                    }, getOrderById() {
+                        this.userId = sessionStorage.getItem("userId");
+                        // alert(this.userId);
+                        axios.put("http://localhost:8088/room/findcoRoomName?manager_id=" + this.userId).then(rel => {
+                            if (rel.data.length != 0) {
+
+                                console.log(rel.data);
+                                this.info = rel.data;
+                                // alert("您好，ID为"+this.userId+"号的用户"+this.info.msg);
+                                this.orderlist = this.info.order;
+                                this.goodlist = this.info.goodsList;
+                                this.room = this.info.room;
+                                if (this.orderlist == null) {
+                                    // alert(this.info.msg);
+                                }
+                                this.sum = this.cal();
+                            } else {
+                                this.msgfig = false;
+                            }
+
+
+                        });
+                    },
+                    cal() {
+                        let total = 0;
+                        this.goodlist.forEach(item => {
+                            total += item.price * item.quantity;
+                        });
+                        total = total + this.room.price;
+                        return total;
+                    },
+                    getSroomlist() {
+                        axios.get("http://localhost:8088/room/small").then(rel => {
+                            this.roomlist = rel.data;
+                            this.smal = true;
+                            this.medium = false;
+                            this.bigg = false;
+                        });
+                    },
+                    getMroomlist() {
+                        axios.get("http://localhost:8088/room/medium").then(rel => {
+                            this.roomlist = rel.data;
+                            this.medium = true;
+                            this.smal = false;
+                            this.bigg = false;
+                        });
+                    },
+                    getBroomlist() {
+                        axios.get("http://localhost:8088/room/big").then(rel => {
+                            this.roomlist = rel.data;
+                            this.bigg = true;
+                            this.smal = false;
+                            this.medium = false;
+                        });
+                    },
+                    getAllRoom() {
+                        axios.get("http://localhost:8088/room/AllRoom").then(rel => {
+                            this.roomlist = rel.data;
+                            this.bigg = true;
+                            this.smal = false;
+                            this.medium = false;
+                        });
+                    },
+                    reserveS(id, type) {
+
+                        axios.get("http://localhost:8088/room/addid?id=" + id + "&managerId=" + this.userId).then(rel => {
+                            var msg = rel.data;
+                            alert(msg);
+                            this.msgfig = true;
+                        });
+                        // window.location.reload();
+                    },
+                    reserveM(id, type) {
+                        axios.get("http://localhost:8088/room/addid?id=" + id + "&managerId=" + this.userId).then(rel => {
+                            var msg = rel.data;
+                            alert(msg);
+                            this.msgfig = true;
+                        });
+                        // window.location.reload();
+                    },
+                    reserveB(id, type) {
+                        axios.get("http://localhost:8088/room/addid?id=" + id + "&managerId=" + this.userId).then(rel => {
+                            var msg = rel.data;
+                            alert(msg);
+                            this.msgfig = true;
+                        });
+                        // window.location.reload();
+                    },
+
+                    remove(id, type) {
+
+                        axios.delete("http://localhost:8088/room/removeid?id=" + id + "&managerId=" + this.userId).then(rel => {
+                            alert(rel.data);
+                            var msg = rel.data;
+
+
+                            this.msgfig = false;
+                        });
+                        // window.location.reload();
+                    },
 
 
                 }
@@ -503,129 +643,10 @@
             }
         );
 
-        document.getElementById('getOrder').onclick = IsAlpha();
-
-        function IsAlpha() {
-            f.getOrderById();
-        }
 
     </script>
-    <script>
 
-        new Vue({
-            el: "#app",
-            data: {
-                datalist: [],
-                orderlist: {},
-                goodlist: {},
-                roomlist: {},
-                room: {},
-                userId: 0,
-                info: {},
-                sum: 0,
-                bigg: false,
-                medium: false,
-                smal: false,
-            },
-            created() {
-                this.userId = sessionStorage.getItem("userId");
-                // alert(this.userId);
-                this.getOrderById();
-                this.getAllRoom();
-            },
-            methods: {
-                getOrderById() {
-                    this.userId = sessionStorage.getItem("userId");
-                    // alert(this.userId);
-                    axios.put("http://localhost:8088/room/findcoRoomName?manager_id=" + this.userId).then(rel => {
-                        console.log(rel.data);
-                        if (rel.data.flag == false) {
-                            // alert("您好，ID为"+this.userId+"号的用户，您还没有订单!");
-                        } else {
-                            console.log(rel.data);
-                            this.info = rel.data;
-                            // alert("您好，ID为"+this.userId+"号的用户"+this.info.msg);
-                            this.orderlist = this.info.order;
-                            this.goodlist = this.info.goodsList;
-                            this.room = this.info.room;
-                            if (this.orderlist == null) {
-                                // alert(this.info.msg);
-                            }
-                            this.sum = this.cal();
-                        }
-                    });
-                },
-                cal() {
-                    let total = 0;
-                    this.goodlist.forEach(item => {
-                        total += item.price * item.quantity;
-                    });
-                    total = total + this.room.price;
-                    return total;
-                },
-                getSroomlist() {
-                    axios.get("http://localhost:8088/room/small").then(rel => {
-                        this.roomlist = rel.data;
-                        this.smal = true;
-                        this.medium = false;
-                        this.bigg = false;
-                    });
-                },
-                getMroomlist() {
-                    axios.get("http://localhost:8088/room/medium").then(rel => {
-                        this.roomlist = rel.data;
-                        this.medium = true;
-                        this.smal = false;
-                        this.bigg = false;
-                    });
-                },
-                getBroomlist() {
-                    axios.get("http://localhost:8088/room/big").then(rel => {
-                        this.roomlist = rel.data;
-                        this.bigg = true;
-                        this.smal = false;
-                        this.medium = false;
-                    });
-                },
-                getAllRoom() {
-                    axios.get("http://localhost:8088/room/AllRoom").then(rel => {
-                        this.roomlist = rel.data;
-                        this.bigg = true;
-                        this.smal = false;
-                        this.medium = false;
-                    });
-                },
-                reserveS(id, type) {
-
-                    axios.get("http://localhost:8088/room/addid?id=" + id + "&managerId=" + this.userId).then(rel => {
-                        var msg = rel.data;
-                        alert(msg);
-                    });
-                    // window.location.reload();
-                },
-                reserveM(id, type) {
-                    axios.get("http://localhost:8088/room/addid?id=" + id + "&managerId=" + this.userId).then(rel => {
-                        var msg = rel.data;
-                        alert(msg);
-                    });
-                    // window.location.reload();
-                },
-                reserveB(id, type) {
-                    axios.get("http://localhost:8088/room/addid?id=" + id + "&managerId=" + this.userId).then(rel => {
-                        var msg = rel.data;
-                        alert(msg);
-                    });
-                    // window.location.reload();
-                }
-
-
-            }
-
-        });
-
-
-    </script>
 </div>
-
+</div>
 </body>
 </html>
