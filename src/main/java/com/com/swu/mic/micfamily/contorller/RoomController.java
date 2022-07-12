@@ -106,7 +106,7 @@ public class RoomController {
     @GetMapping("/big")
     public Page<Room> findBigroom(@RequestParam Integer BigCurrented, @RequestParam Integer BigSize) {
 
-        System.out.println(BigCurrented + " ---+++--- " + BigSize);
+//        System.out.println(BigCurrented + " ---+++--- " + BigSize);
         Page<Room> RoomPage = new Page<>();
         List<Room> roomList = roomDao.getBigroom(BigCurrented * BigSize, BigSize);
         for (Room i : roomList) {
@@ -132,7 +132,7 @@ public class RoomController {
     @GetMapping("/medium")
     public Page<Room> findMediumroom(@RequestParam Integer MediumCurrented, @RequestParam Integer MediumSize) {
 
-        System.out.println(MediumCurrented + " ---+++--- " + MediumSize);
+//        System.out.println(MediumCurrented + " ---+++--- " + MediumSize);
         Page<Room> RoomPage = new Page<>();
         List<Room> roomList = roomDao.getMediumroom(MediumCurrented * MediumSize, MediumSize);
         for (Room i : roomList) {
@@ -159,7 +159,7 @@ public class RoomController {
     @GetMapping("/small")
     public Page<Room> findSmallroom(@RequestParam Integer SmallCurrented, @RequestParam Integer SmallSize) {
 
-        System.out.println(SmallCurrented + " ---+++--- " + SmallSize);
+//        System.out.println(SmallCurrented + " ---+++--- " + SmallSize);
         Page<Room> RoomPage = new Page<>();
         List<Room> roomList = roomDao.getSmallroom(SmallCurrented * SmallSize, SmallSize);
         for (Room i : roomList) {
@@ -188,7 +188,7 @@ public class RoomController {
     @GetMapping("/AllRoom")
     public Page<Room> findAllRoom(@RequestParam Integer currented, @RequestParam Integer size) {
 
-        System.out.println(currented + " ---+++--- " + size);
+//        System.out.println(currented + " ---+++--- " + size);
 
         Page<Room> RoomPage = new Page<>();
         List<Room> roomList = roomDao.search1(currented * size, size);
