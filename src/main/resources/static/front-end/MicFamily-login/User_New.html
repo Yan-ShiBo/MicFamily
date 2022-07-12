@@ -441,48 +441,81 @@
                                     <!-- <input type="button" v-on:click="getSroomlist()" value="小包">
                                      <input type="button" v-on:click="getMroomlist()" value="中包">
                                      <input type="button" v-on:click="getBroomlist()" value="大包">-->
-                                    <div class="card" style="width: 18rem;" v-for="room in roomlist" v-if="smal">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Special title treatment</h5>
-                                            <p class="card-text"><span>包间名:</span>{{room.roomName}}</p>
-                                            <p class="card-text">包间规格:{{room.type}}</p>
-                                            <p class="card-text">包间状态:{{room.status}}</p>
-                                            <!--                                                <a href="#" class="btn"><span>预订</span></a>-->
-                                            <button class="btn" v-on:click="reserveS(room.id,room.type)">
-                                                <span>预订 </span></button>
 
+                                    <div v-if="allroom">
+                                        <div class="card" style="width: 18rem;" v-for="room in roomlist">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Special title treatment</h5>
+                                                <p class="card-text"><span>包间名:</span>{{room.roomName}}</p>
+                                                <p class="card-text">包间规格:{{room.type}}</p>
+                                                <p class="card-text">包间状态:{{room.status}}</p>
+                                                <!--                                                <a href="#" class="btn"><span>预订</span></a>-->
+                                                <button class="btn" v-on:click="reserveS(room.id,room.type)">
+                                                    <span>预订 </span></button>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="card" style="width: 18rem;" v-for="room in roomlist" v-if="medium">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Special title treatment</h5>
-                                            <p class="card-text"><span>包间名:</span>{{room.roomName}}</p>
-                                            <p class="card-text">包间规格:{{room.type}}</p>
-                                            <p class="card-text">包间状态:{{room.status}}</p>
-                                            <!--                                                <a href="#" class="btn"><span>预订</span></a>-->
-                                            <button class="btn" v-on:click="reserveM(room.id,room.type)">
-                                                <span>预订 </span></button>
-
-                                        </div>
-                                    </div>
-                                    <div class="card" style="width: 18rem;" v-for="room in roomlist" v-if="bigg">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Special title treatment</h5>
-                                            <p class="card-text"><span>包间名:</span>{{room.roomName}}</p>
-                                            <p class="card-text">包间规格:{{room.type}}</p>
-                                            <p class="card-text">包间状态:{{room.status}}</p>
-                                            <!--                                                <a href="#" class="btn"><span>预订</span></a>-->
-                                            <button class="btn" v-on:click="reserveB(room.id,room.type)">
-                                                <span>预订 </span></button>
-                                        </div>
+                                        <button @click="upt()" class="btn"><span>上一页</span></button>
+                                        <button @click="next()" class="btn"><span>下一页</span></button>
                                     </div>
 
+
+                                    <div v-if="smal">
+                                        <div class="card" style="width: 18rem;" v-for="room in roomlist">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Special title treatment</h5>
+                                                <p class="card-text"><span>包间名:</span>{{room.roomName}}</p>
+                                                <p class="card-text">包间规格:{{room.type}}</p>
+                                                <p class="card-text">包间状态:{{room.status}}</p>
+                                                <!--                                                <a href="#" class="btn"><span>预订</span></a>-->
+                                                <button class="btn" v-on:click="reserveS(room.id,room.type)">
+                                                    <span>预订 </span></button>
+                                            </div>
+                                        </div>
+                                        <button @click="uptSmal()" class="btn"><span>上一页</span></button>
+                                        <button @click="nextSmal()" class="btn"><span>下一页</span></button>
+                                    </div>
+
+                                    <div v-if="medium">
+                                        <div class="card" style="width: 18rem;" v-for="room in roomlist">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Special title treatment</h5>
+                                                <p class="card-text"><span>包间名:</span>{{room.roomName}}</p>
+                                                <p class="card-text">包间规格:{{room.type}}</p>
+                                                <p class="card-text">包间状态:{{room.status}}</p>
+                                                <!--                                                <a href="#" class="btn"><span>预订</span></a>-->
+                                                <button class="btn" v-on:click="reserveM(room.id,room.type)">
+                                                    <span>预订 </span></button>
+                                            </div>
+                                        </div>
+                                        <button @click="uptMedium()" class="btn"><span>上一页</span></button>
+                                        <button @click="nextMedium()" class="btn"><span>下一页</span></button>
+                                    </div>
+
+                                    <div v-if="bigg">
+                                        <div class="card" style="width: 18rem;" v-for="room in roomlist">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Special title treatment</h5>
+                                                <p class="card-text"><span>包间名:</span>{{room.roomName}}</p>
+                                                <p class="card-text">包间规格:{{room.type}}</p>
+                                                <p class="card-text">包间状态:{{room.status}}</p>
+                                                <!--                                                <a href="#" class="btn"><span>预订</span></a>-->
+                                                <button class="btn" v-on:click="reserveB(room.id,room.type)">
+                                                    <span>预订 </span></button>
+                                            </div>
+                                        </div>
+                                        <button @click="uptBigg()" class="btn"><span>上一页</span></button>
+                                        <button @click="nextBigg()" class="btn"><span>下一页</span></button>
+                                    </div>
 
                                 </div>
+
+
                             </div>
                         </div>
                     </div>
                 </li>
+
+
                 <li id="page_privacy">
                     <div class="container">
                         <div class="marg_1">
@@ -535,6 +568,25 @@
                     bigg: false,
                     medium: false,
                     smal: false,
+                    allroom: true,
+
+
+                    currented: 0,
+                    total: 1,
+                    size: 2,
+
+                    SmallCurrented: 0,
+                    SmallTotal: 1,
+                    SmallSize: 2,
+
+                    MediumCurrented: 0,
+                    MediumTotal: 1,
+                    MediumSize: 2,
+
+                    BigCurrented: 0,
+                    BigTotal: 1,
+                    BigSize: 2,
+
                 }, created() {
                     this.userId = sessionStorage.getItem("userId");
                     // alert(this.userId);
@@ -573,7 +625,8 @@
                                 this.sum = this.cal();
                             }
                         });
-                    }, getOrderById() {
+                    },
+                    getOrderById() {
                         this.userId = sessionStorage.getItem("userId");
                         // alert(this.userId);
                         axios.put("http://localhost:8088/room/findcoRoomName?manager_id=" + this.userId).then(rel => {
@@ -592,8 +645,6 @@
                             } else {
                                 this.msgfig = false;
                             }
-
-
                         });
                     },
                     cal() {
@@ -605,43 +656,67 @@
                         return total;
                     },
                     getSroomlist() {
-                        axios.get("http://localhost:8088/room/small").then(rel => {
-                            this.roomlist = rel.data;
+                        axios.get("http://localhost:8088/room/small?SmallCurrented=" + this.SmallCurrented + "&SmallSize=" + this.SmallSize).then(rel => {
+
+
+                            this.roomlist = rel.data.records;
+                            this.total = rel.data.SmallTotal;
+
+
                             this.smal = true;
                             this.medium = false;
                             this.bigg = false;
+                            this.allroom = false;
                         });
                     },
                     getMroomlist() {
-                        axios.get("http://localhost:8088/room/medium").then(rel => {
-                            this.roomlist = rel.data;
+                        axios.get("http://localhost:8088/room/medium?MediumCurrented=" + this.MediumCurrented + "&MediumSize=" + this.MediumSize).then(rel => {
+
+
+                            this.roomlist = rel.data.records;
+                            this.total = rel.data.MediumTotal;
+
+
                             this.medium = true;
                             this.smal = false;
                             this.bigg = false;
+                            this.allroom = false;
                         });
                     },
                     getBroomlist() {
-                        axios.get("http://localhost:8088/room/big").then(rel => {
-                            this.roomlist = rel.data;
+                        axios.get("http://localhost:8088/room/big?BigCurrented=" + this.BigCurrented + "&BigSize=" + this.BigSize).then(rel => {
+
+
+                            this.roomlist = rel.data.records;
+                            this.total = rel.data.BigTotal;
+
+
                             this.bigg = true;
                             this.smal = false;
                             this.medium = false;
+                            this.allroom = false;
                         });
                     },
                     getAllRoom() {
-                        axios.get("http://localhost:8088/room/AllRoom").then(rel => {
-                            this.roomlist = rel.data;
-                            this.bigg = true;
-                            this.smal = false;
-                            this.medium = false;
+
+                        this.bigg = false;
+                        this.smal = false;
+                        this.medium = false;
+                        this.allroom = true;
+
+                        axios.get("http://localhost:8088/room/AllRoom?currented=" + this.currented + "&size=" + this.size).then(res => {
+                            console.log(res.data);
+                            this.roomlist = res.data.records;
+                            this.total = res.data.total;
+                            console.log(this.total);
+
                         });
                     },
                     reserveS(id, type) {
+
                         axios.get("http://localhost:8088/room/addid?id=" + id + "&managerId=" + this.userId).then(rel => {
                             var msg = rel.data;
                             alert(msg);
-                            if (msg == "您已成功预订包间")
-                                this.listen();
                             this.msgfig = true;
                         });
                         // window.location.reload();
@@ -650,8 +725,6 @@
                         axios.get("http://localhost:8088/room/addid?id=" + id + "&managerId=" + this.userId).then(rel => {
                             var msg = rel.data;
                             alert(msg);
-                            if (msg == "您已成功预订包间")
-                                this.listen();
                             this.msgfig = true;
                         });
                         // window.location.reload();
@@ -660,8 +733,6 @@
                         axios.get("http://localhost:8088/room/addid?id=" + id + "&managerId=" + this.userId).then(rel => {
                             var msg = rel.data;
                             alert(msg);
-                            if (msg == "您已成功预订包间")
-                                this.listen();
                             this.msgfig = true;
                         });
                         // window.location.reload();
@@ -670,13 +741,56 @@
                     remove(id, type) {
 
                         axios.delete("http://localhost:8088/room/removeid?id=" + id + "&managerId=" + this.userId).then(rel => {
-                            // alert(rel.data);
+                            alert(rel.data);
                             var msg = rel.data;
 
 
                             this.msgfig = false;
                         });
                         // window.location.reload();
+                    },
+                    next() {
+                        if (this.currented < this.total)
+                            this.currented++;
+                        this.getAllRoom();
+                    },
+                    upt() {
+                        if (this.currented > 0)
+                            this.currented--;
+                        this.getAllRoom();
+                    },
+
+                    nextSmal() {
+                        if (this.SmallCurrented < this.SmallTotal)
+                            this.SmallCurrented++;
+                        this.getSroomlist();
+                    },
+                    uptSmal() {
+                        if (this.SmallCurrented > 0)
+                            this.SmallCurrented--;
+                        this.getSroomlist();
+                    },
+
+                    nextMedium() {
+                        if (this.MediumCurrented < this.MediumTotal)
+                            this.MediumCurrented++;
+                        this.getMroomlist();
+                    },
+                    uptMedium() {
+                        if (this.MediumCurrented > 0)
+                            this.MediumCurrented--;
+                        this.getMroomlist();
+                    },
+
+                    nextBigg() {
+                        if (this.BigCurrented < this.BigTotal)
+                            this.BigCurrented++;
+                        this.getBroomlist();
+                    },
+                    uptBigg() {
+                        if (this.BigCurrented > 0)
+                            this.BigCurrented--;
+                        this.getBroomlist();
                     },
                     listen() {
                         // alert(111111);

@@ -8,7 +8,6 @@ import com.com.swu.mic.micfamily.domain.Goods;
 import com.com.swu.mic.micfamily.domain.Order;
 import com.com.swu.mic.micfamily.domain.Room;
 import com.com.swu.mic.micfamily.domain.order_inquiry;
-import com.com.swu.mic.micfamily.service.GoodsService;
 import com.com.swu.mic.micfamily.service.OrderService;
 import com.com.swu.mic.micfamily.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,16 +24,13 @@ public class RoomController {
     @Autowired
     private RoomService roomService;
     @Autowired
-    private OrderService orderService;
+    private RoomDao roomDao;
     @Autowired
-    private GoodsService goodsService;
+    private OrderDao orderDao;
     @Autowired
     private GoodsDao goodsDao;
     @Autowired
-    RoomDao roomDao;
-    @Autowired
-    OrderDao orderDao;
-
+    private OrderService orderService;
 
     @PostMapping("/management")
     public boolean Postmanagement(@RequestBody Room room) {
@@ -108,9 +104,11 @@ public class RoomController {
 
 
     @GetMapping("/big")
-    public List<Room> findBigroom() {
-        List<Room> roomList = roomDao.getBigroom();
-        List<Room> roomList1 = new ArrayList<>();
+    public Page<Room> findBigroom(@RequestParam Integer BigCurrented, @RequestParam Integer BigSize) {
+
+        System.out.println(BigCurrented + " ---+++--- " + BigSize);
+        Page<Room> RoomPage = new Page<>();
+        List<Room> roomList = roomDao.getBigroom(BigCurrented * BigSize, BigSize);
         for (Room i : roomList) {
             if (i.getRoomType().equals("1")) {
                 i.setRoomType("大包");
@@ -118,15 +116,25 @@ public class RoomController {
             if (i.getStatus().equals("2")) {
                 i.setStatus("未使用");
             }
-            roomList1.add(i);
         }
-        return roomList1;
+        int max = roomDao.CountBig();
+        System.out.println(max / BigSize);
+        if (max % BigSize == 0) {
+            RoomPage.setTotal(max / BigSize - 1);
+        } else
+            RoomPage.setTotal(max / BigSize);
+
+        RoomPage.setRecords(roomList);
+        return RoomPage;
     }
 
+
     @GetMapping("/medium")
-    public List<Room> findMediumroom() {
-        List<Room> roomList = roomDao.getMediumroom();
-        List<Room> roomList1 = new ArrayList<>();
+    public Page<Room> findMediumroom(@RequestParam Integer MediumCurrented, @RequestParam Integer MediumSize) {
+
+        System.out.println(MediumCurrented + " ---+++--- " + MediumSize);
+        Page<Room> RoomPage = new Page<>();
+        List<Room> roomList = roomDao.getMediumroom(MediumCurrented * MediumSize, MediumSize);
         for (Room i : roomList) {
             if (i.getRoomType().equals("2")) {
                 i.setRoomType("中包");
@@ -134,15 +142,26 @@ public class RoomController {
             if (i.getStatus().equals("2")) {
                 i.setStatus("未使用");
             }
-            roomList1.add(i);
         }
-        return roomList1;
+
+        int max = roomDao.CountMedium();
+        System.out.println(max / MediumSize);
+        if (max % MediumSize == 0) {
+            RoomPage.setTotal(max / MediumSize - 1);
+        } else
+            RoomPage.setTotal(max / MediumSize);
+
+        RoomPage.setRecords(roomList);
+        return RoomPage;
+
     }
 
     @GetMapping("/small")
-    public List<Room> findSmallroom() {
-        List<Room> roomList = roomDao.getSmallroom();
-        List<Room> roomList1 = new ArrayList<>();
+    public Page<Room> findSmallroom(@RequestParam Integer SmallCurrented, @RequestParam Integer SmallSize) {
+
+        System.out.println(SmallCurrented + " ---+++--- " + SmallSize);
+        Page<Room> RoomPage = new Page<>();
+        List<Room> roomList = roomDao.getSmallroom(SmallCurrented * SmallSize, SmallSize);
         for (Room i : roomList) {
             if (i.getRoomType().equals("3")) {
                 i.setRoomType("小包");
@@ -150,15 +169,29 @@ public class RoomController {
             if (i.getStatus().equals("2")) {
                 i.setStatus("未使用");
             }
-            roomList1.add(i);
         }
-        return roomList1;
+
+        int max = roomDao.CountSmall();
+        System.out.println(max / SmallSize);
+        if (max % SmallSize == 0) {
+            RoomPage.setTotal(max / SmallSize - 1);
+        } else
+            RoomPage.setTotal(max / SmallSize);
+
+        RoomPage.setRecords(roomList);
+        return RoomPage;
+
     }
 
+
+    //所有包间的查询+分页
     @GetMapping("/AllRoom")
-    public List<Room> findAllRoom() {
-        List<Room> roomList = roomDao.getAllRoom();
-        List<Room> roomList1 = new ArrayList<>();
+    public Page<Room> findAllRoom(@RequestParam Integer currented, @RequestParam Integer size) {
+
+        System.out.println(currented + " ---+++--- " + size);
+
+        Page<Room> RoomPage = new Page<>();
+        List<Room> roomList = roomDao.search1(currented * size, size);
         for (Room i : roomList) {
             if (i.getRoomType().equals("3")) {
                 i.setRoomType("小包");
@@ -170,10 +203,21 @@ public class RoomController {
             if (i.getStatus().equals("2")) {
                 i.setStatus("未使用");
             }
-            roomList1.add(i);
         }
-        return roomList1;
+
+        int max = roomDao.findCount1();
+        System.out.println(max / size);
+        if (max % size == 0) {
+            RoomPage.setTotal(max / size - 1);
+        } else
+            RoomPage.setTotal(max / size);
+
+        RoomPage.setRecords(roomList);
+        return RoomPage;
+
+
     }
+
 
     @GetMapping("/page")
     public Page<Room> getpage(@RequestParam Integer currented, @RequestParam Integer size) {
@@ -274,6 +318,7 @@ public class RoomController {
     }
 
 
+    //订单退订
     @DeleteMapping("/removeid")
     public String removeId(@RequestParam("id") Integer id, @RequestParam("managerId") Integer managerId) {
 //        System.out.println(id + "-----" + managerId);
@@ -293,20 +338,17 @@ public class RoomController {
                 List<Goods> goodsList = goodsDao.getByOrderId(orderId);
                 for (Goods i : goodsList) {
                     i.setOrderId(null);
-//                System.out.println(i.getOrderId()+"-----------------=============================+++++++++++++++");
                     goodsDao.updateID(i.getId());
                 }
             }
-
-
         }
-
 //            System.out.println(managerId + "111111111111111111" + room);
-
-
         return "您已成功结算订单";
-
     }
+
+
+
+
 
 
 }

@@ -20,17 +20,37 @@ public interface RoomDao extends BaseMapper<Room> {
     @Select("select * from room limit #{pageNum},#{pageSize}")
     List<Room> selectPages(@Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize);
 
-    @Select("select * from room where room_Type=1 and status = 2")
-    List<Room> getBigroom();
 
-    @Select("select * from room where room_Type=2 and status = 2")
-    List<Room> getMediumroom();
+    @Select("select * from room where status = 2  limit #{pageNum},#{pageSize}")
+    List<Room> search1(@Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize);
+
+    @Select("select count(*) from room where status = 2")
+    int findCount1();
+
 
     @Select("select * from room where status = 2")
     List<Room> getAllRoom();
 
-    @Select("select * from room where room_Type=3 and status = 2")
-    List<Room> getSmallroom();
+
+    @Select("select * from room where room_Type=1 and status = 2 limit #{bigNum},#{bigSize}")
+    List<Room> getBigroom(@Param("bigNum") Integer bigNum, @Param("bigSize") Integer bigSize);
+
+    @Select("select count(*) from room where room_Type=1 and status = 2")
+    int CountBig();
+
+
+    @Select("select * from room where room_Type=2 and status = 2 limit #{mediumNum},#{mediumSize}")
+    List<Room> getMediumroom(@Param("mediumNum") Integer mediumNum, @Param("mediumSize") Integer mediumSize);
+
+    @Select("select count(*) from room where room_Type=2 and status = 2")
+    int CountMedium();
+
+
+    @Select("select * from room where room_Type=3 and status = 2 limit #{smallNum},#{smallSize}")
+    List<Room> getSmallroom(@Param("smallNum") Integer smallNum, @Param("smallSize") Integer smallSize);
+
+    @Select("select count(*) from room where room_Type=3 and status = 2")
+    int CountSmall();
 
 
     @Select("select count(*) from room")

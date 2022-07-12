@@ -18,8 +18,8 @@ public class UserInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+//        Manager manager = (Manager) request.getSession().getAttribute("name");
         Manager manager = (Manager) request.getSession().getAttribute("manager");
-
         System.out.println(manager + "---");
         if (manager != null) {
             return true;

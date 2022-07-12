@@ -16,6 +16,7 @@ public class WebCondig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        System.out.println(2);
         registry.addResourceHandler(ProfilePhotoMapperPath + "**").addResourceLocations("file:" + ProfilePhotoPath);
     }
 
