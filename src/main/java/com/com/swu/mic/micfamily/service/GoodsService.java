@@ -11,4 +11,5 @@ import com.com.swu.mic.micfamily.domain.Goods;
  * @ Description：
  */
 public interface GoodsService extends IService<Goods> {
+
 }

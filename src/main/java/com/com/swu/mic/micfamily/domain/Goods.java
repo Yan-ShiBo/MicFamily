@@ -37,6 +37,15 @@ public class Goods {
     private Double price;
     private Double creditExchange;
     private Integer quantity;
+    private Integer OrderId;
+
+    public Integer getOrderId() {
+        return OrderId;
+    }
+
+    public void setOrderId(Integer orderId) {
+        OrderId = orderId;
+    }
 
     public Integer getQuantity() {
         return quantity;
