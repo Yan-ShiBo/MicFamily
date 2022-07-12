@@ -206,7 +206,7 @@ public class RoomController {
         }
 
         int max = roomDao.findCount1();
-        System.out.println(max / size);
+//        System.out.println(max / size);
         if (max % size == 0) {
             RoomPage.setTotal(max / size - 1);
         } else
@@ -265,11 +265,11 @@ public class RoomController {
 
                 Integer orderId = order.getId();
 
-                System.out.println(orderId);
+//                System.out.println(orderId);
                 goodsList = goodsDao.getByOrderId(orderId);
 
 
-                System.out.println(goodsDao.getByOrderId(orderId));
+//                System.out.println(goodsDao.getByOrderId(orderId));
                 r.setGoodsList(goodsList);
                 r.setFlag(true);
                 r.setMsg("订单详情已查询!");
@@ -299,13 +299,13 @@ public class RoomController {
 
     @GetMapping("/addid")
     public String addID(@RequestParam int id, @RequestParam int managerId) {
-        System.out.println(id + "-----" + managerId);
+//        System.out.println(id + "-----" + managerId);
 
         Room room = roomDao.getcoRoomName(managerId);
-        System.out.println("2222222222222222111111111111111111" + room);
+//        System.out.println("2222222222222222111111111111111111" + room);
         if (room == null) {
             room = new Room();
-            System.out.println(managerId + "111111111111111111" + room);
+//            System.out.println(managerId + "111111111111111111" + room);
             room.setId(id);
             room.setManagerId(managerId);
             room.setStatus("4");

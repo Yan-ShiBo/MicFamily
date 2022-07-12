@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>欢迎光临micfamily</title>
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet" type="text/css">
     <link href="css/style.css" rel="stylesheet">
@@ -44,10 +44,10 @@
                 <ul id="menu">
 
 
-                    <li><a href="">项目介绍</a></li>
+                    <li><a href="#!/page_about">项目介绍</a></li>
                     <li><a @click="getOrderById()" href="#!/order_query">订单查询</a></li>
                     <li><a href="#!/page_parties">包间预订</a></li>
-                    <li><a href="#!/page_menu">商品购买</a></li>
+                    <li><a href="#!/page_goods">商品购买</a></li>
                     <!--                    <li><a href="#!/page_gallery">结账</a></li>-->
                     <!--                    <li><a href="#!/page_menu">公告管理</a></li>-->
                     <!--                    <li><a href="#!/page_menu">呼叫服务</a></li>-->
@@ -73,22 +73,116 @@
                     <div class="container">
                         <div class="wrapper">
                             <div class="marg_1">
-                                <h2>Welcome <span>to our website!</span></h2>
-
+                                <h2>Welcome to &nbsp;<span>麦家-MicFamily</span></h2>
                             </div>
-                            <img alt class="pad_2" src="images/page2_pic1.jpg">
-                            <div class="marg_1">
-                                <div class="col_1">
-                                    <h3>Lorem ipsum dolor sit ame</h3>
-
-                                </div>
-                                <div class="col_1 last_1">
-
+                            <div class="block_1_1">
+                                <img alt="" class="img_1" src="images/page4_pic1.jpg">
+                                <div class="text_info">
+                                    <h3>系统介绍</h3>
+                                    <p style="font: 13px Arial, Helvetica, sans-serif;color: #6E6E70">
+                                        麦家-MicFamily是一个为量贩式KTV开发的运营管理系统，能够满足量贩式KTV除“歌曲点播”外的所有管理需求。MicFamily分为管理员端和用户端。管理员端拥有“KTV员工管理、KTV会员管理、包间管理、订单管理、商品管理、公告管理”6个功能模块。用户端拥有“订单查询、包间预订、结算、超市”4个功能模块”。在MicFamily的加持下，我们相信量贩式KTV能够实现管理的“零差错”，盈利的“高增长”，用户的“很满意”。
+                                    </p>
+                                    <!--											<a href="#!/page_more" class="button_2">Read More</a>-->
                                 </div>
                             </div>
+                            <div class="block_1_1">
+                                <img alt="" class="img_1" src="images/page4_pic2.jpg">
+                                <div class="text_info">
+                                    <h3>技术介绍</h3>
+                                    <p style="font: 13px Arial, Helvetica, sans-serif;color: #6E6E70; margin: 0 0 0 0;">
+                                        1. 前端：排版框架Bootstrap v5.1.0开发\ACE、字体与图标使用elementUI或font-awesome v4.7.0、jquery
+                                        v3.5.1、VUE脚本、</br>
+                                        2. 后端：SprintBoot v2.7.1</br>
+                                        3. 数据库：mysql8.0.26</br>
+                                        4. 开发工具：后端与构建IDEA、前端界面HBuilderX、前端界面DreamWeaver、数据库Navicat 15.0.26</br>
+                                        5. 项目构建与版本管理：apache-maven-3.6.3</br>
+                                        6. 开发语言：java1.8</p>
+                                </div>
+                            </div>
+                            <div class="block_1_1">
+                                <img alt="" class="img_1" src="images/技术.jpg">
+                                <div class="text_info">
+                                    <h3>功能介绍</h3>
+                                    <p style="font: 13px Arial, Helvetica, sans-serif;color: #6E6E70">
+                                        麦家MicFamily在管理员端实现了“员工管理、会员管理、包间管理、订单管理、商品管理、公告管理”6个模块的增删改查，支持用户的注册、登录、退出、上传头像操作；支持公告的下载操作；在主页左下角实时显示近期发生的待处理事务消息。在用户端实现了“订单查询、包间预订、在线结算、超市选购”4个功能，支持用户的登录、注册和退出登录；按包间类型查找包间，按包间号查询订单，按包间号在线下单。
+                                        项目使用云数据库，可在腾讯云图上反映KTV的实时运营情况。
+                                        </br>
+                                    </p>
+                                    <!--											<a href="#!/page_more" class="button_2">Read More</a>-->
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="marg_1">
+                            <h2>我们的<span>开发团队</span></h2>
+
+                            <ul class="list_01" style="margin: 0px 0px 80px 0px">
+                                <li style="height: 330px;margin: 0px">
+                                    <figure><a href="images/MicFamily-2.png" rel="appendix"><span class="sitem_over"
+                                                                                                  style="display: block; opacity: 0;"><strong
+                                            style="top: 200px; opacity: 0;"></strong></span><img alt=""
+                                                                                                 src="images/page3_pic1.jpg"></a>
+                                    </figure>
+
+                                    <p style="padding: 0; margin: 0 0 5px 0; text-align: center">闫士博</p>
+                                    <p style="padding: 0;text-align: left;font-size: 15px; color:#6E6E70;">
+                                        项目组长兼技术总监，负责构建项目的生命周期与文件结构，为组员分配任务，并解决其技术烦恼，帮助项目度过了许多关键节点，完成了项目迭代。</p>
+                                </li>
+                                <li style="height: 330px;margin: 0px">
+                                    <figure><a href="images/MicFamily-2.png" rel="appendix"><span class="sitem_over"
+                                                                                                  style="display: block; opacity: 0;"><strong
+                                            style="top: 200px; opacity: 0;"></strong></span><img alt=""
+                                                                                                 src="images/page3_pic2.jpg"></a>
+                                    </figure>
+                                    <p style="padding: 0; margin: 0 0 5px 0; text-align: center">程佳涛</p>
+                                    <p style="padding: 0;text-align: left;font-size: 15px; color:#6E6E70;">
+                                        后端开发工程师，负责业务内相关功能的后端实现，完成了MVC的三层代码编写，并将前端与后端连接在一起，同时完成前端界面的交互效果。</p>
+                                </li>
+                                <li class="right" style="height: 330px;margin: 0px">
+                                    <figure><a href="images/MicFamily-2.png" rel="appendix"><span class="sitem_over"
+                                                                                                  style="display: block; opacity: 0;"><strong
+                                            style="top: 200px; opacity: 0;"></strong></span><img alt=""
+                                                                                                 src="images/page3_pic3.jpg"></a>
+                                    </figure>
+                                    <p style="padding: 0; margin: 0 0 5px 0; text-align: center">李沛阳</p>
+                                    <p style="padding: 0;text-align: left;font-size: 15px; color:#6E6E70;">
+                                        前端开发工程师兼后端开发工程师，负责项目的界面UI设计、前端布局与界面交互脚本实现。同时完成了管理员功能的后端编写。</p>
+                                </li>
+                                <li style="height: 330px;margin: 0px">
+                                    <figure><a href="images/MicFamily-2.png" rel="appendix"><span class="sitem_over"
+                                                                                                  style="display: block; opacity: 0;"><strong
+                                            style="top: 200px; opacity: 0;"></strong></span><img alt=""
+                                                                                                 src="images/page3_pic4.jpg"></a>
+                                    </figure>
+                                    <p style="padding: 0; margin: 0 0 5px 0; text-align: center">舒航</p>
+                                    <p style="padding: 0;text-align: left;font-size: 15px; color:#6E6E70;">
+                                        前端开发工程师，负责完成业务内相关页面的布局优化与交互设计，完成了与云数据库相连的腾讯云图的设计与实现，并协助组员完成业务内任务。</p>
+                                </li>
+                                <li style="height: 330px;margin: 0px">
+                                    <figure><a href="images/MicFamily-2.png" rel="appendix"><span
+                                            class="sitem_over"><strong style="top: 200px;"></strong></span><img alt=""
+                                                                                                                src="images/page3_pic5.jpg"></a>
+                                    </figure>
+                                    <p style="padding: 0; margin: 0 0 5px 0; text-align: center">徐兴</p>
+                                    <p style="padding: 0;text-align: left;font-size: 15px; color:#6E6E70;">
+                                        后端开发工程师兼数据库设计工程师，负责完成后端的功能实现、前后端连接以及后端与数据库的连接，同时设计实现了了项目的数据库。</p>
+                                </li>
+                                <li class="right" style="height: 330px;margin: 0px">
+                                    <figure><a href="images/MicFamily-2.png" rel="appendix"><span
+                                            class="sitem_over"><strong style="top: 200px;"></strong></span><img alt=""
+                                                                                                                src="images/page3_pic6.jpg"></a>
+                                    </figure>
+                                    <p style="padding: 0; margin: 0 0 5px 0; text-align: center">赵俊翔</p>
+                                    <p style="padding: 0;text-align: left;font-size: 15px; color:#6E6E70;">
+                                        前端开发工程师兼设计工程师，负责完成业务内相关页面的开发与优化，完成必要VUE脚本的编写，并完成用户界面和管理员界面logo的绘制。</p>
+                                </li>
+                            </ul>
+
                         </div>
                     </div>
                 </li>
+
+
                 <li id="order_query">
                     <div class="container">
                         <div class="wrapper">
@@ -158,7 +252,7 @@
 
                                 <table>
                                     <thead>
-                                    <span>如果您想要退订的话，请点击这里</span></br>
+                                    <span>如果您想要结算的话，请点击这里</span></br>
                                     <button class="btn" v-on:click="remove(room.id,room.type)">
                                         <span>结算</span></button>
                                     </thead>
@@ -298,136 +392,6 @@
                         </div>
                     </div>
                 </li>
-                <li id="page_menu">
-                    <div class="container">
-                        <div class="wrapper">
-                            <div class="marg_1">
-                                <h2>MicFamily <span>Menu</span></h2>
-                                <ul class="list_04">
-                                    <li>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        <div class="text_info2">
-                                            <a href="images/image_blank_black.jpg">电池 </a>
-                                            </br>
-                                            <button class="btn" v-on:click="buyGoods(3)">购买</button>
-                                            <p>价格<span>￥5</span></p>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        <div class="text_info2">
-                                            <a href="images/image_blank_black.jpg">炸鸡 </a>
-                                            </br>
-                                            <button class="btn" v-on:click="buyGoods(1)">购买</button>
-                                            <p>价格<span>￥10</span></p>
-                                        </div>
-                                    </li>
-
-                                    <li class="right">
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        <div class="text_info2">
-                                            <a href="images/image_blank_black.jpg">薯条 </a>
-                                            </br>
-                                            <button class="btn" v-on:click="buyGoods(2)">购买</button>
-                                            <p>价格<span>￥13</span></p>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        <div class="text_info2">
-                                            <a href="images/image_blank_black.jpg">啤酒 </a>
-                                            </br>
-                                            <button class="btn" v-on:click="buyGoods(4)">购买</button>
-                                            <p>价格<span>￥7</span></p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        <div class="text_info2">
-                                            <a href="images/image_blank_black.jpg">乡村基 </a>
-                                            </br>
-                                            <button class="btn" v-on:click="buyGoods(5)">购买</button>
-                                            <p>价格<span>￥20</span></p>
-                                        </div>
-                                    </li>
-                                    <li class="right">
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        <div class="text_info2">
-                                            <a href="images/image_blank_black.jpg">Durex </a>
-                                            </br>
-                                            <button class="btn" v-on:click="buyGoods(6)">购买</button>
-                                            <p>价格<span>￥10</span></p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        <div class="text_info2">
-                                            <a href="images/image_blank_black.jpg">果盘 </a>
-                                            </br>
-                                            <button class="btn" v-on:click="buyGoods(7)">购买</button>
-                                            <p>价格<span>￥40</span></p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        <div class="text_info2">
-                                            <a href="images/image_blank_black.jpg">小食 </a>
-                                            </br>
-                                            <button class="btn" v-on:click="buyGoods(8)">购买</button>
-                                            <p>价格<span>￥55</span></p>
-                                        </div>
-                                    </li>
-
-                                    <!--                                    <li class="right">-->
-                                    <!--                                        <figure><a href="images/image_blank_black.jpg"><img alt-->
-                                    <!--                                                                                            src="images/page6_pic3.jpg"></a>-->
-                                    <!--                                        </figure>-->
-                                    <!--                                        <div class="text_info2">-->
-                                    <!--                                            <a href="#">Sit yate pso tahaei </a>-->
-                                    <!--                                            <p>Onse ctetur adipis - <span>$32</span></p>-->
-                                    <!--                                        </div>-->
-                                    <!--                                    </li>-->
-                                    <!--                                    <li>-->
-                                    <!--                                        <figure><a href="images/image_blank_black.jpg"><img alt-->
-                                    <!--                                                                                            src="images/page6_pic4.jpg"></a>-->
-                                    <!--                                        </figure>-->
-                                    <!--                                        <div class="text_info2">-->
-                                    <!--                                            <a href="#">Sit yate pso tahaei </a>-->
-                                    <!--                                            <p>Onse ctetur adipis - <span>$18</span></p>-->
-                                    <!--                                        </div>-->
-                                    <!--                                    </li>-->
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-
                 <li id="page_parties">
                     <div class="container">
                         <div class="wrapper">
@@ -565,9 +529,102 @@
                         </div>
                     </div>
                 </li>
-
-
-
+                <li id="page_goods">
+                    <div class="container">
+                        <div class="wrapper">
+                            <div class="marg_1">
+                                <h2>为您准备了 &nbsp;<span>精美商品</span></h2>
+                                <ul class="list_01" style="margin: 0px 0px 80px 0px">
+                                    <li style="height: 280px ; text-align: center;margin: 0px">
+                                        <figure><span class="sitem_over" style="display: block; opacity: 0;"><strong
+                                                style="top: 200px; opacity: 0;"></strong></span><img alt=""
+                                                                                                     src="images/电池.png">
+                                        </figure>
+                                        <p style="padding: 0; margin: 0 0 5px 0; text-align: center">电池</p>
+                                        <p style="padding: 0;text-align: center;font-size: 15px; color:#6E6E70; margin: 0 0 5px 0">
+                                            价格：<span style="color: #dc26ae;">￥5</span></p>
+                                        <button class="btn" style="height: 25px" v-on:click="buyGoods(1)">购买</button>
+                                    </li>
+                                    <li style="height: 280px ; text-align: center;margin: 0px">
+                                        <figure><span class="sitem_over" style="display: block; opacity: 0;"><strong
+                                                style="top: 200px; opacity: 0;"></strong></span><img alt=""
+                                                                                                     src="images/炸鸡.jpg">
+                                        </figure>
+                                        <p style="padding: 0; margin: 0 0 5px 0; text-align: center">炸鸡</p>
+                                        <p style="padding: 0;text-align: center;font-size: 15px; color:#6E6E70; margin: 0 0 5px 0">
+                                            价格：<span style="color: #dc26ae;">￥10</span></p>
+                                        <button class="btn" style="height: 25px" v-on:click="buyGoods(2)">购买</button>
+                                    </li>
+                                    <li class="right" style="height: 280px ; text-align: center;margin: 0px">
+                                        <figure><span class="sitem_over" style="display: block; opacity: 0;"><strong
+                                                style="top: 200px; opacity: 0;"></strong></span><img alt=""
+                                                                                                     src="images/薯条.jpg">
+                                        </figure>
+                                        <p style="padding: 0; margin: 0 0 5px 0; text-align: center">薯条</p>
+                                        <p style="padding: 0;text-align: center;font-size: 15px; color:#6E6E70; margin: 0 0 5px 0">
+                                            价格：<span style="color: #dc26ae;">￥13</span></p>
+                                        <button class="btn" style="height: 25px" v-on:click="buyGoods(3)">购买</button>
+                                    </li>
+                                    <li style="height: 280px ; text-align: center;margin: 0px">
+                                        <figure><span class="sitem_over" style="display: block; opacity: 0;"><strong
+                                                style="top: 200px; opacity: 0;"></strong></span><img alt=""
+                                                                                                     src="images/啤酒.jpg">
+                                        </figure>
+                                        <p style="padding: 0; margin: 0 0 5px 0; text-align: center">啤酒</p>
+                                        <p style="padding: 0;text-align: center;font-size: 15px; color:#6E6E70; margin: 0 0 5px 0">
+                                            价格：<span style="color: #dc26ae;">￥7</span></p>
+                                        <button class="btn" style="height: 25px" v-on:click="buyGoods(4)">购买</button>
+                                    </li>
+                                    <li style="height: 280px ; text-align: center;margin: 0px">
+                                        <figure><span class="sitem_over"><strong
+                                                style="top: 200px;"></strong></span><img alt="" src="images/乡村基.jpg">
+                                        </figure>
+                                        <p style="padding: 0; margin: 0 0 5px 0; text-align: center">乡村基</p>
+                                        <p style="padding: 0;text-align: center;font-size: 15px; color:#6E6E70; margin: 0 0 5px 0">
+                                            价格：<span style="color: #dc26ae;">￥20</span></p>
+                                        <button class="btn" style="height: 25px" v-on:click="buyGoods(5)">购买</button>
+                                    </li>
+                                    <li style="height: 280px ; text-align: center;margin: 0px">
+                                        <figure><span class="sitem_over"><strong
+                                                style="top: 200px;"></strong></span><img alt="" src="images/抽纸.jpg">
+                                        </figure>
+                                        <p style="padding: 0; margin: 0 0 5px 0; text-align: center">抽纸</p>
+                                        <p style="padding: 0;text-align: center;font-size: 15px; color:#6E6E70; margin: 0 0 5px 0">
+                                            价格：<span style="color: #dc26ae;">￥10</span></p>
+                                        <button class="btn" style="height: 25px" v-on:click="buyGoods(6)">购买</button>
+                                    </li>
+                                    <li style="height: 280px ; text-align: center;margin: 0px">
+                                        <figure><span class="sitem_over"><strong
+                                                style="top: 200px;"></strong></span><img alt="" src="images/果盘.jpg">
+                                        </figure>
+                                        <p style="padding: 0; margin: 0 0 5px 0; text-align: center">果盘</p>
+                                        <p style="padding: 0;text-align: center;font-size: 15px; color:#6E6E70; margin: 0 0 5px 0">
+                                            价格：<span style="color: #dc26ae;">￥40</span></p>
+                                        <button class="btn" style="height: 25px" v-on:click="buyGoods(7)">购买</button>
+                                    </li>
+                                    <li style="height: 280px ; text-align: center;margin: 0px">
+                                        <figure><span class="sitem_over"><strong
+                                                style="top: 200px;"></strong></span><img alt="" src="images/小食.jpeg">
+                                        </figure>
+                                        <p style="padding: 0; margin: 0 0 5px 0; text-align: center">小食</p>
+                                        <p style="padding: 0;text-align: center;font-size: 15px; color:#6E6E70; margin: 0 0 5px 0">
+                                            价格：<span style="color: #dc26ae;">￥55</span></p>
+                                        <button class="btn" style="height: 25px" v-on:click="buyGoods(8)">购买</button>
+                                    </li>
+                                    <li style="height: 280px ; text-align: center;margin: 0px">
+                                        <figure><span class="sitem_over"><strong
+                                                style="top: 200px;"></strong></span><img alt="" src="images/中华.jpg">
+                                        </figure>
+                                        <p style="padding: 0; margin: 0 0 5px 0; text-align: center">中华</p>
+                                        <p style="padding: 0;text-align: center;font-size: 15px; color:#6E6E70; margin: 0 0 5px 0">
+                                            价格：<span style="color: #dc26ae;">￥75</span></p>
+                                        <button class="btn" style="height: 25px" v-on:click="buyGoods(9)">购买</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
                 <li id="page_privacy">
                     <div class="container">
                         <div class="marg_1">
