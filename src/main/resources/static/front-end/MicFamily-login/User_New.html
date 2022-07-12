@@ -92,6 +92,9 @@
                 <li id="order_query">
                     <div class="container">
                         <div class="wrapper">
+                            <h3 style="text-align:center">
+                                <button class="btn" v-on:click="query_order()">查询</button>
+                            </h3>
                             <div class="marg_1" v-if="msgfig">
                                 <h1>订单 <span>信息显示</span></h1>
                                 <h2><span>您使用的包厢为：</span>{{room.roomName}}</h2>
@@ -790,8 +793,10 @@
                             // console.log(rel.data);
                         });
                         this.msgfig = true;
+                    },
+                    query_order() {
+                        this.msgfig = true;
                     }
-
 
                 }
 
