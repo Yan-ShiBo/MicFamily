@@ -46,7 +46,7 @@ public class ManagerController {
 //            System.out.println(i.getPassword().equals(userName));
 //            System.out.println(i.getUserName().equals(password));
             if (i.getPassword().equals(password) && i.getUserName().equals(userName)) {
-                System.out.println("登录成功");
+                System.out.println("登录成功" + i);
 //               request.getSession().setAttribute("name","zhangsan");
 //                request.getSession().setAttribute("manager", i);
 
