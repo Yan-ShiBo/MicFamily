@@ -6,8 +6,8 @@
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet" type="text/css">
     <link href="css/style.css" rel="stylesheet">
-    <link href="images/favicon.ico" rel="icon" type="image/x-icon">
-    <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+    <link href="images/MicFamily-1.ico" rel="icon" type="image/x-icon">
+    <link href="images/MicFamily-1.ico" rel="shortcut icon" type="image/x-icon"/>
     <link href="./css/bootstrap-theme.min.css" rel="stylesheet">
     <script src="js/jquery-1.7.2.min.js"></script>
     <script src="js/scripts.js"></script>
@@ -433,7 +433,10 @@
                         <div class="wrapper">
                             <div class="marg_1">
 
+
                                 <div class="block_4">
+
+
                                     <h2>您的订单信息<span>显示</span></h2>
                                     <!-- <div class="success"><strong>以下是您房间的订单信息：</strong>
 
@@ -446,69 +449,114 @@
                                      <input type="button" v-on:click="getBroomlist()" value="大包">-->
 
                                     <div v-if="allroom">
-                                        <div class="card" style="width: 15rem;" v-for="room in roomlist">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Special title treatment</h5>
-                                                <p class="card-text"><span>包间名:</span>{{room.roomName}}</p>
-                                                <p class="card-text">包间规格:{{room.type}}</p>
-                                                <p class="card-text">包间状态:{{room.status}}</p>
-                                                <!--                                                <a href="#" class="btn"><span>预订</span></a>-->
-                                                <button class="btn" v-on:click="reserveS(room.id,room.type)">
-                                                    <span>预订 </span></button>
+                                        <div class="floatdiv">
+                                            <div class="card" style="width: 16rem; height: 10rem;"
+                                                 v-for="room in roomlist">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">ROOMS INFORMATION</h5>
+                                                    <p class="card-text"><span>包间名:</span>{{room.roomName}}</p>
+                                                    <p class="card-text">包间规格:{{room.type}}</p>
+                                                    <p class="card-text">包间状态:{{room.status}}</p>
+                                                    <!--                                                <a href="#" class="btn"><span>预订</span></a>-->
+                                                    <button class="btn" v-on:click="reserveS(room.id,room.type)">
+                                                        <span>预订 </span></button>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <button @click="upt()" class="btn"><span>上一页</span></button>
-                                        <button @click="next()" class="btn"><span>下一页</span></button>
-                                    </div>
 
+                                            <!--
+                                                                                    <button @click="upt()" class="btn"><span>上一页</span></button>
+                                                                                    <button @click="next()" class="btn"><span>下一页</span></button>
+                                            -->
+
+                                        </div>
+
+
+                                        <div>
+                                            <button @click="upt()" class="btn"><span>上一页</span></button>
+                                            <button @click="next()" class="btn"><span>下一页</span></button>
+                                        </div>
+
+
+                                    </div>
 
                                     <div v-if="smal">
-                                        <div class="card" style="width: 15rem;" v-for="room in roomlist">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Special title treatment</h5>
-                                                <p class="card-text"><span>包间名:</span>{{room.roomName}}</p>
-                                                <p class="card-text">包间规格:{{room.type}}</p>
-                                                <p class="card-text">包间状态:{{room.status}}</p>
-                                                <!--                                                <a href="#" class="btn"><span>预订</span></a>-->
-                                                <button class="btn" v-on:click="reserveS(room.id,room.type)">
-                                                    <span>预订 </span></button>
+                                        <div class="floatdiv">
+                                            <div class="card" style="width: 16rem; height: 10rem;"
+                                                 v-for="room in roomlist">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">ROOMS INFORMATION</h5>
+                                                    <p class="card-text"><span>包间名:</span>{{room.roomName}}</p>
+                                                    <p class="card-text">包间规格:{{room.type}}</p>
+                                                    <p class="card-text">包间状态:{{room.status}}</p>
+                                                    <!--                                                <a href="#" class="btn"><span>预订</span></a>-->
+                                                    <button class="btn" v-on:click="reserveS(room.id,room.type)">
+                                                        <span>预订 </span></button>
+                                                </div>
                                             </div>
+                                            <!--
+                                                                                    <button @click="uptSmal()" class="btn"><span>上一页</span></button>
+                                                                                    <button @click="nextSmal()" class="btn"><span>下一页</span></button>
+                                            -->
                                         </div>
-                                        <button @click="uptSmal()" class="btn"><span>上一页</span></button>
-                                        <button @click="nextSmal()" class="btn"><span>下一页</span></button>
+
+                                        <div>
+                                            <button @click="upt()" class="btn"><span>上一页</span></button>
+                                            <button @click="next()" class="btn"><span>下一页</span></button>
+                                        </div>
                                     </div>
+
 
                                     <div v-if="medium">
-                                        <div class="card" style="width: 15rem;" v-for="room in roomlist">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Special title treatment</h5>
-                                                <p class="card-text"><span>包间名:</span>{{room.roomName}}</p>
-                                                <p class="card-text">包间规格:{{room.type}}</p>
-                                                <p class="card-text">包间状态:{{room.status}}</p>
-                                                <!--                                                <a href="#" class="btn"><span>预订</span></a>-->
-                                                <button class="btn" v-on:click="reserveM(room.id,room.type)">
-                                                    <span>预订 </span></button>
+                                        <div class="floatdiv">
+                                            <div class="card" style="width: 16rem; height: 10rem;"
+                                                 v-for="room in roomlist">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">ROOMS INFORMATION</h5>
+                                                    <p class="card-text"><span>包间名:</span>{{room.roomName}}</p>
+                                                    <p class="card-text">包间规格:{{room.type}}</p>
+                                                    <p class="card-text">包间状态:{{room.status}}</p>
+                                                    <!--                                                <a href="#" class="btn"><span>预订</span></a>-->
+                                                    <button class="btn" v-on:click="reserveM(room.id,room.type)">
+                                                        <span>预订 </span></button>
+                                                </div>
                                             </div>
+                                            <!--
+                                                                                    <button @click="uptMedium()" class="btn"><span>上一页</span></button>
+                                                                                    <button @click="nextMedium()" class="btn"><span>下一页</span></button>
+                                            -->
                                         </div>
-                                        <button @click="uptMedium()" class="btn"><span>上一页</span></button>
-                                        <button @click="nextMedium()" class="btn"><span>下一页</span></button>
+                                        <div>
+                                            <button @click="upt()" class="btn"><span>上一页</span></button>
+                                            <button @click="next()" class="btn"><span>下一页</span></button>
+                                        </div>
                                     </div>
 
+
                                     <div v-if="bigg">
-                                        <div class="card" style="width: 15rem;" v-for="room in roomlist">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Special title treatment</h5>
-                                                <p class="card-text"><span>包间名:</span>{{room.roomName}}</p>
-                                                <p class="card-text">包间规格:{{room.type}}</p>
-                                                <p class="card-text">包间状态:{{room.status}}</p>
-                                                <!--                                                <a href="#" class="btn"><span>预订</span></a>-->
-                                                <button class="btn" v-on:click="reserveB(room.id,room.type)">
-                                                    <span>预订 </span></button>
+                                        <div class="floatdiv">
+                                            <div class="card" style="width: 16rem; height: 10rem;"
+                                                 v-for="room in roomlist">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">ROOMS INFORMATION</h5>
+                                                    <p class="card-text"><span>包间名:</span>{{room.roomName}}</p>
+                                                    <p class="card-text">包间规格:{{room.type}}</p>
+                                                    <p class="card-text">包间状态:{{room.status}}</p>
+                                                    <!--                                                <a href="#" class="btn"><span>预订</span></a>-->
+                                                    <button class="btn" v-on:click="reserveB(room.id,room.type)">
+                                                        <span>预订 </span></button>
+                                                </div>
                                             </div>
+                                            <!--
+                                                                                    <button @click="uptBigg()" class="btn"><span>上一页</span></button>
+                                                                                    <button @click="nextBigg()" class="btn"><span>下一页</span></button>
+                                            -->
                                         </div>
-                                        <button @click="uptBigg()" class="btn"><span>上一页</span></button>
-                                        <button @click="nextBigg()" class="btn"><span>下一页</span></button>
+                                        <div>
+                                            <button @click="upt()" class="btn"><span>上一页</span></button>
+                                            <button @click="next()" class="btn"><span>下一页</span></button>
+                                        </div>
                                     </div>
+
 
                                 </div>
 
@@ -517,6 +565,7 @@
                         </div>
                     </div>
                 </li>
+
 
 
                 <li id="page_privacy">
@@ -576,19 +625,19 @@
 
                     currented: 0,
                     total: 1,
-                    size: 2,
+                    size: 4,
 
                     SmallCurrented: 0,
                     SmallTotal: 1,
-                    SmallSize: 2,
+                    SmallSize: 4,
 
                     MediumCurrented: 0,
                     MediumTotal: 1,
-                    MediumSize: 2,
+                    MediumSize: 4,
 
                     BigCurrented: 0,
                     BigTotal: 1,
-                    BigSize: 2,
+                    BigSize: 4,
 
                 }, created() {
                     this.userId = sessionStorage.getItem("userId");
