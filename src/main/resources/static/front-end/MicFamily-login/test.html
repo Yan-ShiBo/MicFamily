@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./js/axios.min.js"></script>
+    <script src="./vue/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <button v-on:click="user()"> 用户登录（user账号）</button>
+    <button v-on:click="user1()"> 用户登录（user1账号）</button>
+    <button v-on:click="admin()"> 三级权限管理员登录（test1账号）</button>
+</div>
+
+
+<script>
+    new Vue(
+        {
+            el: "#app",
+            data: {
+                userName: "",
+                password: "",
+                identity: 0,
+                manager: {}
+
+            },
+            methods: {
+                user() {
+                    this.userName = "user";
+                    this.password = "111";
+                    this.login();
+                },
+                user1() {
+                    this.userName = "user1";
+                    this.password = "111";
+                    this.login();
+                },
+                admin() {
+                    this.userName = "test1";
+                    this.password = "111";
+                    this.login();
+                },
+                login() {
+                    axios.get("http://localhost:8088/login", {
+                        params: {
+                            userName: this.userName,
+                            password: this.password
+                        }
+                    }).then(rel => {
+                        // alert(111);
+                        this.manager = rel.data;
+                        console.log(this.manager)
+                        this.identity = this.manager.permission;
+                        // alert(this.identity)
+                        if (this.identity == 1 || this.identity == 2 || this.identity == 3 || this.identity == 4) {
+
+                            // document.location = "manage.html?identity=" + rel.data;
+                            sessionStorage.setItem("identity", this.identity);
+                            document.location = "manage.html";
+                        } else if (this.identity == 5) {
+                            sessionStorage.setItem("userId", this.manager.id);
+                            document.location = "User_New.html";
+                        } else if (this.identity == 6) {
+                            sessionStorage.setItem("userId", this.manager.id);
+                            document.location = "user.html";
+                        } else {
+                            alert("登录失败");
+                            window.location.reload();
+                        }
+
+
+                    });
+                }
+
+            }
+        }
+    );
+
+
+</script>
+</body>
+
+
+</html>
