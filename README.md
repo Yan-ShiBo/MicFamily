@@ -12,6 +12,12 @@
 
 ### 启动spring boot后，输入localhost:8088 进入系统，或者在login.html中直接进入
 
+#### login.html位置：MicFamily\src\main\resources\static\front-end\MicFamily-login\login.html
+
+#### 使用test.html可以快速登录
+
+#### user_New.html是我们的新用户界面，实现了本系统的核心功能
+
 ## 技术：
 
 ### 1.操作系统：Windows 11
