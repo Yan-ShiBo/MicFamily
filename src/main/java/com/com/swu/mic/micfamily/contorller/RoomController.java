@@ -8,6 +8,8 @@ import com.com.swu.mic.micfamily.domain.Goods;
 import com.com.swu.mic.micfamily.domain.Order;
 import com.com.swu.mic.micfamily.domain.Room;
 import com.com.swu.mic.micfamily.domain.order_inquiry;
+import com.com.swu.mic.micfamily.service.GoodsService;
+import com.com.swu.mic.micfamily.service.OrderService;
 import com.com.swu.mic.micfamily.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,11 +25,16 @@ public class RoomController {
     @Autowired
     private RoomService roomService;
     @Autowired
+    private OrderService orderService;
+    @Autowired
+    private GoodsService goodsService;
+    @Autowired
+    private GoodsDao goodsDao;
+    @Autowired
     RoomDao roomDao;
     @Autowired
     OrderDao orderDao;
-    @Autowired
-    GoodsDao goodsDao;
+
 
     @PostMapping("/management")
     public boolean Postmanagement(@RequestBody Room room) {
@@ -269,20 +276,35 @@ public class RoomController {
 
     @DeleteMapping("/removeid")
     public String removeId(@RequestParam("id") Integer id, @RequestParam("managerId") Integer managerId) {
-        System.out.println(id + "-----" + managerId);
+//        System.out.println(id + "-----" + managerId);
 
         Room room = roomDao.getcoRoomName(managerId);
-        System.out.println("2222222222222222111111111111111111" + room);
         if (room == null) {
-
             return "对不起，您还没有预订过包间";
-        } else
+        } else {
+            String roomName = room.getRoomName();
+            roomDao.updateID(managerId);
 
-            System.out.println(managerId + "111111111111111111" + room);
-        roomDao.updateID(managerId);
+            Order order = orderDao.getcoOrder(roomName);
+            if (order != null) {
+                Integer orderId = order.getId();
+                orderService.removeById(orderId);
+
+                List<Goods> goodsList = goodsDao.getByOrderId(orderId);
+                for (Goods i : goodsList) {
+                    i.setOrderId(null);
+//                System.out.println(i.getOrderId()+"-----------------=============================+++++++++++++++");
+                    goodsDao.updateID(i.getId());
+                }
+            }
 
 
-        return "您已取消订购包间";
+        }
+
+//            System.out.println(managerId + "111111111111111111" + room);
+
+
+        return "您已成功结算订单";
 
     }
 

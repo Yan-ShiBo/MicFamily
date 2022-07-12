@@ -9,6 +9,7 @@ import com.com.swu.mic.micfamily.domain.Order;
 import com.com.swu.mic.micfamily.domain.Room;
 import com.com.swu.mic.micfamily.domain.buyGoods;
 import com.com.swu.mic.micfamily.service.GoodsService;
+import com.com.swu.mic.micfamily.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +29,8 @@ public class GoodsController {
 
     @Autowired
     private GoodsService goodsService;
-
+    @Autowired
+    private OrderService orderService;
 
     @Autowired
     GoodsDao goodsDao;
@@ -123,6 +125,7 @@ public class GoodsController {
     //购买商品的后端实现
     @GetMapping("/buyGoods")
     public buyGoods getButGoods(@RequestParam Integer manager_id, @RequestParam Integer goodsId) {
+//        System.out.println("099128301724123");
         buyGoods buygoods = new buyGoods();
         Room room;
         Order order;
@@ -142,11 +145,15 @@ public class GoodsController {
         if (order == null) {
             order = new Order();
             order.setCoRoom(roomName);
+            order.setOrderInfo("用户" + manager_id + "的订单");
+            orderService.save(order);
         }
         Integer orderId = order.getId();
 
         Goods goods = goodsService.getById(goodsId);
         goods.setOrderId(orderId);
+        goodsService.updateById(goods);
+        System.out.println(orderId + "   " + goodsId);
         buygoods.setFlag(true);
         buygoods.setMsg("购买成功");
         return buygoods;

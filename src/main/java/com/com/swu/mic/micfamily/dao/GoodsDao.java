@@ -5,6 +5,7 @@ import com.com.swu.mic.micfamily.domain.Goods;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -37,4 +38,7 @@ public interface GoodsDao extends BaseMapper<Goods> {
 
     @Select("select * from goods where order_id = #{OrderId}")
     List<Goods> getByOrderId(@Param("OrderId") Integer OrderId);
+
+    @Update("update goods set order_id = null where id =#{id} ")
+    public int updateID(@Param("id") int id);
 }

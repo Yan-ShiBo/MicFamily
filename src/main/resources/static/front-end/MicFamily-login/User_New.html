@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title></title>
@@ -47,7 +47,7 @@
                     <li><a href="">项目介绍</a></li>
                     <li><a @click="getOrderById()" href="#!/order_query">订单查询</a></li>
                     <li><a href="#!/page_parties">包间预订</a></li>
-                    <li><a href="#!/page_events">商品购买</a></li>
+                    <li><a href="#!/page_menu">商品购买</a></li>
                     <!--                    <li><a href="#!/page_gallery">结账</a></li>-->
                     <!--                    <li><a href="#!/page_menu">公告管理</a></li>-->
                     <!--                    <li><a href="#!/page_menu">呼叫服务</a></li>-->
@@ -157,7 +157,7 @@
                                     <thead>
                                     <span>如果您想要退订的话，请点击这里</span></br>
                                     <button class="btn" v-on:click="remove(room.id,room.type)">
-                                        <span>退订</span></button>
+                                        <span>结算</span></button>
                                     </thead>
 
 
@@ -299,26 +299,35 @@
                     <div class="container">
                         <div class="wrapper">
                             <div class="marg_1">
-                                <h2>Our <span>Menu</span></h2>
+                                <h2>MicFamily <span>Menu</span></h2>
                                 <ul class="list_04">
                                     <li>
-                                        <figure><a href="images/image_blank_black.jpg"><img alt
-                                                                                            src="images/page6_pic1.jpg"></a>
-                                        </figure>
+                                        </br>
+                                        </br>
+                                        </br>
+                                        </br>
                                         <div class="text_info2">
-                                            <a href="#">Sit yate pso tahaei </a>
-                                            <p>Onse ctetur adipis - <span>$35</span></p>
+                                            <a href="images/image_blank_black.jpg">电池 </a>
+                                            </br>
+                                            <button class="btn" v-on:click="buyGoods(3)">购买</button>
+                                            <p>价格<span>￥5</span></p>
                                         </div>
                                     </li>
+
                                     <li>
-                                        <figure><a href="images/image_blank_black.jpg"><img alt
-                                                                                            src="images/page6_pic2.jpg"></a>
-                                        </figure>
+                                        </br>
+                                        </br>
+                                        </br>
+                                        </br>
                                         <div class="text_info2">
-                                            <a href="#">Sit yate pso tahaei </a>
-                                            <p>Onse ctetur adipis - <span>$28</span></p>
+                                            <a href="images/image_blank_black.jpg">炸鸡 </a>
+                                            </br>
+                                            <button class="btn" v-on:click="buyGoods(1)">购买</button>
+                                            <p>价格<span>￥10</span></p>
                                         </div>
                                     </li>
+
+
                                     <li class="right">
                                         <figure><a href="images/image_blank_black.jpg"><img alt
                                                                                             src="images/page6_pic3.jpg"></a>
@@ -646,6 +655,15 @@
                         axios.post("http://localhost:8088/users/save?userId=" + this.userId).then(rel => {
                             // alert(rel.data);
                         });
+                    },
+                    buyGoods(id) {
+                        // alert(id);
+                        axios.get("http://localhost:8088/goods/buyGoods?manager_id=" + this.userId + "&goodsId=" + id).then(rel => {
+                            // alert(rel.data);
+
+                            console.log(rel.data);
+                        });
+                        this.msgfig = true;
                     }
 
 
