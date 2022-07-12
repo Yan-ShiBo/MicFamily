@@ -63,6 +63,31 @@ body p a {
 
 }
 
+.btn1 {
+    /* display: inline-block;
+      border-radius:50px;
+      background-color: #6e6e6e;
+      border: none;
+      color: #fefefe;
+      text-shadow: 0 0 0.5em #e927b9, 0 0 0.2em #5c5c5c;
+      text-align: center;
+      font-size: 16px;
+
+      width: 100px;
+      hight: 100px;
+      transition: all 0.5s;
+      cursor: pointer;*/
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color: #fefefe;
+    background-color: #6e6e6e;
+    border: none;
+    text-shadow: 0 0 0.5em #e927b9, 0 0 0.2em #5c5c5c;
+    cursor: pointer
+}
+
+
 .btn span {
     cursor: pointer;
     display: inline-block;

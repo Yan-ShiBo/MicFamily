@@ -15,16 +15,15 @@ public class ListenSaveContorller {
     public ManagerDao managerdao;
     @Autowired
     private WebApplicationContext webapplicationcontext;
-
     @PostMapping("/save")
     public String rest(@RequestParam Integer userId) {
-//        System.out.println("+++++++++++++++++++++++++++++++++++++++++");
         Manager manager = managerdao.selectById(userId);
         manager.setStatus(1);
         int num = managerdao.updateById(manager);
         ObjEvent objEvent = new ObjEvent("Manager:", manager, "预订房间了");
         webapplicationcontext.publishEvent(objEvent);
-        return num > 1 ? "成功" : "失败";
+//        System.out.println(num+"条记录更新成功-------------------------------------------------------------");
+        return num > 0 ? "成功" : "失败";
 
     }
 }

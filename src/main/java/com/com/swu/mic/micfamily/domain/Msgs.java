@@ -9,6 +9,24 @@ public class Msgs {
     private Integer msgsId;
     private String msgsCont;
     private Integer type;
+    private String reserverName;
+    private String reserveRoom;
+
+    public String getReserveRoom() {
+        return reserveRoom;
+    }
+
+    public void setReserveRoom(String reserveRoom) {
+        this.reserveRoom = reserveRoom;
+    }
+
+    public String getReserverName() {
+        return reserverName;
+    }
+
+    public void setReserverName(String reserverName) {
+        this.reserverName = reserverName;
+    }
 
     public Integer getMsgsId() {
         return msgsId;

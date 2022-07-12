@@ -18,4 +18,7 @@ public interface MsgsDao extends BaseMapper<Msgs> {
 
     @Update("update msgs set type=0   where msgs_id=#{msgid}")
     public Integer updatamsg(@Param("msgid") Integer msgid);
+
+    @Select("select count(*) from msgs where type = 1")
+    public Integer checkType();
 }
