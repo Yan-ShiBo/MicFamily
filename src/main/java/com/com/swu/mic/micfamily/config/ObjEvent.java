@@ -6,9 +6,7 @@ import org.springframework.context.ApplicationEvent;
 public class ObjEvent extends ApplicationEvent {
 
     private Manager manager;
-
     private String content;
-
 
     public ObjEvent(Object source, Manager manager, String content) {
         super(source);
@@ -16,8 +14,12 @@ public class ObjEvent extends ApplicationEvent {
         this.content = content;
     }
 
-    public ObjEvent(Object source) {
-        super(source);
+    public Manager getManager() {
+        return manager;
+    }
+
+    public void setManager(Manager manager) {
+        this.manager = manager;
     }
 
     public String getContent() {
@@ -26,5 +28,9 @@ public class ObjEvent extends ApplicationEvent {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public ObjEvent(Object source) {
+        super(source);
     }
 }

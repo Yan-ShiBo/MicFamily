@@ -93,7 +93,7 @@
                     <div class="container">
                         <div class="wrapper">
                             <h3 style="text-align:center">
-                                <button class="btn" v-on:click="query_order()">查询</button>
+                                <button class="btn1" v-on:click="query_order()">查询</button>
                             </h3>
                             <div class="marg_1" v-if="msgfig">
                                 <h1>订单 <span>信息显示</span></h1>
@@ -446,7 +446,7 @@
                                      <input type="button" v-on:click="getBroomlist()" value="大包">-->
 
                                     <div v-if="allroom">
-                                        <div class="card" style="width: 18rem;" v-for="room in roomlist">
+                                        <div class="card" style="width: 15rem;" v-for="room in roomlist">
                                             <div class="card-body">
                                                 <h5 class="card-title">Special title treatment</h5>
                                                 <p class="card-text"><span>包间名:</span>{{room.roomName}}</p>
@@ -463,7 +463,7 @@
 
 
                                     <div v-if="smal">
-                                        <div class="card" style="width: 18rem;" v-for="room in roomlist">
+                                        <div class="card" style="width: 15rem;" v-for="room in roomlist">
                                             <div class="card-body">
                                                 <h5 class="card-title">Special title treatment</h5>
                                                 <p class="card-text"><span>包间名:</span>{{room.roomName}}</p>
@@ -479,7 +479,7 @@
                                     </div>
 
                                     <div v-if="medium">
-                                        <div class="card" style="width: 18rem;" v-for="room in roomlist">
+                                        <div class="card" style="width: 15rem;" v-for="room in roomlist">
                                             <div class="card-body">
                                                 <h5 class="card-title">Special title treatment</h5>
                                                 <p class="card-text"><span>包间名:</span>{{room.roomName}}</p>
@@ -495,7 +495,7 @@
                                     </div>
 
                                     <div v-if="bigg">
-                                        <div class="card" style="width: 18rem;" v-for="room in roomlist">
+                                        <div class="card" style="width: 15rem;" v-for="room in roomlist">
                                             <div class="card-body">
                                                 <h5 class="card-title">Special title treatment</h5>
                                                 <p class="card-text"><span>包间名:</span>{{room.roomName}}</p>
@@ -695,7 +695,7 @@
                         });
                     },
                     reserveS(id, type) {
-
+                        this.listen();
                         axios.get("http://localhost:8088/room/addid?id=" + id + "&managerId=" + this.userId).then(rel => {
                             var msg = rel.data;
                             alert(msg);
@@ -704,6 +704,7 @@
                         // window.location.reload();
                     },
                     reserveM(id, type) {
+                        this.listen();
                         axios.get("http://localhost:8088/room/addid?id=" + id + "&managerId=" + this.userId).then(rel => {
                             var msg = rel.data;
                             alert(msg);
@@ -712,6 +713,7 @@
                         // window.location.reload();
                     },
                     reserveB(id, type) {
+                        this.listen();
                         axios.get("http://localhost:8088/room/addid?id=" + id + "&managerId=" + this.userId).then(rel => {
                             var msg = rel.data;
                             alert(msg);
@@ -775,11 +777,11 @@
                         this.getBroomlist();
                     },
                     listen() {
-                        // alert(111111);
-                        axios.post("http://localhost:8088/users/save?userId=" + this.userId).then(rel => {
-                            // alert(rel.data);
+                        axios.post("http://localhost:8088/users/save?userId=" + this.userId).then(res => {
+                            // alert(res.data);
                         });
-                    },
+                    }
+                    ,
                     buyGoods(id) {
                         // alert(id);
                         axios.get("http://localhost:8088/goods/buyGoods?manager_id=" + this.userId + "&goodsId=" + id).then(rel => {
