@@ -440,7 +440,6 @@
                                             <button @click="next()" class="btn"><span>下一页</span></button>
                                         </div>
 
-
                                     </div>
 
                                     <div v-if="smal">
@@ -464,8 +463,8 @@
                                         </div>
 
                                         <div>
-                                            <button @click="upt()" class="btn"><span>上一页</span></button>
-                                            <button @click="next()" class="btn"><span>下一页</span></button>
+                                            <button @click="uptSmal()" class="btn"><span>上一页</span></button>
+                                            <button @click="nextSmal()" class="btn"><span>下一页</span></button>
                                         </div>
                                     </div>
 
@@ -490,8 +489,8 @@
                                             -->
                                         </div>
                                         <div>
-                                            <button @click="upt()" class="btn"><span>上一页</span></button>
-                                            <button @click="next()" class="btn"><span>下一页</span></button>
+                                            <button @click="uptMedium()" class="btn"><span>上一页</span></button>
+                                            <button @click="nextMedium()" class="btn"><span>下一页</span></button>
                                         </div>
                                     </div>
 
@@ -516,8 +515,8 @@
                                             -->
                                         </div>
                                         <div>
-                                            <button @click="upt()" class="btn"><span>上一页</span></button>
-                                            <button @click="next()" class="btn"><span>下一页</span></button>
+                                            <button @click="uptBigg()" class="btn"><span>上一页</span></button>
+                                            <button @click="nextBigg()" class="btn"><span>下一页</span></button>
                                         </div>
                                     </div>
 
@@ -746,9 +745,9 @@
                     getSroomlist() {
                         axios.get("http://localhost:8088/room/small?SmallCurrented=" + this.SmallCurrented + "&SmallSize=" + this.SmallSize).then(rel => {
 
-
+                            // console.log(rel.data);
                             this.roomlist = rel.data.records;
-                            this.total = rel.data.SmallTotal;
+                            this.SmallTotal = rel.data.total;
 
 
                             this.smal = true;
@@ -760,9 +759,9 @@
                     getMroomlist() {
                         axios.get("http://localhost:8088/room/medium?MediumCurrented=" + this.MediumCurrented + "&MediumSize=" + this.MediumSize).then(rel => {
 
-
+                            // console.log(rel.data);
                             this.roomlist = rel.data.records;
-                            this.total = rel.data.MediumTotal;
+                            this.MediumTotal = rel.data.total;
 
 
                             this.medium = true;
@@ -774,9 +773,9 @@
                     getBroomlist() {
                         axios.get("http://localhost:8088/room/big?BigCurrented=" + this.BigCurrented + "&BigSize=" + this.BigSize).then(rel => {
 
-
+                            // console.log(rel.data);
                             this.roomlist = rel.data.records;
-                            this.total = rel.data.BigTotal;
+                            this.BigTotal = rel.data.total;
 
 
                             this.bigg = true;
@@ -851,6 +850,7 @@
                     },
 
                     nextSmal() {
+                        // alert(this.SmallCurrented+"  "+this.SmallTotal);
                         if (this.SmallCurrented < this.SmallTotal)
                             this.SmallCurrented++;
                         this.getSroomlist();
@@ -862,6 +862,7 @@
                     },
 
                     nextMedium() {
+                        // alert(this.MediumCurrented+"  "+this.MediumTotal);
                         if (this.MediumCurrented < this.MediumTotal)
                             this.MediumCurrented++;
                         this.getMroomlist();
@@ -886,8 +887,7 @@
                         axios.post("http://localhost:8088/users/save?userId=" + this.userId).then(res => {
                             // alert(res.data);
                         });
-                    }
-                    ,
+                    },
                     buyGoods(id) {
                         // alert(id);
                         axios.get("http://localhost:8088/goods/buyGoods?manager_id=" + this.userId + "&goodsId=" + id).then(rel => {
@@ -905,7 +905,6 @@
                     query_order() {
                         this.msgfig = true;
                     }
-
                 }
 
             }
