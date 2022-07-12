@@ -609,27 +609,6 @@
                         this.userId = sessionStorage.getItem("userId");
                         // alert(this.userId);
                         axios.put("http://localhost:8088/room/findcoRoomName?manager_id=" + this.userId).then(rel => {
-                            // console.log(rel.data);
-                            if (rel.data.flag == false) {
-                                // alert("您好，ID为" + this.userId + "号的用户，您还没有订单!");
-                            } else {
-                                // console.log(rel.data);
-                                this.info = rel.data;
-                                alert("您好，ID为" + this.userId + "号的用户" + this.info.msg);
-                                this.orderlist = this.info.order;
-                                this.goodlist = this.info.goodsList;
-                                this.room = this.info.room;
-                                if (this.orderlist == null) {
-                                    // alert(this.info.msg);
-                                }
-                                this.sum = this.cal();
-                            }
-                        });
-                    },
-                    getOrderById() {
-                        this.userId = sessionStorage.getItem("userId");
-                        // alert(this.userId);
-                        axios.put("http://localhost:8088/room/findcoRoomName?manager_id=" + this.userId).then(rel => {
                             if (rel.data.length != 0) {
 
                                 console.log(rel.data);
