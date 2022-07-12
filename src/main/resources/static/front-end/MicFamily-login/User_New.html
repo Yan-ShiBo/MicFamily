@@ -557,11 +557,11 @@
                         this.userId = sessionStorage.getItem("userId");
                         // alert(this.userId);
                         axios.put("http://localhost:8088/room/findcoRoomName?manager_id=" + this.userId).then(rel => {
-                            console.log(rel.data);
+                            // console.log(rel.data);
                             if (rel.data.flag == false) {
                                 // alert("您好，ID为" + this.userId + "号的用户，您还没有订单!");
                             } else {
-                                console.log(rel.data);
+                                // console.log(rel.data);
                                 this.info = rel.data;
                                 alert("您好，ID为" + this.userId + "号的用户" + this.info.msg);
                                 this.orderlist = this.info.order;
@@ -670,7 +670,7 @@
                     remove(id, type) {
 
                         axios.delete("http://localhost:8088/room/removeid?id=" + id + "&managerId=" + this.userId).then(rel => {
-                            alert(rel.data);
+                            // alert(rel.data);
                             var msg = rel.data;
 
 
@@ -688,8 +688,13 @@
                         // alert(id);
                         axios.get("http://localhost:8088/goods/buyGoods?manager_id=" + this.userId + "&goodsId=" + id).then(rel => {
                             // alert(rel.data);
-
-                            console.log(rel.data);
+                            var buyGoods = rel.data;
+                            if (buyGoods.flag) {
+                                alert(buyGoods.msg);
+                            } else {
+                                alert(buyGoods.msg);
+                            }
+                            // console.log(rel.data);
                         });
                         this.msgfig = true;
                     }

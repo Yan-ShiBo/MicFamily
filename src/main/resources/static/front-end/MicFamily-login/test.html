@@ -1,16 +1,24 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="./js/axios.min.js"></script>
     <script src="./vue/vue.js"></script>
 </head>
+<style>
+    * {
+        margin: 10px;
+    }
+
+</style>
 <body>
 <div id="app">
     <button v-on:click="user()"> 用户登录（user账号）</button>
     <button v-on:click="user1()"> 用户登录（user1账号）</button>
-    <button v-on:click="admin()"> 三级权限管理员登录（test1账号）</button>
+    </br>
+    <button v-on:click="admin1()"> 三级权限管理员登录（test1账号）</button>
+    <button v-on:click="admin3()"> 二级权限管理员登录（test3账号）</button>
 </div>
 
 
@@ -36,8 +44,13 @@
                     this.password = "111";
                     this.login();
                 },
-                admin() {
+                admin1() {
                     this.userName = "test1";
+                    this.password = "111";
+                    this.login();
+                },
+                admin3() {
+                    this.userName = "test3";
                     this.password = "111";
                     this.login();
                 },
