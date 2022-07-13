@@ -92,7 +92,7 @@ public class GoodsController {
         Page<Goods> GoodsPage = new Page<>();
         List<Goods> goodsList = goodsDao.search("%" + goodsName + "%", currented * size, size);
         int max = goodsDao.findCount("%" + goodsName + "%");
-        System.out.println(max / size);
+//        System.out.println(max / size);
         if (max % size == 0) {
             GoodsPage.setTotal(max / size - 1);
         } else

@@ -86,12 +86,12 @@ public class RoomController {
     @PutMapping("/find")
     public Page<Room> search(@RequestParam String roomName, @RequestParam Integer currented, @RequestParam Integer size) {
 
-        System.out.println(roomName + "   " + currented + "   " + size);
+//        System.out.println(roomName + "   " + currented + "   " + size);
 
         Page<Room> RoomPage = new Page<>();
         List<Room> roomList = roomDao.search("%" + roomName + "%", currented * size, size);
         int max = roomDao.findCount("%" + roomName + "%");
-        System.out.println(max / size);
+//        System.out.println(max / size);
         if (max % size == 0) {
             RoomPage.setTotal(max / size - 1);
         } else
@@ -118,7 +118,7 @@ public class RoomController {
             }
         }
         int max = roomDao.CountBig();
-        System.out.println(max / BigSize);
+//        System.out.println(max / BigSize);
         if (max % BigSize == 0) {
             RoomPage.setTotal(max / BigSize - 1);
         } else
@@ -145,7 +145,7 @@ public class RoomController {
         }
 
         int max = roomDao.CountMedium();
-        System.out.println(max / MediumSize);
+//        System.out.println(max / MediumSize);
         if (max % MediumSize == 0) {
             RoomPage.setTotal(max / MediumSize - 1);
         } else
@@ -172,7 +172,7 @@ public class RoomController {
         }
 
         int max = roomDao.CountSmall();
-        System.out.println(max / SmallSize);
+//        System.out.println(max / SmallSize);
         if (max % SmallSize == 0) {
             RoomPage.setTotal(max / SmallSize - 1);
         } else
