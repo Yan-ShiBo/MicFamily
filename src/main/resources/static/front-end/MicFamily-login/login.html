@@ -137,6 +137,7 @@
 
                                 // document.location = "manage.html?identity=" + rel.data;
                                 sessionStorage.setItem("identity", this.identity);
+                                sessionStorage.setItem("userName", this.manager.userName);
                                 document.location = "manage.html";
                             } else if (this.identity == 5) {
                                 sessionStorage.setItem("userId", this.manager.id);

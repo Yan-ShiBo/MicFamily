@@ -71,6 +71,7 @@
                         if (this.identity == 1 || this.identity == 2 || this.identity == 3 || this.identity == 4) {
 
                             // document.location = "manage.html?identity=" + rel.data;
+                            sessionStorage.setItem("userName", this.manager.userName);
                             sessionStorage.setItem("identity", this.identity);
                             document.location = "manage.html";
                         } else if (this.identity == 5) {

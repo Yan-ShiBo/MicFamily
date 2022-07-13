@@ -114,15 +114,17 @@
     window.onload = function () {
         var identity = 0;
         identity = sessionStorage.getItem("identity");
+
         var identityName = "";
-        if (identity === 1)
+        if (identity == 1)
             identityName = "一级权限管理员";
-        else if (identity === 2)
+        else if (identity == 2)
             identityName = "二级权限管理员";
-        else if (identity === 3)
+        else if (identity == 3)
             identityName = "三级权限管理员";
         else
             identityName = "最高权限管理员";
+
         $("#addidentity").append(identityName);
     }
 </script>
@@ -152,7 +154,7 @@
 
             </div>
 
-            &nbsp;&nbsp;&nbsp;<span class="white" style="font-size: 150%;height: 40px;position: relative;top: 20px;">54->闫子</span>
+            &nbsp;&nbsp;&nbsp;<span class="white" style="font-size: 150%;height: 40px;position: relative;top: 20px;">{{userName}}</span>
 
         </div>
 
@@ -172,7 +174,7 @@
                 <tr>
                     <td>
                         <input class="btn btn-sm btn-danger" style="margin: 0px 0px 3px 0px" type="button"
-                               v-on:click="savev()" value="退出登录"/>
+                               v-on:click="quit()" value="退出登录"/>
                     </td>
                 </tr>
                 <tr>
@@ -210,7 +212,7 @@
                 <li style="width: 100%;">
                     <a href="manage-staff.html" target="main">
                         <i class="fa fa-address-card"></i>
-                        <span class="menu-text "> KTV员工管理 </span>
+                        <span class="menu-text "> 账号管理 </span>
 
                     </a>
                 </li>
@@ -299,12 +301,13 @@
             seen: false,
             msgsfig: false,
             msgs: [],
-            tiem: null
+            tiem: null,
+            userName: null
         },
         created() {
             setInterval(this.checks, 100);
             this.checks();
-
+            this.userName = sessionStorage.getItem("userName");
         },
         methods: {
 
@@ -351,7 +354,11 @@
                     }
                 });
 
+            },
+            quit() {
+                document.location = "login.html"
             }
+
         }
     });
 
