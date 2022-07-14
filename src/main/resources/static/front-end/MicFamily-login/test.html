@@ -18,6 +18,8 @@
 <div id="app">
     <button v-on:click="user()"> 用户登录（user账号）</button>
     <button v-on:click="user1()"> 用户登录（user1账号）</button>
+    <button v-on:click="YanShiBo()"> 用户登录（YanShiBo账号）</button>
+    <button v-on:click="LiPeiYang()"> 用户登录（LiPeiYang账号）</button>
     </br>
     <button v-on:click="admin1()"> 三级权限管理员登录（test1账号）</button>
     <button v-on:click="admin3()"> 二级权限管理员登录（test3账号）</button>
@@ -53,6 +55,16 @@
                 },
                 admin3() {
                     this.userName = "test3";
+                    this.password = "111";
+                    this.login();
+                },
+                YanShiBo() {
+                    this.userName = "YanShiBo";
+                    this.password = "111";
+                    this.login();
+                },
+                LiPeiYang() {
+                    this.userName = "LiPeiYang";
                     this.password = "111";
                     this.login();
                 },
