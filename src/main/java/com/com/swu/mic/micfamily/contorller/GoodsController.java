@@ -13,6 +13,8 @@ import com.com.swu.mic.micfamily.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -146,6 +148,11 @@ public class GoodsController {
             order = new Order();
             order.setCoRoom(roomName);
             order.setOrderInfo("用户" + manager_id + "的订单");
+            Date date = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
+            order.setOrderTime(formatter.format(date));
+//            System.out.println(formatter.format(date));
+
             orderService.save(order);
         }
         Integer orderId = order.getId();
